@@ -1,0 +1,28 @@
+{
+  "$schema": "../../../schemas/metadata.json",
+  "apiVersion": 1,
+  "id": "los-angeles-times",
+  "name": "Los Angeles Times",
+  "description": "Reading the news on latimes.com.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Abadima",
+      "github": "Abadima"
+    }
+  ],
+  "icon": "https://www.latimes.com/favicon.ico",
+  "matches": [
+    "https://www.latimes.com/*",
+    "https://latimes.com/*"
+  ],
+  "settings": [
+    {
+      "id": "showHeadlines",
+      "title": "Show headlines",
+      "description": "Puts the article's headline on your profile.",
+      "type": "boolean",
+      "default": false
+    }
+  ]
+}

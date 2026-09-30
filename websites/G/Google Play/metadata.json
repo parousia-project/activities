@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../schemas/metadata.json",
+  "apiVersion": 1,
+  "id": "google-play",
+  "name": "Google Play",
+  "description": "The apps, movies, and books you look at on the Google Play Store.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Abadima",
+      "github": "Abadima"
+    }
+  ],
+  "matches": ["https://play.google.com/*"]
+}

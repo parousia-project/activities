@@ -4,7 +4,7 @@ This is the reference for native Parousia Activities: the format, the API, the r
 
 ## How Parousia runs an Activity
 
-The Parousia browser extension includes every Activity in this repository when it's built, at a commit the extension pins (`browser/activity-sources.json` in [Parousia's repository](https://github.com/Abadima/RPC)). Nothing is downloaded at runtime.
+The Parousia browser extension includes every Activity in this repository when it's built, from this repository's `main` branch (`browser/activity-sources.json` in [Parousia's repository](https://github.com/Abadima/RPC) names it), at the revision the build fetched. Nothing is downloaded at runtime.
 
 For the page in the active tab, Parousia picks the first Activity whose `matches` cover the page's URL and calls its `detect(page, settings)`. It calls again when the URL changes, and when the title changes on a page the Activity matches (single-page sites often set the title a moment after the URL). What `detect` returns becomes the user's presence: Parousia applies their Privacy settings, then Parousia Desktop shows it on Discord. Returning `null` means there's nothing to show on this page.
 
