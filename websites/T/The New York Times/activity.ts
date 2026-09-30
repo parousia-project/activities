@@ -13,6 +13,7 @@ import type { Activity, NativeActivity, Page, Settings } from "parousia";
  */
 const ORIGIN = "https://www.nytimes.com";
 const NAME = "The New York Times";
+const ICON = "https://static01.nyt.com/apple-touch-icon.png";
 const MAX_HEADLINE_CHARS = 100;
 const SLUG = /^[a-z][a-z0-9-]{0,40}$/;
 const TITLE_SUFFIX = /\s+[-–|]\s+The New York Times\s*$/i;
@@ -44,6 +45,7 @@ function detect({ url, title }: Page, settings: Settings): Activity {
     id: "the-new-york-times",
     name: NAME,
     url: `${ORIGIN}/`,
+    assets: { largeImage: ICON, largeText: NAME },
     buttons: [{ label: "Open The New York Times", url: `${ORIGIN}/` }],
   };
 

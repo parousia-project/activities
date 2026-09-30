@@ -4,14 +4,14 @@
   "id": "los-angeles-times",
   "name": "Los Angeles Times",
   "description": "Reading the news on latimes.com.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     {
       "name": "Abadima",
       "github": "Abadima"
     }
   ],
-  "icon": "https://www.latimes.com/favicon.ico",
+  "icon": "https://www.latimes.com/apple-touch-icon.png",
   "matches": ["https://www.latimes.com/*", "https://latimes.com/*"],
   "settings": [
     {

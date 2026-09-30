@@ -11,6 +11,7 @@ import type { Activity, NativeActivity, Page, Settings } from "parousia";
  */
 const ORIGIN = "https://claude.ai";
 const NAME = "Claude";
+const ICON = `${ORIGIN}/apple-touch-icon.png`;
 const MAX_TITLE_CHARS = 64;
 
 /** What each top-level page is, for the details line. */
@@ -47,6 +48,7 @@ function detect({ url, title }: Page, settings: Settings): Activity {
   const activity: Activity = {
     id: "claude",
     name: NAME,
+    assets: { largeImage: ICON, largeText: NAME },
     url: known && section !== "" ? `${ORIGIN}/${section}` : `${ORIGIN}/`,
     details,
     buttons: [{ label: "Open Claude", url: `${ORIGIN}/` }],

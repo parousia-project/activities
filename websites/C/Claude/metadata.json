@@ -4,14 +4,14 @@
   "id": "claude",
   "name": "Claude",
   "description": "Chatting, working in projects, and using Claude Code on claude.ai.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     {
       "name": "Abadima",
       "github": "Abadima"
     }
   ],
-  "icon": "https://claude.ai/favicon.ico",
+  "icon": "https://claude.ai/apple-touch-icon.png",
   "matches": ["https://claude.ai/*"],
   "settings": [
     {

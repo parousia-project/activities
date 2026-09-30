@@ -37,6 +37,10 @@ describe("Los Angeles Times", () => {
       id: "los-angeles-times",
       name: "Los Angeles Times",
       url: "https://www.latimes.com/california",
+      assets: {
+        largeImage: "https://www.latimes.com/apple-touch-icon.png",
+        largeText: "Los Angeles Times",
+      },
       details: "Reading an article",
       state: "California",
       buttons: [{ label: "Open the Los Angeles Times", url: "https://www.latimes.com/" }],

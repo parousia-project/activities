@@ -12,6 +12,7 @@ import type { Activity, NativeActivity, Page, Settings } from "parousia";
  */
 const ORIGIN = "https://www.latimes.com";
 const NAME = "Los Angeles Times";
+const ICON = `${ORIGIN}/apple-touch-icon.png`;
 const MAX_HEADLINE_CHARS = 100;
 const SECTION = /^[a-z][a-z0-9-]{0,40}$/;
 const TITLE_SUFFIX = /\s+[-–|]\s+Los Angeles Times\s*$/i;
@@ -38,6 +39,7 @@ function detect({ url, title }: Page, settings: Settings): Activity {
   const base: Activity = {
     id: "los-angeles-times",
     name: NAME,
+    assets: { largeImage: ICON, largeText: NAME },
     url: `${ORIGIN}/`,
     buttons: [{ label: "Open the Los Angeles Times", url: `${ORIGIN}/` }],
   };

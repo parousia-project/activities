@@ -36,6 +36,7 @@ describe("Claude", () => {
       id: "claude",
       name: "Claude",
       url: "https://claude.ai/chat",
+      assets: { largeImage: "https://claude.ai/apple-touch-icon.png", largeText: "Claude" },
       details: "Chatting with Claude",
       buttons: [{ label: "Open Claude", url: "https://claude.ai/" }],
     });

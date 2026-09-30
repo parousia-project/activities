@@ -10,6 +10,7 @@ import type { Activity, NativeActivity, Page } from "parousia";
 
 const ORIGIN = "https://abadima.dev";
 const NAME = "Abadima";
+const ICON = `${ORIGIN}/assets/imgs/abadima_fav.ico`;
 
 const PAGES: Readonly<Record<string, string>> = {
   "/": "On the portfolio landing page",
@@ -44,7 +45,8 @@ function detect({ url, title }: Page): Activity {
   const base: Activity = {
     id: "abadima",
     name: NAME,
-    url: `${ORIGIN}${pathname === "/" ? "/" : pathname} `,
+    url: `${ORIGIN}${pathname}`,
+    assets: { largeImage: ICON, largeText: NAME },
     buttons: [{ label: "Open Abadima's Portfolio", url: `${ORIGIN}/` }],
   };
 

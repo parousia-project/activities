@@ -4,14 +4,14 @@
   "id": "the-new-york-times",
   "name": "The New York Times",
   "description": "Reading the news and playing the games on nytimes.com.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     {
       "name": "Abadima",
       "github": "Abadima"
     }
   ],
-  "icon": "https://static01.nyt.com/favicon.ico",
+  "icon": "https://static01.nyt.com/apple-touch-icon.png",
   "matches": ["https://www.nytimes.com/*"],
   "settings": [
     {

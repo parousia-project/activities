@@ -17,6 +17,11 @@ describe("The New York Times", () => {
     ]);
   });
 
+  test("has an icon, and shows it", () => {
+    expect(metadata.icon).toStartWith("https://");
+    expect(detect("https://www.nytimes.com/")?.assets?.largeImage).toBe(metadata.icon);
+  });
+
   test("recognizes www.nytimes.com over https only", () => {
     for (const href of [
       ARTICLE,
@@ -41,6 +46,10 @@ describe("The New York Times", () => {
       id: "the-new-york-times",
       name: "The New York Times",
       url: "https://www.nytimes.com/",
+      assets: {
+        largeImage: "https://static01.nyt.com/apple-touch-icon.png",
+        largeText: "The New York Times",
+      },
       details: "Reading an article",
       state: "Climate",
       buttons: [{ label: "Open The New York Times", url: "https://www.nytimes.com/" }],
