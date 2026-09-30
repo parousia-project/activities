@@ -2,6 +2,8 @@
   "name": "parousia-activities",
   "private": true,
   "type": "module",
+  "homepage": "https://parousia.abadima.dev",
+  "description": "A collection of activities for the Parousia project",
   "scripts": {
     "check": "bun run typecheck && bun run lint && bun run format:check && bun run validate && bun test",
     "typecheck": "tsc --noEmit",
