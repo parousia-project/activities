@@ -11,5 +11,6 @@
       "github": "Abadima"
     }
   ],
+  "icon": "https://play.google.com/favicon.ico",
   "matches": ["https://play.google.com/*"]
 }

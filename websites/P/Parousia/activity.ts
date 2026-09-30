@@ -78,7 +78,7 @@ function detect({ url, title }: Page): Activity {
   return {
     ...base,
     details: "Browsing Parousia",
-    state: `On parousia.abadima.dev — ${cleanTitle(title)}`.slice(0, 128),
+    state: `${cleanTitle(title)}`.slice(0, 128),
   };
 }
 

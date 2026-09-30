@@ -11,6 +11,6 @@
       "github": "Abadima"
     }
   ],
-  "icon": "https://parousia.abadima.dev/assets/imgs/parousia_fav.ico",
+  "icon": "https://parousia.abadima.dev/pwa/icons/icon-512.png",
   "matches": ["https://parousia.abadima.dev/*"]
 }
