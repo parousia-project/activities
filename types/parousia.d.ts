@@ -13,15 +13,24 @@ declare module "parousia" {
    */
   export type PageDataKind = "media" | "thumbnails";
 
-  /** What's playing on a page, from its Media Session and media elements. */
+  /**
+   * What's playing on a page: its Media Session (title, artist, album, and its
+   * own say on whether it's playing), and its media element for the clock.
+   */
   export interface PageMedia {
     title?: string;
     artist?: string;
     album?: string;
     playing?: boolean;
     /** Seconds. */
-    position?: number;
     duration?: number;
+    /**
+     * While playing, when the item started and will end if it plays straight
+     * through, in Unix milliseconds: an Activity's `timestamps` as they are.
+     * They change only when playback is seeked or restarted, not as it plays.
+     */
+    start?: number;
+    end?: number;
   }
 
   /**
