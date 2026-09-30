@@ -1,0 +1,11 @@
+{
+  "$schema": "../../../schemas/metadata.json",
+  "apiVersion": 1,
+  "id": "jena",
+  "name": "Jena Hub",
+  "description": "Arcade games, Discord bot commands, and communities on Jena Hub.",
+  "version": "1.0.0",
+  "authors": [{ "name": "Abadima", "github": "Abadima" }],
+  "icon": "https://jena.systems/icons/icon-512.png",
+  "matches": ["https://jena.systems/*"]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "parousia-activities",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "bun run typecheck && bun run lint && bun run format:check && bun run validate && bun test",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "validate": "bun run tools/validate.ts",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.2",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0"
+  },
+  "peerDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
