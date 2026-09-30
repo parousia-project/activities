@@ -12,10 +12,7 @@
     }
   ],
   "icon": "https://www.latimes.com/favicon.ico",
-  "matches": [
-    "https://www.latimes.com/*",
-    "https://latimes.com/*"
-  ],
+  "matches": ["https://www.latimes.com/*", "https://latimes.com/*"],
   "settings": [
     {
       "id": "showHeadlines",

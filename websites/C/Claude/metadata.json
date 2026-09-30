@@ -12,9 +12,7 @@
     }
   ],
   "icon": "https://claude.ai/favicon.ico",
-  "matches": [
-    "https://claude.ai/*"
-  ],
+  "matches": ["https://claude.ai/*"],
   "settings": [
     {
       "id": "showChatTitle",

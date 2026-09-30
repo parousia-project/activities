@@ -12,9 +12,7 @@
     }
   ],
   "icon": "https://static01.nyt.com/favicon.ico",
-  "matches": [
-    "https://www.nytimes.com/*"
-  ],
+  "matches": ["https://www.nytimes.com/*"],
   "settings": [
     {
       "id": "showHeadlines",
