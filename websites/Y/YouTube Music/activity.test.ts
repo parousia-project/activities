@@ -58,7 +58,6 @@ describe("YouTube Music", () => {
       url: "https://music.youtube.com/",
       details: "Never Gonna Give You Up",
       state: "Rick Astley",
-      detailsUrl: "https://music.youtube.com/watch?v=dQw4w9WgXcQ",
       assets: {
         largeImage: "https://lh3.googleusercontent.com/cover=w512-h512",
         largeText: "Whenever You Need Somebody",
@@ -219,7 +218,6 @@ describe("YouTube Music", () => {
       name: "YouTube Music",
       url: "https://music.youtube.com/",
       details: "Never Gonna Give You Up",
-      detailsUrl: "https://music.youtube.com/watch?v=dQw4w9WgXcQ",
       buttons: [
         {
           label: "Listen Along",
