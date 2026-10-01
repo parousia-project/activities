@@ -1,9 +1,9 @@
 {
   "$schema": "../../../schemas/metadata.json",
   "apiVersion": 1,
-  "id": "riix.fun",
+  "id": "riix-fun",
   "name": "riix's Slayers 2 Wiki",
-  "description": "Browsing guides, gear, Breathing Styles, Blood Demon Arts, and tier lists on riix.fun.",
+  "description": "Browsing guides, gear, Breathing Styles, Blood Demon Arts, and more on riix.fun.",
   "version": "1.0.0",
   "authors": [
     {
