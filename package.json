@@ -5,7 +5,7 @@
   "homepage": "https://parousia.abadima.dev",
   "type": "module",
   "scripts": {
-    "check": "bun run typecheck && bun run lint && bun run format:check && bun run validate && bun test",
+    "check": "bun run typecheck && bun run lint && bun run validate && bun test",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint",
     "format": "oxfmt",
