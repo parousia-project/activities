@@ -82,7 +82,7 @@ function detect({ url }: Page): Activity {
     },
     buttons: [
       {
-        label: "Open riix.fun",
+        label: "Open Slayers 2 Best Wiki",
         url: ORIGIN,
       },
     ],
