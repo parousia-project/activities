@@ -22,6 +22,11 @@ declare module "parousia" {
     artist?: string;
     album?: string;
     playing?: boolean;
+    /**
+     * Whether the element it reads is a `<video>` or an `<audio>`, for
+     * "watching" or "listening" on a site that plays both.
+     */
+    kind?: "video" | "audio";
     /** Seconds. */
     duration?: number;
     /**
@@ -79,6 +84,19 @@ declare module "parousia" {
     url: string;
   }
 
+  /**
+   * The verb Discord puts before the name: "Playing", "Listening to",
+   * "Watching", "Competing in". Left out, it's "playing". Streaming has no
+   * equivalent here.
+   */
+  export type ActivityType = "playing" | "listening" | "watching" | "competing";
+
+  /**
+   * Which line Discord shows as the status in the member list: the name (the
+   * default), the `state` line, or the `details` line.
+   */
+  export type StatusDisplayType = "name" | "state" | "details";
+
   export interface Activity {
     /** The Activity's id from metadata.json. */
     id: string;
@@ -94,6 +112,16 @@ declare module "parousia" {
     stateUrl?: string;
     /** At most two. Discord shows them to others, not to you. */
     buttons?: ActivityButton[];
+    /**
+     * "Listening to" for music, "Watching" for video. Kept even when the
+     * person hides media details, since it says nothing about what.
+     */
+    type?: ActivityType;
+    /**
+     * Which line the status shows. It goes when the person hides media
+     * details, with the lines it points at.
+     */
+    statusDisplayType?: StatusDisplayType;
   }
 
   /** What `activity.ts` exports as its default. */

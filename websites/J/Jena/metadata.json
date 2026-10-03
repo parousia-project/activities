@@ -4,7 +4,7 @@
   "id": "jena",
   "name": "Jena Hub",
   "description": "Arcade games, Discord bot commands, and communities on Jena Hub.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "Abadima",
@@ -12,5 +12,10 @@
     }
   ],
   "icon": "https://jena.systems/icons/icon-512.png",
-  "matches": ["https://jena.systems/*"]
+  "matches": [
+    "https://jena.systems/*"
+  ],
+  "data": [
+    "thumbnails"
+  ]
 }

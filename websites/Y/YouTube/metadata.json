@@ -1,0 +1,49 @@
+{
+  "$schema": "../../../schemas/metadata.json",
+  "apiVersion": 1,
+  "id": "youtube",
+  "name": "YouTube",
+  "description": "The video you're watching on YouTube, or what you're browsing.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Abadima",
+      "github": "Abadima"
+    }
+  ],
+  "icon": "https://www.youtube.com/img/favicon_32.png",
+  "matches": ["https://www.youtube.com/*", "https://m.youtube.com/*"],
+  "data": ["media", "thumbnails"],
+  "settings": [
+    {
+      "id": "privacyMode",
+      "title": "Privacy mode",
+      "description": "Hide the video title and channel from your profile.",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "id": "showTimestamps",
+      "title": "Show timestamps",
+      "description": "Show when the video started and when it is expected to end.",
+      "type": "boolean",
+      "default": true,
+      "when": { "privacyMode": false }
+    },
+    {
+      "id": "showThumbnail",
+      "title": "Show video thumbnail",
+      "description": "Use the video's thumbnail as the image on your profile. Off shows the YouTube logo instead.",
+      "type": "boolean",
+      "default": true,
+      "when": { "privacyMode": false }
+    },
+    {
+      "id": "showSearchActivity",
+      "title": "Show search Activity",
+      "description": "Show that you're searching YouTube, without what you searched for.",
+      "type": "boolean",
+      "default": true
+    }
+  ]
+}

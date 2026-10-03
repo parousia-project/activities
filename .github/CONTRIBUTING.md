@@ -68,10 +68,10 @@ In the folder:
 
 Most Activities need nothing but the URL and title. One that shows what's playing can declare the page data it takes, and gets only that:
 
-| Kind         | What Parousia reads                                                                                                                                 | `page` field     |
-| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| `media`      | The page's Media Session (title, artist, album, whether it's playing) and its `<video>` or `<audio>` (duration, and the clock as `start` and `end`) | `page.media`     |
-| `thumbnails` | The Media Session's largest `https` artwork, or the page's `og:image`                                                                               | `page.thumbnail` |
+| Kind         | What Parousia reads                                                                                                                                                        | `page` field     |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| `media`      | The page's Media Session (title, artist, album, whether it's playing) and its `<video>` or `<audio>` (which it is as `kind`, duration, and the clock as `start` and `end`) | `page.media`     |
+| `thumbnails` | The Media Session's largest `https` artwork, or the page's `og:image`                                                                                                      | `page.thumbnail` |
 
 Parousia's own collector reads these, the same for every Activity and only for ones that declare them; no Activity code runs in the page. While something plays, `media.start` and `media.end` are ready-made `timestamps` that stay put until it's paused or seeked, so an Activity doesn't keep a clock of its own. A page without a Media Session gives no `media.title`: fall back to the URL and title, as `websites/Y/YouTube Music` does. An Activity that declares `data` is off until the person turns it on, which asks their browser for the sites `matches` names, and it runs only on sites they granted. It reads only the kinds the person allows for every Activity (Settings > Privacy in the extension). `page.granted` lists what the Activity has on this page. That can be nothing, so it must still work from the URL and title: declaring data never makes an Activity depend on it.
 
@@ -92,17 +92,21 @@ export default activity;
 
 The Activity it returns:
 
-| Field                                    | What Discord shows                                                     |
-| ---------------------------------------- | ---------------------------------------------------------------------- |
-| `id`                                     | Nothing; the Activity's id                                             |
-| `name`                                   | The Activity's name ("Playing Jena Hub")                               |
-| `details`, `state`                       | The two lines of text                                                  |
-| `detailsUrl`, `stateUrl`                 | Links on those lines                                                   |
-| `url`                                    | Nothing; the page it came from                                         |
-| `assets.largeImage`, `assets.smallImage` | Images, as `https` URLs                                                |
-| `assets.largeText`, `assets.smallText`   | Their captions                                                         |
-| `timestamps.start`, `timestamps.end`     | Time elapsed or left, in Unix milliseconds                             |
-| `buttons`                                | Up to two `{ label, url }` links, shown to people viewing your profile |
+| Field                                    | What Discord shows                                                                                 |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `id`                                     | Nothing; the Activity's id                                                                         |
+| `name`                                   | The Activity's name ("Playing Jena Hub")                                                           |
+| `details`, `state`                       | The two lines of text                                                                              |
+| `detailsUrl`, `stateUrl`                 | Links on those lines                                                                               |
+| `url`                                    | Nothing; the page it came from                                                                     |
+| `assets.largeImage`, `assets.smallImage` | Images, as `https` URLs                                                                            |
+| `assets.largeText`, `assets.smallText`   | Their captions                                                                                     |
+| `timestamps.start`, `timestamps.end`     | Time elapsed or left, in Unix milliseconds                                                         |
+| `buttons`                                | Up to two `{ label, url }` links, shown to people viewing your profile                             |
+| `type`                                   | The verb before the name: `"playing"` (the default), `"listening"`, `"watching"`, or `"competing"` |
+| `statusDisplayType`                      | Which line the member list's status shows: `"name"` (the default), `"state"`, or `"details"`       |
+
+Use `type` where it's true: `"listening"` for music, `"watching"` for video. It says nothing about what's played, so it stays when the person hides media details; `statusDisplayType` points at a line that hides with those details, so it goes with them. Both were added to version 1 without breaking anything: an Activity that sets neither shows "Playing" with its name, as before.
 
 Discord refuses a whole activity over one bad field, so Parousia leaves out what it can't take: text under 2 or over 128 characters is left out or cut, links that aren't `http(s)`, more than two buttons, and so on. `checkActivity` in `tools/testing.ts` lists anything that would be lost.
 

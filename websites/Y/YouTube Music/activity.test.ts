@@ -58,6 +58,8 @@ describe("YouTube Music", () => {
       url: "https://music.youtube.com/",
       details: "Never Gonna Give You Up",
       state: "Rick Astley",
+      type: "listening",
+      statusDisplayType: "details",
       assets: {
         largeImage: "https://lh3.googleusercontent.com/cover=w512-h512",
         largeText: "Whenever You Need Somebody",
@@ -186,6 +188,7 @@ describe("YouTube Music", () => {
       name: "YouTube Music",
       url: "https://music.youtube.com/",
       details: "Listening to YouTube Music",
+      type: "listening",
     });
   });
 
@@ -218,6 +221,8 @@ describe("YouTube Music", () => {
       name: "YouTube Music",
       url: "https://music.youtube.com/",
       details: "Never Gonna Give You Up",
+      type: "listening",
+      statusDisplayType: "details",
       buttons: [
         {
           label: "Listen Along",
@@ -267,5 +272,21 @@ describe("YouTube Music", () => {
     expect(result?.details?.length).toBeLessThanOrEqual(100);
     expect(result?.state).toBe("Artist");
     expect(checkActivity(result ?? music.detect(page(WATCH), settings)!)).toEqual([]);
+  });
+
+  test("a song is Listening, with its title as the status; browsing is neither", () => {
+    const song = music.detect(page(WATCH, "Song - YouTube Music"), settings);
+    expect(song).toMatchObject({ type: "listening", statusDisplayType: "details" });
+    expect(song && checkActivity(song)).toEqual([]);
+
+    const home = music.detect(page("https://music.youtube.com/", "YouTube Music"), settings);
+    expect(home?.type).toBeUndefined();
+    expect(home?.statusDisplayType).toBeUndefined();
+
+    const hidden = music.detect(page(WATCH, "Song - YouTube Music"), {
+      ...settings,
+      privacyMode: true,
+    });
+    expect(hidden?.statusDisplayType).toBeUndefined();
   });
 });

@@ -78,6 +78,13 @@ export function checkActivity(activity: Activity): string[] {
       problems.push(`timestamps.${field} must be whole Unix milliseconds`);
     }
   }
+  // Discord falls back to the name when the line it's pointed at is missing.
+  if (activity.statusDisplayType === "state" && activity.state === undefined) {
+    problems.push(`statusDisplayType is "state", but there is no state`);
+  }
+  if (activity.statusDisplayType === "details" && activity.details === undefined) {
+    problems.push(`statusDisplayType is "details", but there are no details`);
+  }
   const buttons = activity.buttons ?? [];
   if (buttons.length > 2) problems.push("there are more than two buttons");
   for (const [index, button] of buttons.entries()) {

@@ -86,6 +86,8 @@ function detect({ url, title, media, thumbnail }: Page, settings: Settings): Act
   const activity: Activity = {
     ...base,
     details: privacyMode ? "Listening to YouTube Music" : song,
+    type: "listening",
+    ...(!privacyMode && { statusDisplayType: "details" as const }),
   };
 
   if (!privacyMode) {
