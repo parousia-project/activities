@@ -34,7 +34,7 @@ import type { Activity, NativeActivity, Page, PageImage, Settings } from "parous
 const ORIGIN = "https://animex.one";
 const NAME = "AnimeX";
 /** A PNG: Discord shows these, and a favicon request returns an .ico it may not. */
-const LOGO = `${ORIGIN}/icons/ios/180.png`;
+const LOGO = `${ORIGIN}/favicon.png`;
 /** Images this repository hosts (assets/), served by GitHub. */
 const ASSETS = "https://raw.githubusercontent.com/parousia-project/activities/main/assets";
 const PLAY = `${ASSETS}/status/play.png`;
