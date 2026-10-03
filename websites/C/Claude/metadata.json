@@ -17,7 +17,7 @@
     {
       "id": "showChatTitle",
       "title": "Show chat titles",
-      "description": "Puts a chat's title on your profile. Titles are often private, so this is off.",
+      "description": "Puts a chat's title on your profile. Titles are often private.",
       "type": "boolean",
       "default": false
     }

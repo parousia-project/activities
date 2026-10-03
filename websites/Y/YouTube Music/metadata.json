@@ -25,7 +25,7 @@
     {
       "id": "showCover",
       "title": "Show cover art",
-      "description": "Uses the song's artwork as the image on your profile.",
+      "description": "Use the song's artwork as the image on your profile.",
       "type": "boolean",
       "default": true
     },
@@ -39,7 +39,7 @@
     {
       "id": "showButtons",
       "title": "Show buttons",
-      "description": "Show Listen Along and View Channel buttons on your profile.",
+      "description": "Show a Listen Along button on your profile.",
       "type": "boolean",
       "default": true
     }

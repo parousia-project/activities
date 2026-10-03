@@ -40,6 +40,12 @@ declare module "parousia" {
     end?: number;
   }
 
+  /** An image the page shows: its `https` address, and the alt text it gives. */
+  export interface PageImage {
+    src: string;
+    alt?: string;
+  }
+
   /**
    * What an Activity sees of a page: its URL and title (both come from the
    * browser's `tabs` permission), and, if it declares page data, what
@@ -55,6 +61,13 @@ declare module "parousia" {
     readonly media?: PageMedia;
     /** With `thumbnails` granted: an `https` image of what's shown, when the page has one. */
     readonly thumbnail?: string;
+    /**
+     * With `thumbnails` granted: the `https` images the page has loaded, in
+     * page order and a few of them (24 at most, 48 pixels or more across).
+     * For a cover or an avatar the page's og:image isn't: pick the one whose
+     * address names what's shown (an id, a path) and ignore the rest.
+     */
+    readonly images?: readonly PageImage[];
   }
 
   export type SettingValue = string | number | boolean;

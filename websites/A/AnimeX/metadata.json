@@ -13,7 +13,7 @@
   ],
   "icon": "https://animex.one/favicon.ico",
   "matches": ["https://animex.one/*"],
-  "data": ["media"],
+  "data": ["media", "thumbnails"],
   "settings": [
     {
       "id": "privacyMode",
@@ -28,7 +28,9 @@
       "description": "Show how far into the episode you are when AnimeX reports it.",
       "type": "boolean",
       "default": true,
-      "when": { "privacyMode": false }
+      "when": {
+        "privacyMode": false
+      }
     },
     {
       "id": "showCover",
@@ -36,7 +38,29 @@
       "description": "Use the anime's cover as the image on your profile.",
       "type": "boolean",
       "default": true,
-      "when": { "privacyMode": false }
+      "when": {
+        "privacyMode": false
+      }
+    },
+    {
+      "id": "showAvatars",
+      "title": "Show profile pictures",
+      "description": "Use a profile's picture as the image on your profile when you view someone's page.",
+      "type": "boolean",
+      "default": true,
+      "when": {
+        "privacyMode": false
+      }
+    },
+    {
+      "id": "showButtons",
+      "title": "Show buttons",
+      "description": "Show Watch Episode and View Anime buttons on your profile.",
+      "type": "boolean",
+      "default": true,
+      "when": {
+        "privacyMode": false
+      }
     }
   ]
 }

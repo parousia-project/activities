@@ -25,7 +25,7 @@
     {
       "id": "showThumbnail",
       "title": "Show page image",
-      "description": "Use the guide's or device's picture as the image on your profile. Off shows the iFixit logo.",
+      "description": "Use the guide's or device's picture as the image on your profile.",
       "type": "boolean",
       "default": true,
       "when": { "privacyMode": false }

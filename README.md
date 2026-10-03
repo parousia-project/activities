@@ -13,6 +13,7 @@ Every website's Activity has its own folder, `websites/<letter>/<Name>/`, filed 
 | `websites/<letter>/<Name>/metadata.json`    | Name, description, the pages it's for, settings                   |
 | `websites/<letter>/<Name>/activity.ts`      | `detect(page, settings)`: a page's URL and title in, presence out |
 | `websites/<letter>/<Name>/activity.test.ts` | Its tests                                                         |
+| `assets/`                                   | Images Activities show (GitHub serves them), such as play/pause   |
 | `types/parousia.d.ts`                       | The Activity API                                                  |
 | `schemas/metadata.json`                     | The schema for metadata.json                                      |
 | `tools/`                                    | Validation and test helpers                                       |

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { checkActivity, matches, page } from "../../../tools/testing";
+import { ASSETS_URL, assetFile, checkActivity, matches, page } from "../../../tools/testing";
 import music from "./activity";
 import metadata from "./metadata.json";
 
@@ -13,6 +13,9 @@ const settings = {
 const WATCH = "https://music.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&si=secret";
 
 const granted = ["media", "thumbnails"] as const;
+const LOGO = "https://music.youtube.com/img/favicon_144.png";
+const PLAY = `${ASSETS_URL}/status/play.png`;
+const PAUSE = `${ASSETS_URL}/status/pause.png`;
 
 describe("YouTube Music", () => {
   test("its settings start as the tests assume", () => {
@@ -82,7 +85,7 @@ describe("YouTube Music", () => {
     expect(JSON.stringify(result)).not.toContain("secret");
   });
 
-  test("paused: no clock, and it says so", () => {
+  test("paused: no clock, and the pause icon says so", () => {
     const result = music.detect(
       page(WATCH, "Song", {
         granted: ["media"],
@@ -96,8 +99,9 @@ describe("YouTube Music", () => {
       settings,
     );
 
-    expect(result?.state).toBe("Artist (paused)");
+    expect(result?.state).toBe("Artist");
     expect(result?.timestamps).toBeUndefined();
+    expect(result?.assets).toMatchObject({ smallImage: PAUSE, smallText: "Paused" });
   });
 
   test("the song still shows when someone browses on from it", () => {
@@ -137,9 +141,52 @@ describe("YouTube Music", () => {
       showButtons: false,
     });
 
-    expect(result?.assets).toBeUndefined();
+    // No cover, but it's playing, and a small image needs a large one beside it.
+    expect(result?.assets).toEqual({ largeImage: LOGO, smallImage: PLAY, smallText: "Playing" });
     expect(result?.buttons).toBeUndefined();
     expect(result?.timestamps).toBeUndefined();
+  });
+
+  test("the pause icon says it's paused; the play icon is only for playing with no clock to show", () => {
+    const cover = "https://img.example/a.jpg";
+    const withMedia = (media: object, extra = {}) =>
+      music.detect(
+        page(WATCH, "Song", {
+          granted: [...granted],
+          media: {
+            title: "Song",
+            artist: "Artist",
+            playing: true,
+            start: 1_700_000_000_000,
+            ...media,
+          },
+          thumbnail: cover,
+        }),
+        { ...settings, ...extra },
+      );
+    // Playing with a clock: the artwork and the clock, no icon.
+    expect(withMedia({})?.assets).toEqual({ largeImage: cover });
+    expect(withMedia({})?.timestamps).toBeDefined();
+    // Playing, but there's no start to give (the page didn't say), or the clock is off: the play icon.
+    for (const result of [
+      withMedia({ start: undefined }),
+      withMedia({}, { showTimestamps: false }),
+    ]) {
+      expect(result?.timestamps).toBeUndefined();
+      expect(result?.assets).toEqual({ largeImage: cover, smallImage: PLAY, smallText: "Playing" });
+      expect(result && checkActivity(result)).toEqual([]);
+    }
+    // Paused: the pause icon, and no "(paused)".
+    const paused = withMedia({ playing: false });
+    expect(paused?.assets).toEqual({ largeImage: cover, smallImage: PAUSE, smallText: "Paused" });
+    expect(paused?.state).toBe("Artist");
+    expect(paused && checkActivity(paused)).toEqual([]);
+    // The page didn't say whether it's playing: no icon.
+    expect(withMedia({ playing: undefined })?.assets).toEqual({ largeImage: cover });
+    // Privacy mode shows no media.
+    expect(withMedia({ playing: false }, { privacyMode: true })?.assets).toBeUndefined();
+    // The icons are files in assets/.
+    for (const url of [PLAY, PAUSE]) expect(assetFile(url)).not.toBeNull();
   });
 
   test("the timestamps setting disables the clock", () => {

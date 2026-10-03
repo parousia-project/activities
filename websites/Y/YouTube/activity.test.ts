@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { checkActivity, matches, page } from "../../../tools/testing";
+import { ASSETS_URL, assetFile, checkActivity, matches, page } from "../../../tools/testing";
 import youtube from "./activity";
 import metadata from "./metadata.json";
 
@@ -13,6 +13,8 @@ const settings = {
 const WATCH = "https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&si=secret";
 const THUMBNAIL_URL = "https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg";
 const LOGO_URL = "https://www.youtube.com/img/favicon_144.png";
+const PLAY = `${ASSETS_URL}/status/play.png`;
+const PAUSE = `${ASSETS_URL}/status/pause.png`;
 
 const granted = ["media", "thumbnails"] as const;
 
@@ -96,7 +98,7 @@ describe("YouTube", () => {
     expect(result?.buttons?.[0]?.url).toBe("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
   });
 
-  test("paused: no clock, and it says so", () => {
+  test("paused: no clock, and the pause icon says so", () => {
     const result = youtube.detect(
       page(WATCH, "Video", {
         granted: ["media"],
@@ -111,17 +113,19 @@ describe("YouTube", () => {
       settings,
     );
 
-    expect(result?.state).toBe("Channel (paused)");
+    expect(result?.state).toBe("Channel");
     expect(result?.timestamps).toBeUndefined();
+    expect(result?.assets).toMatchObject({ smallImage: PAUSE, smallText: "Paused" });
   });
 
-  test("paused with no channel says only that", () => {
+  test("paused with no channel has no state, only the icon", () => {
     const result = youtube.detect(
       page(WATCH, "Video", { granted: ["media"], media: { title: "Video", playing: false } }),
       settings,
     );
 
-    expect(result?.state).toBe("Paused");
+    expect(result?.state).toBeUndefined();
+    expect(result?.assets).toMatchObject({ smallImage: PAUSE });
   });
 
   test("the video still shows when someone browses away from the watch page", () => {
@@ -168,6 +172,51 @@ describe("YouTube", () => {
           ?.assets,
       ).toEqual({ largeImage: THUMBNAIL_URL });
     }
+  });
+
+  test("the pause icon says it's paused; the play icon is only for playing with no clock to show", () => {
+    const withMedia = (media: object, extra = {}) =>
+      youtube.detect(page(WATCH, "Video", { ...playing, media: { ...playing.media, ...media } }), {
+        ...settings,
+        ...extra,
+      });
+    // Playing with a clock: the artwork and the clock, no icon.
+    expect(withMedia({})?.assets).toEqual({ largeImage: THUMBNAIL_URL });
+    expect(withMedia({})?.timestamps).toBeDefined();
+    // Playing, but there's no start to give (the page didn't say), or the clock is off: the play icon.
+    for (const result of [
+      withMedia({ start: undefined, end: undefined }),
+      withMedia({}, { showTimestamps: false }),
+    ]) {
+      expect(result?.timestamps).toBeUndefined();
+      expect(result?.assets).toEqual({
+        largeImage: THUMBNAIL_URL,
+        smallImage: PLAY,
+        smallText: "Playing",
+      });
+      expect(result && checkActivity(result)).toEqual([]);
+    }
+    // Paused: the pause icon, and no "(paused)".
+    const paused = withMedia({ playing: false });
+    expect(paused?.assets).toEqual({
+      largeImage: THUMBNAIL_URL,
+      smallImage: PAUSE,
+      smallText: "Paused",
+    });
+    expect(paused?.state).toBe("Rick Astley");
+    expect(paused && checkActivity(paused)).toEqual([]);
+    // The page didn't say whether it's playing: no icon.
+    expect(withMedia({ playing: undefined })?.assets).toEqual({ largeImage: THUMBNAIL_URL });
+    // A small image needs a large one: the logo when there's no thumbnail.
+    expect(withMedia({ playing: false }, { showThumbnail: false })?.assets).toEqual({
+      largeImage: LOGO_URL,
+      smallImage: PAUSE,
+      smallText: "Paused",
+    });
+    // Privacy mode shows no media.
+    expect(withMedia({ playing: false }, { privacyMode: true })?.assets).toBeUndefined();
+    // The icons are files in assets/.
+    for (const url of [PLAY, PAUSE]) expect(assetFile(url)).not.toBeNull();
   });
 
   test("a video is Watching; browsing is not", () => {

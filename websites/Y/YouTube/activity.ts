@@ -16,6 +16,10 @@ const ORIGIN = "https://www.youtube.com";
 const NAME = "YouTube";
 /** A PNG: Discord shows these, and the .ico a favicon request returns it may not. */
 const LOGO = `${ORIGIN}/img/favicon_144.png`;
+/** Images this repository hosts (assets/), served by GitHub. */
+const ASSETS = "https://raw.githubusercontent.com/parousia-project/activities/main/assets";
+const PLAY = `${ASSETS}/status/play.png`;
+const PAUSE = `${ASSETS}/status/pause.png`;
 const MAX_TEXT = 100;
 const VIDEO_ID = /^[\w-]{11}$/;
 
@@ -106,25 +110,27 @@ function detect({ url, title, media, thumbnail }: Page, settings: Settings): Act
     type: "watching",
   };
 
+  const clock =
+    settings.showTimestamps === true && media?.playing === true && media.start !== undefined;
   const largeImage = image(thumbnail, settings);
-
-  if (largeImage !== undefined) {
-    activity.assets = { largeImage };
-  }
-
-  const state = channel
-    ? paused
-      ? `${channel} (paused)`
-      : channel
-    : paused
-      ? "Paused"
+  // The pause icon says it's paused. The play icon is for a playing video with no clock to show
+  // (the page gave none, or it's off); with a clock, that says it. Nothing where the page said nothing.
+  const status = paused
+    ? { smallImage: PAUSE, smallText: "Paused" }
+    : media?.playing === true && !clock
+      ? { smallImage: PLAY, smallText: "Playing" }
       : undefined;
 
-  if (state !== undefined) {
-    activity.state = state;
+  if (largeImage !== undefined || status) {
+    // A small image needs a large one beside it.
+    activity.assets = { largeImage: largeImage ?? LOGO, ...status };
   }
 
-  if (settings.showTimestamps === true && media?.playing && media.start !== undefined) {
+  if (channel !== undefined) {
+    activity.state = channel;
+  }
+
+  if (clock && media.start !== undefined) {
     activity.timestamps = {
       start: media.start,
       ...(media.end !== undefined && { end: media.end }),

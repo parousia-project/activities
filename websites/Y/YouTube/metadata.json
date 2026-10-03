@@ -33,7 +33,7 @@
     {
       "id": "showThumbnail",
       "title": "Show video thumbnail",
-      "description": "Use the video's thumbnail as the image on your profile. Off shows the YouTube logo instead.",
+      "description": "Use the video's thumbnail as the image on your profile.",
       "type": "boolean",
       "default": true,
       "when": { "privacyMode": false }

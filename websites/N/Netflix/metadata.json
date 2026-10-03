@@ -33,7 +33,7 @@
     {
       "id": "showThumbnail",
       "title": "Show title image",
-      "description": "Use the title's picture as the image on your profile, when the page has one. Off shows the Netflix logo.",
+      "description": "Use the title's picture as the image on your profile, when the page has one.",
       "type": "boolean",
       "default": true,
       "when": { "privacyMode": false }

@@ -68,10 +68,12 @@ In the folder:
 
 Most Activities need nothing but the URL and title. One that shows what's playing can declare the page data it takes, and gets only that:
 
-| Kind         | What Parousia reads                                                                                                                                                                                                             | `page` field     |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| `media`      | The page's Media Session (title, artist, album, whether it's playing) and its `<video>` or `<audio>`, or the player in an iframe that reports to the page (which it is as `kind`, duration, and the clock as `start` and `end`) | `page.media`     |
-| `thumbnails` | The Media Session's largest `https` artwork, or the page's `og:image`                                                                                                                                                           | `page.thumbnail` |
+| Kind         | What Parousia reads                                                                                                                                                                                                             | `page` field                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| `media`      | The page's Media Session (title, artist, album, whether it's playing) and its `<video>` or `<audio>`, or the player in an iframe that reports to the page (which it is as `kind`, duration, and the clock as `start` and `end`) | `page.media`                    |
+| `thumbnails` | The Media Session's largest `https` artwork, or the page's `og:image`; and the page's loaded `<img>`s (address and alt text, 24 at most, 48 pixels or more across)                                                              | `page.thumbnail`, `page.images` |
+
+`page.images` is for a cover or an avatar that a page's `og:image` isn't (AnimeX's AniList cover has a hash in its address that only the page knows): pick the image whose address names what's shown (an id, a path), and ignore the rest. It's the page's own `<img>` addresses and alt text, never their markup.
 
 Parousia's own collector reads these, the same for every Activity and only for ones that declare them; no Activity code runs in the page. While something plays, `media.start` and `media.end` are ready-made `timestamps` that stay put until it's paused or seeked, so an Activity doesn't keep a clock of its own. A page without a Media Session gives no `media.title`: fall back to the URL and title, as `websites/Y/YouTube Music` does. An Activity that declares `data` is off until the person turns it on, which asks their browser for the sites `matches` names, and it runs only on sites they granted. It reads only the kinds the person allows for every Activity (Settings > Privacy in the extension). `page.granted` lists what the Activity has on this page. That can be nothing, so it must still work from the URL and title: declaring data never makes an Activity depend on it.
 
@@ -119,6 +121,20 @@ Every Activity follows these; reviews check them.
 - **Clean text.** Titles are written by whoever runs the site. Remove control and direction-override characters and cap the length before a title becomes a name (see `gameName` in `websites/J/Jena`).
 - **Plain code.** No `eval`, `new Function`, or dynamic `import()`. Type-only imports from `"parousia"`; anything else the Activity needs lives in its folder.
 - **The site's own images, or yours.** Image URLs are `https`, and Discord fetches them when it shows your presence.
+
+## Images (assets/)
+
+Images an Activity needs that no site serves (a play or pause icon, say) live in `assets/` at the root of this repository, which GitHub serves from `https://raw.githubusercontent.com/parousia-project/activities/main/assets/<path>`. Point an Activity's `assets.smallImage` (or `largeImage`) at one:
+
+```ts
+const ASSETS = "https://raw.githubusercontent.com/parousia-project/activities/main/assets";
+const PAUSE = `${ASSETS}/status/pause.png`;
+```
+
+- PNG or JPEG, square, at least 128 pixels (Discord scales them down). Not SVG: Discord doesn't show it.
+- Shared ones go under a folder named for what they are (`status/play.png`, `status/pause.png`); one that's only a site's can go under that site's name.
+- A file is only served once it's on `main`, so add it in the same pull request as the Activity that uses it. `assetFile(url)` in `tools/testing.ts` gives the local file for one of these URLs, so a test can check the image exists.
+- Say only what the page said. The pause icon replaces a "(paused)" in the text; the play icon is only for something playing with no clock to show (the page gave none, or timestamps are off), since a clock already says it's playing; and no icon shows where the page didn't say whether it's playing (`websites/Y/YouTube`, `websites/Y/YouTube Music` and `websites/A/AnimeX` do this).
 
 ## Testing
 

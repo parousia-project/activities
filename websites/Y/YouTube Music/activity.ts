@@ -15,6 +15,12 @@ import type { Activity, NativeActivity, Page, Settings } from "parousia";
 
 const ORIGIN = "https://music.youtube.com";
 const NAME = "YouTube Music";
+/** A PNG: Discord shows these, and the .ico a favicon request returns it may not. */
+const LOGO = `${ORIGIN}/img/favicon_144.png`;
+/** Images this repository hosts (assets/), served by GitHub. */
+const ASSETS = "https://raw.githubusercontent.com/parousia-project/activities/main/assets";
+const PLAY = `${ASSETS}/status/play.png`;
+const PAUSE = `${ASSETS}/status/pause.png`;
 const MAX_TEXT = 100;
 const VIDEO_ID = /^[\w-]{11}$/;
 
@@ -90,29 +96,42 @@ function detect({ url, title, media, thumbnail }: Page, settings: Settings): Act
     ...(!privacyMode && { statusDisplayType: "details" as const }),
   };
 
-  if (!privacyMode) {
-    const state = artist ? (paused ? `${artist} (paused)` : artist) : paused ? "Paused" : undefined;
-
-    if (state !== undefined) {
-      activity.state = state;
-    }
+  if (!privacyMode && artist !== undefined) {
+    activity.state = artist;
   }
+
+  const clock =
+    !privacyMode &&
+    settings.showTimestamps === true &&
+    media?.playing === true &&
+    media.start !== undefined;
 
   const album = clean(media?.album);
 
-  if (!privacyMode && settings.showCover === true && thumbnail !== undefined && media?.title) {
+  const cover =
+    !privacyMode && settings.showCover === true && thumbnail !== undefined && media?.title
+      ? thumbnail
+      : undefined;
+  // The pause icon says it's paused. The play icon is for a song playing with no clock to show
+  // (the page gave none, or it's off); with a clock, that says it. Nothing where the page said nothing.
+  const status = privacyMode
+    ? undefined
+    : paused
+      ? { smallImage: PAUSE, smallText: "Paused" }
+      : media?.playing === true && !clock
+        ? { smallImage: PLAY, smallText: "Playing" }
+        : undefined;
+
+  if (cover !== undefined || status) {
+    // A small image needs a large one beside it.
     activity.assets = {
-      largeImage: thumbnail,
-      ...(album && { largeText: album }),
+      largeImage: cover ?? LOGO,
+      ...(cover !== undefined && album && { largeText: album }),
+      ...status,
     };
   }
 
-  if (
-    !privacyMode &&
-    settings.showTimestamps === true &&
-    media?.playing &&
-    media.start !== undefined
-  ) {
+  if (clock && media.start !== undefined) {
     activity.timestamps = {
       start: media.start,
       ...(media.end !== undefined && { end: media.end }),

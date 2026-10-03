@@ -25,14 +25,14 @@
     {
       "id": "showBrowsingStatus",
       "title": "Show browsing status",
-      "description": "Show that you're browsing U-NEXT when you're not watching. Off shows nothing then.",
+      "description": "Show that you're browsing U-NEXT when you're not watching.",
       "type": "boolean",
       "default": true
     },
     {
       "id": "showCover",
       "title": "Show cover",
-      "description": "Use the title's picture as the image on your profile, when the page has one. Off shows the U-NEXT logo.",
+      "description": "Use the title's picture as the image on your profile, when the page has one.",
       "type": "boolean",
       "default": true,
       "when": { "privacyMode": false }

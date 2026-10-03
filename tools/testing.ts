@@ -1,4 +1,5 @@
-import type { Activity, Page, PageDataKind, PageMedia, Settings } from "parousia";
+import type { Activity, Page, PageDataKind, PageImage, PageMedia, Settings } from "parousia";
+import { join } from "node:path";
 import { matchesAny } from "./match-pattern";
 import type { Metadata } from "./metadata";
 
@@ -9,9 +10,31 @@ import type { Metadata } from "./metadata";
 export function page(
   href: string,
   title = "",
-  data: { granted?: PageDataKind[]; media?: PageMedia; thumbnail?: string } = {},
+  data: {
+    granted?: PageDataKind[];
+    media?: PageMedia;
+    thumbnail?: string;
+    images?: PageImage[];
+  } = {},
 ): Page {
   return { url: new URL(href), title, granted: data.granted ?? [], ...data };
+}
+
+/** Where this repository's `assets/` folder is served from: GitHub is the image host. */
+export const ASSETS_URL =
+  "https://raw.githubusercontent.com/parousia-project/activities/main/assets";
+
+/**
+ * The file under `assets/` that `url` serves, or `null` if it isn't one of
+ * ours. A test can check the file is there, so an Activity never points at an
+ * image that was never added.
+ */
+export function assetFile(url: string | undefined): string | null {
+  if (!url?.startsWith(`${ASSETS_URL}/`)) return null;
+  const name = url.slice(ASSETS_URL.length + 1);
+  return /^[\w-]+(?:\/[\w-]+)*\.png$/.test(name)
+    ? join(import.meta.dir, "..", "assets", name)
+    : null;
 }
 
 /** Whether Parousia would run this Activity on `href`, going by its metadata.json. */
