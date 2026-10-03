@@ -15,7 +15,9 @@ declare module "parousia" {
 
   /**
    * What's playing on a page: its Media Session (title, artist, album, and its
-   * own say on whether it's playing), and its media element for the clock.
+   * own say on whether it's playing), and its media element for the clock. A
+   * player inside an iframe can't be read like that, so where the page's
+   * iframe reports its clock to the page (`postMessage`), that report is used.
    */
   export interface PageMedia {
     title?: string;

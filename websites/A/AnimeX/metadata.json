@@ -1,0 +1,42 @@
+{
+  "$schema": "../../../schemas/metadata.json",
+  "apiVersion": 1,
+  "id": "animex",
+  "name": "AnimeX",
+  "description": "The anime and episode you're watching on AnimeX, or what you're browsing.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Abadima",
+      "github": "Abadima"
+    }
+  ],
+  "icon": "https://animex.one/favicon.ico",
+  "matches": ["https://animex.one/*"],
+  "data": ["media"],
+  "settings": [
+    {
+      "id": "privacyMode",
+      "title": "Privacy mode",
+      "description": "Hide the anime and what you browse from your profile.",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "id": "showTimestamps",
+      "title": "Show timestamps",
+      "description": "Show how far into the episode you are when AnimeX reports it.",
+      "type": "boolean",
+      "default": true,
+      "when": { "privacyMode": false }
+    },
+    {
+      "id": "showCover",
+      "title": "Show cover",
+      "description": "Use the anime's cover as the image on your profile.",
+      "type": "boolean",
+      "default": true,
+      "when": { "privacyMode": false }
+    }
+  ]
+}

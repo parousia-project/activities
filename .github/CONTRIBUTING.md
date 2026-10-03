@@ -68,10 +68,10 @@ In the folder:
 
 Most Activities need nothing but the URL and title. One that shows what's playing can declare the page data it takes, and gets only that:
 
-| Kind         | What Parousia reads                                                                                                                                                        | `page` field     |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| `media`      | The page's Media Session (title, artist, album, whether it's playing) and its `<video>` or `<audio>` (which it is as `kind`, duration, and the clock as `start` and `end`) | `page.media`     |
-| `thumbnails` | The Media Session's largest `https` artwork, or the page's `og:image`                                                                                                      | `page.thumbnail` |
+| Kind         | What Parousia reads                                                                                                                                                                                                             | `page` field     |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| `media`      | The page's Media Session (title, artist, album, whether it's playing) and its `<video>` or `<audio>`, or the player in an iframe that reports to the page (which it is as `kind`, duration, and the clock as `start` and `end`) | `page.media`     |
+| `thumbnails` | The Media Session's largest `https` artwork, or the page's `og:image`                                                                                                                                                           | `page.thumbnail` |
 
 Parousia's own collector reads these, the same for every Activity and only for ones that declare them; no Activity code runs in the page. While something plays, `media.start` and `media.end` are ready-made `timestamps` that stay put until it's paused or seeked, so an Activity doesn't keep a clock of its own. A page without a Media Session gives no `media.title`: fall back to the URL and title, as `websites/Y/YouTube Music` does. An Activity that declares `data` is off until the person turns it on, which asks their browser for the sites `matches` names, and it runs only on sites they granted. It reads only the kinds the person allows for every Activity (Settings > Privacy in the extension). `page.granted` lists what the Activity has on this page. That can be nothing, so it must still work from the URL and title: declaring data never makes an Activity depend on it.
 
