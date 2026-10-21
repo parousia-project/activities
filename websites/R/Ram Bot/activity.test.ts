@@ -13,16 +13,17 @@ const settings = {
 
 const open = { ...settings, privacyMode: false };
 
-const detect = (href: string, title = "", choice = settings) => ram.detect(page(href, title), choice);
+const detect = (href: string, title = "", choice = settings) =>
+  ram.detect(page(href, title), choice);
 
 const GUILD = "1533177824037572618";
 const SETTINGS_URL = `https://rambot.xyz/settings/${GUILD}/twpings`;
 
 describe("Ram Bot", () => {
   test("settings match what the tests assume", () => {
-    expect(Object.fromEntries(metadata.settings.map((setting) => [setting.id, setting.default]))).toEqual(
-      settings,
-    );
+    expect(
+      Object.fromEntries(metadata.settings.map((setting) => [setting.id, setting.default])),
+    ).toEqual(settings);
   });
 
   test("recognizes rambot.xyz over https only", () => {
@@ -45,7 +46,10 @@ describe("Ram Bot", () => {
   });
 
   test("privacy mode hides the page, the server, and anything in the url", () => {
-    const activity = detect(`${SETTINGS_URL}?token=secret#x`, "Ram Dashboard | Twitch Pings | Game Night");
+    const activity = detect(
+      `${SETTINGS_URL}?token=secret#x`,
+      "Ram Dashboard | Twitch Pings | Game Night",
+    );
     expect(activity?.details).toBe("On the Ram dashboard");
     expect(activity?.state).toBeUndefined();
     expect(activity?.url).toBe("https://rambot.xyz/");
@@ -57,12 +61,12 @@ describe("Ram Bot", () => {
   });
 
   test("the game name shows only with privacy mode off", () => {
-    expect(detect("https://rambot.xyz/activity/", "Spite Your Neighbor — Ram Activities", open)?.details).toBe(
-      "Spite Your Neighbor",
-    );
-    expect(detect("https://activity.rambot.xyz/", "Spite Your Neighbor — Ram Activities", open)?.state).toBe(
-      "In a game",
-    );
+    expect(
+      detect("https://rambot.xyz/activity/", "Spite Your Neighbor — Ram Activities", open)?.details,
+    ).toBe("Spite Your Neighbor");
+    expect(
+      detect("https://activity.rambot.xyz/", "Spite Your Neighbor — Ram Activities", open)?.state,
+    ).toBe("In a game");
     expect(
       detect("https://rambot.xyz/activity/", "Spite Your Neighbor — Ram Activities", {
         ...open,
@@ -75,8 +79,12 @@ describe("Ram Bot", () => {
     expect(detect("https://rambot.xyz/activity/", "Lobby — Ram Activities", open)?.details).toBe(
       "Playing Ram Activities",
     );
-    expect(detect("https://rambot.xyz/activity/", "Lobby — Ram Activities", open)?.state).toBe("In the lobby");
-    expect(detect("https://rambot.xyz/activity/", "In a game — Ram Activities", open)?.state).toBe("In a game");
+    expect(detect("https://rambot.xyz/activity/", "Lobby — Ram Activities", open)?.state).toBe(
+      "In the lobby",
+    );
+    expect(detect("https://rambot.xyz/activity/", "In a game — Ram Activities", open)?.state).toBe(
+      "In a game",
+    );
     expect(detect("https://rambot.xyz/activity/", "Ram Activities", open)?.state).toBeUndefined();
   });
 
@@ -96,7 +104,9 @@ describe("Ram Bot", () => {
       ...settings,
       showButton: true,
     });
-    expect(activity?.buttons).toEqual([{ label: "Open Activities", url: "https://rambot.xyz/activity/" }]);
+    expect(activity?.buttons).toEqual([
+      { label: "Open Activities", url: "https://rambot.xyz/activity/" },
+    ]);
     expect(JSON.stringify(activity)).not.toContain("secret");
   });
 

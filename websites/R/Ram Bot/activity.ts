@@ -10,14 +10,16 @@ import type { Activity, NativeActivity, Page, Settings } from "parousia";
 const ORIGIN = "https://rambot.xyz";
 const ACTIVITIES = `${ORIGIN}/activity/`;
 const NAME = "Ram Bot";
-const ICON =
-  "https://rambot.xyz/ram-api-images/ram/ram-icon.png";
+const ICON = "https://rambot.xyz/ram-api-images/ram/ram-icon.png";
 
 const ACTIVITY_SUFFIX = /\s+[—–-]\s+Ram Activities$/i;
 const DASHBOARD_SUFFIX = /\s+[—–-]\s+Ram Dashboard$/i;
 
 function clean(value: string, max: number): string {
-  const text = value.replace(/[\p{Cc}\u200b-\u200f\u202a-\u202e\ufffd]/gu, "").replace(/\s+/g, " ").trim();
+  const text = value
+    .replace(/[\p{Cc}\u200b-\u200f\u202a-\u202e\ufffd]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim();
   return [...text].slice(0, max).join("");
 }
 

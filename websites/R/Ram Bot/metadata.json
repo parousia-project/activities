@@ -8,11 +8,7 @@
   "authors": [{ "name": "Ram Bot" }],
   "icon": "https://rambot.xyz/ram-api-images/ram/ram-icon.png",
   "discordClientId": "564579659526832178",
-  "matches": [
-    "https://rambot.xyz/*",
-    "https://www.rambot.xyz/*",
-    "https://activity.rambot.xyz/*"
-  ],
+  "matches": ["https://rambot.xyz/*", "https://www.rambot.xyz/*", "https://activity.rambot.xyz/*"],
   "settings": [
     {
       "id": "privacyMode",
