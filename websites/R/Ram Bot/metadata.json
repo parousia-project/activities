@@ -1,0 +1,56 @@
+{
+  "$schema": "../../../schemas/metadata.json",
+  "apiVersion": 1,
+  "id": "ram-bot",
+  "name": "Ram Bot",
+  "description": "The Ram dashboard and Ram Activities.",
+  "version": "1.0.0",
+  "authors": [{ "name": "Ram Bot" }],
+  "icon": "https://rambot.xyz/ram-api-images/ram/ram-icon.png",
+  "discordClientId": "564579659526832178",
+  "matches": [
+    "https://rambot.xyz/*",
+    "https://www.rambot.xyz/*",
+    "https://activity.rambot.xyz/*"
+  ],
+  "settings": [
+    {
+      "id": "privacyMode",
+      "title": "Privacy mode",
+      "description": "Hide the page, the game, and the server name.",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "id": "showPage",
+      "title": "Show the page",
+      "description": "Name the area you're in. The server name stays hidden.",
+      "type": "boolean",
+      "default": true,
+      "when": { "privacyMode": false }
+    },
+    {
+      "id": "showGame",
+      "title": "Show the game",
+      "description": "On Activities, show the game when the tab title has it.",
+      "type": "boolean",
+      "default": true,
+      "when": { "privacyMode": false }
+    },
+    {
+      "id": "showServer",
+      "title": "Show the server name",
+      "description": "On the dashboard, show the server name. Ids are left out.",
+      "type": "boolean",
+      "default": false,
+      "when": { "privacyMode": false, "showPage": true }
+    },
+    {
+      "id": "showButton",
+      "title": "Show a button",
+      "description": "Link to the Ram home or Activities. Not a settings page.",
+      "type": "boolean",
+      "default": false
+    }
+  ]
+}
