@@ -4,14 +4,14 @@
   "id": "animex",
   "name": "AnimeX",
   "description": "The anime and episode you're watching on AnimeX, or what you're browsing.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "Abadima",
       "github": "Abadima"
     }
   ],
-  "icon": "https://animex.one/favicon.ico",
+  "icon": "https://animex.one/favicon.png",
   "matches": ["https://animex.one/*"],
   "data": ["media", "thumbnails"],
   "settings": [
