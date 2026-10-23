@@ -4,7 +4,7 @@
   "id": "claude",
   "name": "Claude",
   "description": "Chatting, working in projects, and using Claude Code on claude.ai.",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "Abadima",
