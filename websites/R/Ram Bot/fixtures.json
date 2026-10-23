@@ -1,0 +1,218 @@
+{
+  "$schema": "../../../schemas/fixtures.json",
+  "cases": [
+    {
+      "name": "On the Ram dashboard",
+      "source": "synthetic",
+      "url": "https://rambot.xyz/",
+      "title": "Ram Dashboard",
+      "expect": {
+        "details": "On the Ram dashboard"
+      }
+    },
+    {
+      "name": "Playing Ram Activities",
+      "source": "synthetic",
+      "url": "https://rambot.xyz/activity/",
+      "title": "Lobby — Ram Activities",
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/gamepad.png",
+          "smallText": "Activities"
+        },
+        "type": "playing",
+        "details": "Playing Ram Activities"
+      }
+    },
+    {
+      "name": "Docs (privacyMode off)",
+      "source": "synthetic",
+      "url": "https://www.rambot.xyz/docs",
+      "title": "Docs — Ram Dashboard",
+      "settings": {
+        "privacyMode": false
+      },
+      "expect": {
+        "details": "Docs"
+      }
+    },
+    {
+      "name": "Playing Ram Activities · In the lobby (privacyMode off)",
+      "source": "synthetic",
+      "url": "https://rambot.xyz/activity/",
+      "title": "Lobby — Ram Activities",
+      "settings": {
+        "privacyMode": false
+      },
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/gamepad.png",
+          "smallText": "Activities"
+        },
+        "type": "playing",
+        "details": "Playing Ram Activities",
+        "state": "In the lobby"
+      }
+    },
+    {
+      "name": "Playing Ram Activities (showButton on)",
+      "source": "synthetic",
+      "url": "https://rambot.xyz/activity/?code=secret",
+      "title": "Ram Activities",
+      "settings": {
+        "showButton": true
+      },
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/gamepad.png",
+          "smallText": "Activities"
+        },
+        "type": "playing",
+        "buttons": [
+          {
+            "label": "Open Activities",
+            "url": "https://rambot.xyz/activity/"
+          }
+        ],
+        "details": "Playing Ram Activities"
+      }
+    },
+    {
+      "name": "Playing Ram Activities · In a game (privacyMode off)",
+      "source": "synthetic",
+      "url": "https://rambot.xyz/activity/",
+      "title": "In a game — Ram Activities",
+      "settings": {
+        "privacyMode": false
+      },
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/gamepad.png",
+          "smallText": "Activities"
+        },
+        "type": "playing",
+        "details": "Playing Ram Activities",
+        "state": "In a game"
+      }
+    },
+    {
+      "name": "Spite Your Neighbor · In a game (privacyMode off)",
+      "source": "synthetic",
+      "url": "https://rambot.xyz/activity/",
+      "title": "Spite Your Neighbor — Ram Activities",
+      "settings": {
+        "privacyMode": false
+      },
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/gamepad.png",
+          "smallText": "Activities"
+        },
+        "type": "playing",
+        "details": "Spite Your Neighbor",
+        "state": "In a game"
+      }
+    },
+    {
+      "name": "Twitch Pings (privacyMode off)",
+      "source": "synthetic",
+      "url": "https://rambot.xyz/settings/1533177824037572618/twpings",
+      "title": "Game Night · Twitch Pings — Ram Dashboard",
+      "settings": {
+        "privacyMode": false
+      },
+      "expect": {
+        "details": "Twitch Pings"
+      }
+    },
+    {
+      "name": "Twitch Pings · Game Night (privacyMode off, showServer on)",
+      "source": "synthetic",
+      "url": "https://rambot.xyz/settings/1533177824037572618/twpings",
+      "title": "Game Night · Twitch Pings — Ram Dashboard",
+      "settings": {
+        "privacyMode": false,
+        "showServer": true
+      },
+      "expect": {
+        "details": "Twitch Pings",
+        "state": "Game Night"
+      }
+    },
+    {
+      "name": "the dashboard's older title, 'Ram Dashboard | Page | Server', with names on",
+      "source": "synthetic",
+      "url": "https://rambot.xyz/settings/1533177824037572618/twpings",
+      "title": "Ram Dashboard | Twitch Pings | Game Night",
+      "settings": {
+        "privacyMode": false,
+        "showServer": true
+      },
+      "expect": {
+        "details": "Twitch Pings",
+        "state": "Game Night"
+      }
+    },
+    {
+      "name": "the older title with an id where a server's name should be",
+      "source": "synthetic",
+      "url": "https://rambot.xyz/settings/1533177824037572618/twpings",
+      "title": "Ram Dashboard | Twitch Pings | 1533177824037572618",
+      "settings": {
+        "privacyMode": false,
+        "showServer": true
+      },
+      "expect": {
+        "details": "Twitch Pings"
+      }
+    },
+    {
+      "name": "a title that isn't the dashboard's names nothing",
+      "source": "synthetic",
+      "url": "https://rambot.xyz/settings/1533177824037572618/twpings",
+      "title": "Settings | Somewhere",
+      "settings": {
+        "privacyMode": false,
+        "showServer": true
+      },
+      "expect": {
+        "details": "On the Ram dashboard"
+      }
+    },
+    {
+      "name": "Spite Your Neighbor · In a game (privacyMode off) #2",
+      "source": "synthetic",
+      "url": "https://activity.rambot.xyz/",
+      "title": "Spite Your Neighbor — Ram Activities",
+      "settings": {
+        "privacyMode": false
+      },
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/gamepad.png",
+          "smallText": "Activities"
+        },
+        "type": "playing",
+        "details": "Spite Your Neighbor",
+        "state": "In a game"
+      }
+    },
+    {
+      "name": "Playing Ram Activities (privacyMode off)",
+      "source": "synthetic",
+      "url": "https://rambot.xyz/activity/",
+      "title": "Ram Activities",
+      "settings": {
+        "privacyMode": false
+      },
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/gamepad.png",
+          "smallText": "Activities"
+        },
+        "type": "playing",
+        "details": "Playing Ram Activities"
+      }
+    }
+  ]
+}

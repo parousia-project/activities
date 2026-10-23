@@ -1,4 +1,5 @@
 import type { Activity, NativeActivity, Page, Settings } from "parousia";
+import metadata from "./metadata.json";
 
 /**
  * Ram dashboard and Ram Activities (rambot.xyz). URL and title only.
@@ -10,7 +11,9 @@ import type { Activity, NativeActivity, Page, Settings } from "parousia";
 const ORIGIN = "https://rambot.xyz";
 const ACTIVITIES = `${ORIGIN}/activity/`;
 const NAME = "Ram Bot";
-const ICON = "https://rambot.xyz/ram-api-images/ram/ram-icon.png";
+
+const ASSETS = "https://raw.githubusercontent.com/parousia-project/activities/main/assets";
+const GAMEPAD = `${ASSETS}/status/gamepad.png`;
 
 const ACTIVITY_SUFFIX = /\s+[—–-]\s+Ram Activities$/i;
 const DASHBOARD_SUFFIX = /\s+[—–-]\s+Ram Dashboard$/i;
@@ -36,7 +39,7 @@ function isActivities(url: URL): boolean {
 }
 
 /** "Spite Your Neighbor — Ram Activities". Lobby / "In a game" are not a game. */
-export function activityGame(title: string): string | null {
+function activityGame(title: string): string | null {
   if (!ACTIVITY_SUFFIX.test(title)) return null;
   const name = clean(title.replace(ACTIVITY_SUFFIX, ""), 64);
   if (!name || /^(lobby|in a game|ram activities)$/i.test(name) || isId(name)) return null;
@@ -44,7 +47,7 @@ export function activityGame(title: string): string | null {
 }
 
 /** "Server · Page — Ram Dashboard", or the older "Ram Dashboard | Page | Server". */
-export function dashboardParts(title: string): { page?: string; server?: string } {
+function dashboardParts(title: string): { page?: string; server?: string } {
   if (DASHBOARD_SUFFIX.test(title)) {
     const head = clean(title.replace(DASHBOARD_SUFFIX, ""), 120);
     const [first, ...rest] = head.split(/\s+·\s+/);
@@ -83,7 +86,11 @@ function detect({ url, title }: Page, settings: Settings): Activity | null {
     id: "ram-bot",
     name: NAME,
     url: home,
-    assets: { largeImage: ICON, largeText: NAME },
+    assets: {
+      largeImage: metadata.icon,
+      largeText: NAME,
+      ...(activities && { smallImage: GAMEPAD, smallText: "Activities" }),
+    },
   };
 
   if (activities) activity.type = "playing";
