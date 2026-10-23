@@ -1,29 +1,22 @@
 import type { Activity, NativeActivity, Page } from "parousia";
 
 /**
- * Google Play (play.google.com). It reads only the page's URL and title: an
- * app's page is titled "Spotify: Music and Podcasts - Apps on Google Play",
- * and its package name is the `id` in the address. Only that `id` is kept
- * from the query string, and only after checking it looks like a package
- * name; searches say that you searched, never what for.
- *
- * Written for Parousia from the Play Store's own pages; it isn't derived
- * from PreMiD's Google Play Activity.
+ * Only the `id` is kept from the query string, and only if it looks like a
+ * package name. A search says that you searched, never what for.
  */
+
 const ORIGIN = "https://play.google.com";
 const NAME = "Google Play";
 const MAX_NAME_CHARS = 64;
 const PACKAGE = /^[A-Za-z][A-Za-z0-9_]*(?:\.[A-Za-z0-9_]+)*$/;
 
-/** The kinds of thing the store sells, by the path they live under. */
 const KINDS: Readonly<Record<string, { title: RegExp; plural: string }>> = {
   apps: { title: /\s+-\s+Apps on Google Play\s*$/i, plural: "Apps" },
   movies: { title: /\s+-\s+Movies on Google Play\s*$/i, plural: "Movies" },
   books: { title: /\s+-\s+Books on Google Play\s*$/i, plural: "Books" },
 };
 
-/** "Spotify: Music and Podcasts - Apps on Google Play" is "Spotify: Music and Podcasts". */
-export function itemName(title: string, kind: { title: RegExp }): string | null {
+function itemName(title: string, kind: { title: RegExp }): string | null {
   if (!kind.title.test(title)) return null;
   const name = title
     .replace(kind.title, "")
