@@ -4,14 +4,14 @@
   "id": "ifixit",
   "name": "iFixit",
   "description": "The repair guide, question, or device you're looking at on iFixit.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     {
       "name": "Abadima",
       "github": "Abadima"
     }
   ],
-  "icon": "https://www.ifixit.com/apple-touch-icon.png",
+  "icon": "https://assets.cdn.ifixit.com/static/icons/ifixit/apple-touch-icon-180x180.png",
   "matches": ["https://*.ifixit.com/*"],
   "data": ["thumbnails"],
   "settings": [

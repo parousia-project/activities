@@ -1,25 +1,18 @@
 import type { Activity, NativeActivity, Page, Settings } from "parousia";
+import metadata from "./metadata.json";
 
 /**
- * iFixit (www.ifixit.com and its language sites). It reads the page's address
- * and the tab's title, which iFixit sets on the server for every page, and,
- * where `thumbnails` is granted, the page's own picture (the guide's or
- * device's). It never reads iFixit's markup or calls its API, so a redesign
- * can't break it and nothing here depends on which step of a guide is on
- * screen.
- *
- * Written for Parousia from the site's own pages; it isn't derived from
- * PreMiD's iFixit Activity, which reads the API and the page's markup.
+ * Reads the address, the tab's title (iFixit sets it on the server for every
+ * page), and the page's picture where `thumbnails` is granted. Never its
+ * markup or API, so a redesign can't break it.
  */
 
 const NAME = "iFixit";
-const ICON = "https://assets.cdn.ifixit.com/static/icons/ifixit/apple-touch-icon-180x180.png";
 const MAX_TEXT = 100;
 const MAX_BUTTON_URL = 512;
-/** iFixit's own language paths, like /en-us/, come before the section. */
+
 const LOCALE = /^[a-z]{2}-[a-z]{2}$/;
 
-/** Titles are written by whoever contributes the guide or question: no control or direction-override characters, and a length cap. */
 function clean(value: string | undefined): string | undefined {
   const text = value
     ?.replace(/[\p{Cc}​-‏‪-‮⁦-⁩﻿]/gu, "")
@@ -29,7 +22,6 @@ function clean(value: string | undefined): string | undefined {
   return text && text.length >= 2 ? [...text].slice(0, MAX_TEXT).join("") : undefined;
 }
 
-/** "iPhone 14 Battery Replacement - iFixit Repair Guide" is "iPhone 14 Battery Replacement"; "SOLVED: " in front of a question's title is dropped too. */
 function subject(title: string): string | undefined {
   const text = clean(
     title
@@ -37,11 +29,9 @@ function subject(title: string): string | undefined {
       .replace(/^(?:SOLVED|UNSOLVED):\s+/i, ""),
   );
 
-  // Before the page has loaded, the tab is just "iFixit".
   return text !== NAME ? text : undefined;
 }
 
-/** A path segment as words: "iPhone_14" and "Won%27t+Turn+On" are "iPhone 14" and "Won't Turn On". */
 function words(segment: string | undefined): string | undefined {
   if (!segment) return undefined;
   try {
@@ -52,13 +42,12 @@ function words(segment: string | undefined): string | undefined {
 }
 
 interface Described {
-  /** What kind of page, as a line that names no one's guide or question. */
   details: string;
-  /** Which guide, question, or device. */
+
   state?: string;
-  /** The page's picture says something about it (a guide's, a device's). */
+
   picture?: boolean;
-  /** A button to this page. */
+
   button?: string;
 }
 
@@ -113,7 +102,6 @@ function describe(path: string[], title: string): Described {
         ? { details: "Editing a wiki article" }
         : { details: "Reading a wiki article", state: words(second) };
     case "Search":
-      // What was searched for is never shown.
       return { details: "Searching iFixit" };
     case "Store":
     case "products":
@@ -140,7 +128,7 @@ function detect({ url, title, thumbnail }: Page, settings: Settings): Activity {
     id: "ifixit",
     name: NAME,
     url: `${origin}/`,
-    assets: { largeImage: ICON, largeText: NAME },
+    assets: { largeImage: metadata.icon, largeText: NAME },
   };
   const page = describe(path, title);
   const activity: Activity = { ...base, details: page.details };
@@ -151,7 +139,7 @@ function detect({ url, title, thumbnail }: Page, settings: Settings): Activity {
   if (page.picture && thumbnail !== undefined && settings.showThumbnail !== false) {
     activity.assets = { largeImage: thumbnail, largeText: NAME };
   }
-  // Rebuilt from the path: the query string and fragment stay in the browser.
+
   const link = `${origin}${url.pathname}`;
   if (page.button && link.length <= MAX_BUTTON_URL) {
     activity.buttons = [{ label: page.button, url: link }];
