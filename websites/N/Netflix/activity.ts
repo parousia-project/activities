@@ -1,28 +1,28 @@
 import type { Activity, NativeActivity, Page, Settings } from "parousia";
+import metadata from "./metadata.json";
 
 /**
- * Netflix (www.netflix.com). Netflix's player publishes no title to the page
- * and sets the tab's title to just "Netflix" while it plays, so a watch page
- * shows that someone is watching and how far along they are (the playing
- * video's clock, which Parousia reads for any site that declares `media`),
- * and the title only if the page's Media Session has one. A title's own page
- * (`/title/<id>`) is named from the tab's title ("Name | Netflix") and its
- * picture. Nothing is read from Netflix's markup, and Netflix's private API,
- * which PreMiD's Activity calls for titles, is never called.
- *
- * Written for Parousia; it isn't derived from PreMiD's Netflix Activity.
+ * A watch page's tab is just "Netflix", its Media Session is empty and it has
+ * no og:image: the show's name and artwork exist only in the player's markup,
+ * which this API doesn't read. So playback shows that someone is watching, how
+ * far along and whether it is paused, with a title only if the page ever
+ * publishes one, and the picture is always Netflix's own. A title's own page
+ * is named from the tab ("Name | Netflix"). Nothing is read from Netflix's
+ * markup or private API.
  */
 
 const ORIGIN = "https://www.netflix.com";
 const NAME = "Netflix";
-const ICON = "https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png";
+
+const ASSETS = "https://raw.githubusercontent.com/parousia-project/activities/main/assets";
+const PLAY = `${ASSETS}/status/play.png`;
+const PAUSE = `${ASSETS}/status/pause.png`;
 const MAX_TEXT = 100;
-/** Country paths like /ca/ or /us-fr/ come before the section. */
+
 const LOCALE = /^[a-z]{2}(?:-[a-z]{2})?$/;
 const ID = /^\d{1,12}$/;
 const TITLE_SUFFIX = /\s+[|\-–]\s+Netflix(?:\s+Official Site)?\s*$/i;
 
-/** Titles are Netflix's, but a Media Session is a page's to fill: no control or direction-override characters, and a length cap. */
 function clean(value: string | undefined): string | undefined {
   const text = value
     ?.replace(/[\p{Cc}​-‏‪-‮⁦-⁩﻿]/gu, "")
@@ -32,7 +32,6 @@ function clean(value: string | undefined): string | undefined {
   return text && text.length >= 2 ? [...text].slice(0, MAX_TEXT).join("") : undefined;
 }
 
-/** "Watch Dark | Netflix Official Site" and "Dark | Netflix" are "Dark"; a tab that's just "Netflix", or doesn't end like that, is nothing. */
 function titleFromTab(tab: string): string | undefined {
   if (!TITLE_SUFFIX.test(tab)) return undefined;
   const title = clean(tab.replace(TITLE_SUFFIX, "").replace(/^Watch\s+/i, ""));
@@ -40,49 +39,59 @@ function titleFromTab(tab: string): string | undefined {
   return title !== NAME ? title : undefined;
 }
 
-function browsing(pathname: string): string {
-  if (pathname.includes("/my-list")) return "Browsing My List";
-  if (pathname.includes("/latest")) return "Browsing New & Popular";
-  if (pathname.includes("/games")) return "Browsing games";
-  if (pathname.includes("/search")) return "Searching Netflix";
+const SECTIONS = new Map([
+  ["search", "Searching Netflix"],
+  ["my-list", "Browsing My List"],
+  ["latest", "Browsing New & Popular"],
+  ["games", "Browsing games"],
+  ["genre", "Browsing a genre"],
+  ["youraccount", "Managing account"],
+  ["manageprofiles", "Choosing a profile"],
+  ["profilesgate", "Choosing a profile"],
+]);
 
-  return "Browsing Netflix";
+function browsing(path: readonly string[]): string {
+  const [first = "", second = ""] = path.map((segment) => segment.toLowerCase());
+
+  return SECTIONS.get(first === "browse" ? second : first) ?? "Browsing Netflix";
 }
 
-function detect({ url, title, media, thumbnail }: Page, settings: Settings): Activity {
+function detect({ url, title, media }: Page, settings: Settings): Activity {
   const path = url.pathname.split("/").filter(Boolean);
   if (LOCALE.test(path[0] ?? "")) path.shift();
   const [section, id] = path;
   const hidden = settings.privacyMode === true;
 
   const base: Activity = { id: "netflix", name: NAME, url: `${ORIGIN}/` };
-  const picture = (shown: string | undefined): Activity["assets"] => ({
-    largeImage: (!hidden && settings.showThumbnail !== false ? shown : undefined) ?? ICON,
-    largeText: NAME,
-  });
+  const picture = { largeImage: metadata.icon, largeText: NAME };
 
   if (section === "watch" && id !== undefined && ID.test(id)) {
     const watched = hidden ? undefined : clean(media?.title);
-    const paused = media?.playing === false;
+    const clock =
+      !hidden &&
+      settings.showTimestamps !== false &&
+      media?.playing === true &&
+      media.start !== undefined;
+    const status = hidden
+      ? undefined
+      : media?.playing === false
+        ? { smallImage: PAUSE, smallText: "Paused" }
+        : media?.playing === true && !clock
+          ? { smallImage: PLAY, smallText: "Playing" }
+          : undefined;
     const activity: Activity = {
       ...base,
       type: "watching",
       details: watched ?? "Watching Netflix",
-      assets: picture(thumbnail),
+      assets: { ...picture, ...status },
     };
 
     if (!hidden) {
-      const state = clean(media?.artist);
-      const shown = state ? (paused ? `${state} (paused)` : state) : paused ? "Paused" : undefined;
-      if (shown !== undefined) activity.state = shown;
+      const state = clean(media?.artist) ?? (media?.playing === false ? "Paused" : undefined);
+      if (state !== undefined) activity.state = state;
       activity.buttons = [{ label: "Watch on Netflix", url: `${ORIGIN}/watch/${id}` }];
     }
-    if (
-      !hidden &&
-      settings.showTimestamps !== false &&
-      media?.playing &&
-      media.start !== undefined
-    ) {
+    if (clock) {
       activity.timestamps = {
         start: media.start,
         ...(media.end !== undefined && { end: media.end }),
@@ -99,12 +108,12 @@ function detect({ url, title, media, thumbnail }: Page, settings: Settings): Act
       ...base,
       details: "Looking at a title",
       ...(named && { state: named }),
-      assets: picture(thumbnail),
+      assets: picture,
       ...(!hidden && { buttons: [{ label: "View on Netflix", url: `${ORIGIN}/title/${id}` }] }),
     };
   }
 
-  return { ...base, details: hidden ? "Browsing Netflix" : browsing(url.pathname) };
+  return { ...base, details: hidden ? "Browsing Netflix" : browsing(path) };
 }
 
 const activity: NativeActivity = { detect };

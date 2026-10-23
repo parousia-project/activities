@@ -1,0 +1,294 @@
+{
+  "$schema": "../../../schemas/fixtures.json",
+  "cases": [
+    {
+      "name": "a title's page, logged out",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://www.netflix.com/ca/title/80057281",
+      "title": "Watch Stranger Things | Netflix Official Site",
+      "expect": {
+        "details": "Looking at a title",
+        "state": "Stranger Things",
+        "buttons": [
+          {
+            "label": "View on Netflix",
+            "url": "https://www.netflix.com/title/80057281"
+          }
+        ]
+      }
+    },
+    {
+      "name": "a title's page named only Netflix",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/title/80057281",
+      "title": "Netflix",
+      "expect": {
+        "details": "Looking at a title",
+        "buttons": [
+          {
+            "label": "View on Netflix",
+            "url": "https://www.netflix.com/title/80057281"
+          }
+        ]
+      }
+    },
+    {
+      "name": "a title's page in privacy mode",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/title/80057281",
+      "title": "Watch Stranger Things | Netflix Official Site",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Looking at a title"
+      }
+    },
+    {
+      "name": "the sign-in page",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://www.netflix.com/ca/login",
+      "title": "Netflix",
+      "expect": {
+        "details": "Browsing Netflix"
+      }
+    },
+    {
+      "name": "the home page",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/browse",
+      "title": "Netflix",
+      "expect": {
+        "details": "Browsing Netflix"
+      }
+    },
+    {
+      "name": "a search, without what was searched",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/search?q=private",
+      "title": "Netflix",
+      "expect": {
+        "details": "Searching Netflix"
+      }
+    },
+    {
+      "name": "My List",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/browse/my-list",
+      "title": "Netflix",
+      "expect": {
+        "details": "Browsing My List"
+      }
+    },
+    {
+      "name": "New & Popular",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/latest",
+      "title": "Netflix",
+      "expect": {
+        "details": "Browsing New & Popular"
+      }
+    },
+    {
+      "name": "a genre",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/browse/genre/83",
+      "title": "Netflix",
+      "expect": {
+        "details": "Browsing a genre"
+      }
+    },
+    {
+      "name": "the account page",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/YourAccount",
+      "title": "Netflix",
+      "expect": {
+        "details": "Managing account"
+      }
+    },
+    {
+      "name": "the profile picker",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/ProfilesGate",
+      "title": "Netflix",
+      "expect": {
+        "details": "Choosing a profile"
+      }
+    },
+    {
+      "name": "browsing in privacy mode",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/browse/my-list",
+      "title": "Netflix",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Browsing Netflix"
+      }
+    },
+    {
+      "name": "a watch page before the player has loaded",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/watch/80057281",
+      "title": "Netflix",
+      "expect": {
+        "type": "watching",
+        "details": "Watching Netflix",
+        "buttons": [
+          {
+            "label": "Watch on Netflix",
+            "url": "https://www.netflix.com/watch/80057281"
+          }
+        ]
+      }
+    },
+    {
+      "name": "playing, with how far along",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/watch/80057281",
+      "title": "Netflix",
+      "data": {
+        "granted": ["media"],
+        "media": {
+          "playing": true,
+          "kind": "video",
+          "duration": 3000,
+          "start": 1792000000000,
+          "end": 1792003000000
+        }
+      },
+      "expect": {
+        "type": "watching",
+        "details": "Watching Netflix",
+        "timestamps": {
+          "start": 1792000000000,
+          "end": 1792003000000
+        },
+        "buttons": [
+          {
+            "label": "Watch on Netflix",
+            "url": "https://www.netflix.com/watch/80057281"
+          }
+        ]
+      }
+    },
+    {
+      "name": "playing, timestamps off",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/watch/80057281",
+      "title": "Netflix",
+      "data": {
+        "granted": ["media"],
+        "media": {
+          "playing": true,
+          "kind": "video",
+          "duration": 3000,
+          "start": 1792000000000,
+          "end": 1792003000000
+        }
+      },
+      "settings": {
+        "showTimestamps": false
+      },
+      "expect": {
+        "type": "watching",
+        "details": "Watching Netflix",
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/play.png",
+          "smallText": "Playing"
+        },
+        "buttons": [
+          {
+            "label": "Watch on Netflix",
+            "url": "https://www.netflix.com/watch/80057281"
+          }
+        ]
+      }
+    },
+    {
+      "name": "paused",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/watch/80057281",
+      "title": "Netflix",
+      "data": {
+        "granted": ["media"],
+        "media": {
+          "playing": false,
+          "kind": "video",
+          "duration": 3000
+        }
+      },
+      "expect": {
+        "type": "watching",
+        "details": "Watching Netflix",
+        "state": "Paused",
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/pause.png",
+          "smallText": "Paused"
+        },
+        "buttons": [
+          {
+            "label": "Watch on Netflix",
+            "url": "https://www.netflix.com/watch/80057281"
+          }
+        ]
+      }
+    },
+    {
+      "name": "a title the page names",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/watch/80057281",
+      "title": "Netflix",
+      "data": {
+        "granted": ["media"],
+        "media": {
+          "title": "Episode 1",
+          "artist": "Stranger Things",
+          "playing": false
+        }
+      },
+      "expect": {
+        "type": "watching",
+        "details": "Episode 1",
+        "state": "Stranger Things",
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/pause.png",
+          "smallText": "Paused"
+        },
+        "buttons": [
+          {
+            "label": "Watch on Netflix",
+            "url": "https://www.netflix.com/watch/80057281"
+          }
+        ]
+      }
+    },
+    {
+      "name": "watching in privacy mode",
+      "source": "synthetic",
+      "url": "https://www.netflix.com/watch/80057281",
+      "title": "Netflix",
+      "data": {
+        "granted": ["media"],
+        "media": {
+          "playing": true,
+          "kind": "video",
+          "duration": 3000,
+          "start": 1792000000000,
+          "end": 1792003000000
+        }
+      },
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "type": "watching",
+        "details": "Watching Netflix"
+      }
+    }
+  ]
+}

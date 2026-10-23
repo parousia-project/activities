@@ -4,7 +4,7 @@
   "id": "netflix",
   "name": "Netflix",
   "description": "That you're watching on Netflix, with how far along you are, or what you're browsing.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "Abadima",
@@ -13,7 +13,7 @@
   ],
   "icon": "https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png",
   "matches": ["https://www.netflix.com/*"],
-  "data": ["media", "thumbnails"],
+  "data": ["media"],
   "settings": [
     {
       "id": "privacyMode",
@@ -26,14 +26,6 @@
       "id": "showTimestamps",
       "title": "Show timestamps",
       "description": "Show when it started and when it is expected to end.",
-      "type": "boolean",
-      "default": true,
-      "when": { "privacyMode": false }
-    },
-    {
-      "id": "showThumbnail",
-      "title": "Show title image",
-      "description": "Use the title's picture as the image on your profile, when the page has one.",
       "type": "boolean",
       "default": true,
       "when": { "privacyMode": false }
