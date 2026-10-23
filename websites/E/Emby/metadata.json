@@ -4,7 +4,7 @@
   "id": "emby",
   "name": "Emby",
   "description": "What you're watching or listening to in Emby's web app (app.emby.media).",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "Abadima",
