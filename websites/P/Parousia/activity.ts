@@ -1,16 +1,8 @@
 import type { Activity, NativeActivity, Page } from "parousia";
-
-/**
- * Parousia (parousia.abadima.dev): the project website for Parousia's
- * browser extension, Desktop client, Activities, and documentation.
- *
- * It uses only the page URL and title. Query strings and fragments are never
- * copied into the presence.
- */
+import metadata from "./metadata.json";
 
 const ORIGIN = "https://parousia.abadima.dev";
 const NAME = "Parousia";
-const ICON = `${ORIGIN}/pwa/icons/icon-512.png`;
 
 const PAGES: Readonly<Record<string, string>> = {
   "/": "Browsing the Parousia homepage",
@@ -24,7 +16,6 @@ const PAGES: Readonly<Record<string, string>> = {
   "/docs/development": "Reading development docs",
 };
 
-/** Documentation pages shown in the state line. */
 const DOC_SECTIONS: Readonly<Record<string, string>> = {
   "/docs": "Documentation",
   "/docs/installation": "Installation",
@@ -46,7 +37,7 @@ function detect({ url, title }: Page): Activity {
     id: "parousia",
     name: NAME,
     url: `${ORIGIN}${pathname}`,
-    assets: { largeImage: ICON, largeText: NAME },
+    assets: { largeImage: metadata.icon, largeText: NAME },
     buttons: [{ label: "Open Parousia", url: `${ORIGIN}/` }],
   };
 
@@ -77,10 +68,12 @@ function detect({ url, title }: Page): Activity {
     };
   }
 
+  const named = cleanTitle(title).slice(0, 128);
+
   return {
     ...base,
     details: "Browsing Parousia",
-    state: `${cleanTitle(title)}`.slice(0, 128),
+    ...(named.length >= 2 && { state: named }),
   };
 }
 
