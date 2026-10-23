@@ -4,14 +4,14 @@
   "id": "youtube-music",
   "name": "YouTube Music",
   "description": "The song you're listening to on YouTube Music, or what you're browsing.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "Abadima",
       "github": "Abadima"
     }
   ],
-  "icon": "https://music.youtube.com/img/favicon_32.png",
+  "icon": "https://music.youtube.com/img/favicon_144.png",
   "matches": ["https://music.youtube.com/*"],
   "data": ["media", "thumbnails"],
   "settings": [
@@ -33,13 +33,6 @@
       "id": "showTimestamps",
       "title": "Show timestamps",
       "description": "Show when the song started and when it is expected to end.",
-      "type": "boolean",
-      "default": true
-    },
-    {
-      "id": "showButtons",
-      "title": "Show buttons",
-      "description": "Show a Listen Along button on your profile.",
       "type": "boolean",
       "default": true
     }
