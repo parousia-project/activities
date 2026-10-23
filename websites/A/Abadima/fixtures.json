@@ -1,0 +1,1028 @@
+{
+  "$schema": "../../../schemas/fixtures.json",
+  "cases": [
+    {
+      "name": "the landing page",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/",
+      "title": "Abadima",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "On the portfolio landing page",
+        "detailsUrl": "https://abadima.dev/",
+        "state": "On abadima.dev"
+      }
+    },
+    {
+      "name": "the home page",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/home",
+      "title": "Abadima's Portfolio",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing the portfolio",
+        "detailsUrl": "https://abadima.dev/home",
+        "state": "On abadima.dev"
+      }
+    },
+    {
+      "name": "the about page",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/about",
+      "title": "About Me | Abadima's Portfolio",
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/user.png",
+          "smallText": "About"
+        },
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Reading about Abadima",
+        "detailsUrl": "https://abadima.dev/pages/about",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "the contact page",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/contact",
+      "title": "Contact Abadima",
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/comments.png",
+          "smallText": "Contact"
+        },
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Viewing the contact page",
+        "detailsUrl": "https://abadima.dev/pages/contact",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "the blog list",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/blog",
+      "title": "Abadima's Blog",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing the blog",
+        "detailsUrl": "https://abadima.dev/pages/blog",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "the projects list",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/projects",
+      "title": "Abadima's Projects",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing projects",
+        "detailsUrl": "https://abadima.dev/pages/projects",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "the blog's 'changelogs' post, chosen on the list (the tab keeps its title)",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/blog?page=changelogs",
+      "title": "Abadima's Blog",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blog?page=changelogs"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Reading “Changelogs”",
+        "detailsUrl": "https://abadima.dev/pages/blog?page=changelogs",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "the blog's 'identity' post, chosen on the list (the tab keeps its title)",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/blog?page=identity",
+      "title": "Abadima's Blog",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blog?page=identity"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Reading “You Exist Everywhere, Yet Nowhere.”",
+        "detailsUrl": "https://abadima.dev/pages/blog?page=identity",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "the blog's 'roblox-renaissance' post, chosen on the list (the tab keeps its title)",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/blog?page=roblox-renaissance",
+      "title": "Abadima's Blog",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blog?page=roblox-renaissance"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Reading “Let us Play Roblox”",
+        "detailsUrl": "https://abadima.dev/pages/blog?page=roblox-renaissance",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "the blog's 'solstice' post, chosen on the list (the tab keeps its title)",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/blog?page=solstice",
+      "title": "Abadima's Blog",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blog?page=solstice"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Reading “Intro to Solstice”",
+        "detailsUrl": "https://abadima.dev/pages/blog?page=solstice",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "the 'discord-rpc' project, chosen on the list",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/projects?page=discord-rpc",
+      "title": "Abadima's Projects",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=discord-rpc"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Discord RPC”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=discord-rpc",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "the 'jena' project, chosen on the list",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/projects?page=jena",
+      "title": "Abadima's Projects",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=jena"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Jena”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=jena",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "the 'password-generator' project, chosen on the list",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/projects?page=password-generator",
+      "title": "Abadima's Projects",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=password-generator"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Password Generator”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=password-generator",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "the 'logena' project, chosen on the list",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/projects?page=logena",
+      "title": "Abadima's Projects",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=logena"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Logena”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=logena",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "the 'follow-explodinator' project, chosen on the list",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/projects?page=follow-explodinator",
+      "title": "Abadima's Projects",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=follow-explodinator"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Follow Explodinator 9000”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=follow-explodinator",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "the 'portfolio' project, chosen on the list",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/projects?page=portfolio",
+      "title": "Abadima's Projects",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=portfolio"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Portfolio (This Site)”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=portfolio",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "the 'status-page' project, chosen on the list",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/projects?page=status-page",
+      "title": "Abadima's Projects",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=status-page"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Status Page”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=status-page",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "a ?page= the site lists nothing for shows 'No Blogs Loaded', so it's the list",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/blog?page=nope",
+      "title": "Abadima's Blog",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing the blog",
+        "detailsUrl": "https://abadima.dev/pages/blog",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "a post's own page, which the .html link redirects to",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/blogs/solstice",
+      "title": "Meet Solstice - Abadima's Fursona",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blog?page=solstice"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Reading “Intro to Solstice”",
+        "detailsUrl": "https://abadima.dev/pages/blog?page=solstice",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "a project's own page, whose title for two projects is wrong on the site",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/projets/password-generator",
+      "title": "Project: Follow Explodinator 9000",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=password-generator"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Password Generator”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=password-generator",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "privacy mode names no post",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://abadima.dev/pages/blog?page=identity",
+      "title": "Abadima's Blog",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing the blog",
+        "state": "Exploring the portfolio"
+      },
+      "settings": {
+        "privacyMode": true
+      }
+    },
+    {
+      "name": "On the portfolio landing page · On abadima.dev",
+      "source": "synthetic",
+      "url": "https://abadima.dev/",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "On the portfolio landing page",
+        "detailsUrl": "https://abadima.dev/",
+        "state": "On abadima.dev"
+      }
+    },
+    {
+      "name": "Browsing the portfolio · On abadima.dev",
+      "source": "synthetic",
+      "url": "https://abadima.dev/home",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing the portfolio",
+        "detailsUrl": "https://abadima.dev/home",
+        "state": "On abadima.dev"
+      }
+    },
+    {
+      "name": "Browsing abadima.dev · Exploring the portfolio",
+      "source": "synthetic",
+      "url": "https://abadima.dev/nowhere",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing abadima.dev",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "Browsing abadima.dev · Exploring the portfolio #2",
+      "source": "synthetic",
+      "url": "https://abadima.dev/elsewhere",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing abadima.dev",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "Browsing the blog · Exploring the portfolio",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/blog",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing the blog",
+        "detailsUrl": "https://abadima.dev/pages/blog",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "Reading about Abadima · Exploring the portfolio",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/about",
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/user.png",
+          "smallText": "About"
+        },
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Reading about Abadima",
+        "detailsUrl": "https://abadima.dev/pages/about",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "Viewing the contact page · Exploring the portfolio",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/contact",
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/comments.png",
+          "smallText": "Contact"
+        },
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Viewing the contact page",
+        "detailsUrl": "https://abadima.dev/pages/contact",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "Browsing projects · Exploring the portfolio",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/projects",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing projects",
+        "detailsUrl": "https://abadima.dev/pages/projects",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "Reading “Intro to Solstice” · Reading the blog",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/blogs/solstice",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blog?page=solstice"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Reading “Intro to Solstice”",
+        "detailsUrl": "https://abadima.dev/pages/blog?page=solstice",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "Browsing the blog · Reading the blog",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/blogs/new-post",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blogs/new-post"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Browsing the blog",
+        "detailsUrl": "https://abadima.dev/pages/blogs/new-post",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "Browsing projects · Exploring projects",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/projets/new-thing",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projets/new-thing"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Browsing projects",
+        "detailsUrl": "https://abadima.dev/pages/projets/new-thing",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "Reading “You Exist Everywhere, Yet Nowhere.” · Reading the blog",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/blog?page=identity",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blog?page=identity"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Reading “You Exist Everywhere, Yet Nowhere.”",
+        "detailsUrl": "https://abadima.dev/pages/blog?page=identity",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "Looking at “Jena” · Exploring projects",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/projects?page=jena",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=jena"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Jena”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=jena",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "Reading “Changelogs” · Reading the blog",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/blog?page=changelogs",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blog?page=changelogs"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Reading “Changelogs”",
+        "detailsUrl": "https://abadima.dev/pages/blog?page=changelogs",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "Looking at “Logena” · Exploring projects",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/projects?page=logena",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=logena"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Logena”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=logena",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "Looking at “Portfolio (This Site)” · Exploring projects",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/projects?page=portfolio",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=portfolio"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Portfolio (This Site)”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=portfolio",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "Looking at “Discord RPC” · Exploring projects",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/projects?page=discord-rpc",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=discord-rpc"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Discord RPC”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=discord-rpc",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "Looking at “Status Page” · Exploring projects",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/projects?page=status-page",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=status-page"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Status Page”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=status-page",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "Reading “Let us Play Roblox” · Reading the blog",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/blog?page=roblox-renaissance",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blog?page=roblox-renaissance"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Reading “Let us Play Roblox”",
+        "detailsUrl": "https://abadima.dev/pages/blog?page=roblox-renaissance",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "Looking at “Password Generator” · Exploring projects",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/projects?page=password-generator",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=password-generator"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Password Generator”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=password-generator",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "Looking at “Follow Explodinator 9000” · Exploring projects",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/projects?page=follow-explodinator",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projects?page=follow-explodinator"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “Follow Explodinator 9000”",
+        "detailsUrl": "https://abadima.dev/pages/projects?page=follow-explodinator",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "Reading “Fresh post” · Reading the blog",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/blogs/new-post",
+      "title": "Fresh post",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blogs/new-post"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Reading “Fresh post”",
+        "detailsUrl": "https://abadima.dev/pages/blogs/new-post",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "Looking at “New Thing” · Exploring projects",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/projets/new-thing",
+      "title": "Project: New Thing",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View the project",
+            "url": "https://abadima.dev/pages/projets/new-thing"
+          },
+          {
+            "label": "Open Abadima's Projects",
+            "url": "https://abadima.dev/pages/projects"
+          }
+        ],
+        "details": "Looking at “New Thing”",
+        "detailsUrl": "https://abadima.dev/pages/projets/new-thing",
+        "state": "Exploring projects",
+        "stateUrl": "https://abadima.dev/pages/projects"
+      }
+    },
+    {
+      "name": "Browsing the blog · Exploring the portfolio (privacyMode on)",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/blogs/solstice",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing the blog",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "Browsing projects · Exploring the portfolio (privacyMode on)",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/projects?page=logena",
+      "title": "Abadima's Projects",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing projects",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "Reading “xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx” · Reading the blog",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/blogs/new-post",
+      "title": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blogs/new-post"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Reading “xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx”",
+        "detailsUrl": "https://abadima.dev/pages/blogs/new-post",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "Reading “xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx” · Reading the blog #2",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/blogs/new",
+      "title": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blogs/new"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Reading “xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx”",
+        "detailsUrl": "https://abadima.dev/pages/blogs/new",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    },
+    {
+      "name": "Browsing the blog · Exploring the portfolio #2",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/blog?page=jena",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Abadima's Portfolio",
+            "url": "https://abadima.dev/"
+          }
+        ],
+        "details": "Browsing the blog",
+        "detailsUrl": "https://abadima.dev/pages/blog",
+        "state": "Exploring the portfolio"
+      }
+    },
+    {
+      "name": "Browsing the blog · Reading the blog #2",
+      "source": "synthetic",
+      "url": "https://abadima.dev/pages/blogs/new-post",
+      "title": "Abadima's Portfolio",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Read the post",
+            "url": "https://abadima.dev/pages/blogs/new-post"
+          },
+          {
+            "label": "Open Abadima's Blog",
+            "url": "https://abadima.dev/pages/blog"
+          }
+        ],
+        "details": "Browsing the blog",
+        "detailsUrl": "https://abadima.dev/pages/blogs/new-post",
+        "state": "Reading the blog",
+        "stateUrl": "https://abadima.dev/pages/blog"
+      }
+    }
+  ]
+}
