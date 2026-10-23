@@ -1,8 +1,8 @@
 import type { Activity, NativeActivity, Page } from "parousia";
+import metadata from "./metadata.json";
 
 const ORIGIN = "https://riix.fun";
 const NAME = "riix's Slayers 2 Wiki";
-const ICON = `${ORIGIN}/favicon-180.png`;
 
 const SAFE_SLUG = /^[a-z0-9-]{1,64}$/;
 
@@ -77,7 +77,7 @@ function detect({ url }: Page): Activity {
     name: NAME,
     url: ORIGIN,
     assets: {
-      largeImage: ICON,
+      largeImage: metadata.icon,
       largeText: NAME,
     },
     buttons: [
@@ -88,7 +88,6 @@ function detect({ url }: Page): Activity {
     ],
   };
 
-  // Home
   if (!section) {
     return {
       ...base,
@@ -96,7 +95,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // Codes
   if (section === "codes") {
     return {
       ...base,
@@ -105,7 +103,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // Tier List
   if (section === "tier-list") {
     return {
       ...base,
@@ -114,7 +111,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // Guides + individual guide pages
   if (section === "guides") {
     const name = knownName(slug, GUIDE_NAMES);
 
@@ -138,7 +134,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // Breathing + individual styles
   if (section === "breathing") {
     const name = knownName(slug, BREATHING_NAMES);
 
@@ -162,7 +157,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // Blood Demon Arts + individual arts
   if (section === "demon-arts") {
     const name = knownName(slug, DEMON_ART_NAMES);
 
@@ -186,7 +180,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // Clans
   if (section === "clans") {
     return {
       ...base,
@@ -196,7 +189,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // Gear + individual items
   if (section === "gear") {
     const name = knownName(slug, GEAR_NAMES);
 
@@ -220,7 +212,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // Builds
   if (section === "builds") {
     return {
       ...base,
@@ -230,7 +221,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // NPC Directory
   if (section === "npcs") {
     return {
       ...base,
@@ -239,7 +229,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // Titles
   if (section === "titles") {
     return {
       ...base,
@@ -248,7 +237,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // Updates
   if (section === "updates") {
     return {
       ...base,
@@ -257,7 +245,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // Saved / Bookmarks
   if (section === "bookmarks") {
     return {
       ...base,
@@ -266,7 +253,6 @@ function detect({ url }: Page): Activity {
     };
   }
 
-  // Any future page we haven't explicitly added yet
   return {
     ...base,
     details: "Browsing riix.fun",

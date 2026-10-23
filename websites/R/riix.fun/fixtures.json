@@ -1,0 +1,410 @@
+{
+  "$schema": "../../../schemas/fixtures.json",
+  "cases": [
+    {
+      "name": "Browsing the Slayers 2 Wiki",
+      "source": "synthetic",
+      "url": "https://riix.fun/",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Browsing the Slayers 2 Wiki"
+      }
+    },
+    {
+      "name": "Browsing the NPC Directory",
+      "source": "synthetic",
+      "url": "https://riix.fun/npcs",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Browsing the NPC Directory"
+      }
+    },
+    {
+      "name": "Viewing Slayers 2 Codes",
+      "source": "synthetic",
+      "url": "https://riix.fun/codes",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Slayers 2 Codes"
+      }
+    },
+    {
+      "name": "Viewing Clans · Clan Stats & Spin Odds",
+      "source": "synthetic",
+      "url": "https://riix.fun/clans",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Clans",
+        "state": "Clan Stats & Spin Odds"
+      }
+    },
+    {
+      "name": "Viewing Builds · Slayer & Demon Builds",
+      "source": "synthetic",
+      "url": "https://riix.fun/builds",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Builds",
+        "state": "Slayer & Demon Builds"
+      }
+    },
+    {
+      "name": "Viewing Titles",
+      "source": "synthetic",
+      "url": "https://riix.fun/titles",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Titles"
+      }
+    },
+    {
+      "name": "Reading Slayers 2 Updates",
+      "source": "synthetic",
+      "url": "https://riix.fun/updates",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Reading Slayers 2 Updates"
+      }
+    },
+    {
+      "name": "Viewing the Tier List",
+      "source": "synthetic",
+      "url": "https://riix.fun/tier-list",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing the Tier List"
+      }
+    },
+    {
+      "name": "Viewing Saved Pages",
+      "source": "synthetic",
+      "url": "https://riix.fun/bookmarks",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Saved Pages"
+      }
+    },
+    {
+      "name": "Viewing Breathing Styles · Water Breathing",
+      "source": "synthetic",
+      "url": "https://riix.fun/breathing/water",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Breathing Styles",
+        "state": "Water Breathing",
+        "detailsUrl": "https://riix.fun/breathing",
+        "stateUrl": "https://riix.fun/breathing/water"
+      }
+    },
+    {
+      "name": "Viewing Breathing Styles · Serpent Breathing",
+      "source": "synthetic",
+      "url": "https://riix.fun/breathing/serpent",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Breathing Styles",
+        "state": "Serpent Breathing",
+        "detailsUrl": "https://riix.fun/breathing",
+        "stateUrl": "https://riix.fun/breathing/serpent"
+      }
+    },
+    {
+      "name": "Viewing Blood Demon Arts · Tamari Manipulation",
+      "source": "synthetic",
+      "url": "https://riix.fun/demon-arts/tamari",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Blood Demon Arts",
+        "state": "Tamari Manipulation",
+        "detailsUrl": "https://riix.fun/demon-arts",
+        "stateUrl": "https://riix.fun/demon-arts/tamari"
+      }
+    },
+    {
+      "name": "Viewing Breathing Styles · Thunder Breathing",
+      "source": "synthetic",
+      "url": "https://riix.fun/breathing/thunder",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Breathing Styles",
+        "state": "Thunder Breathing",
+        "detailsUrl": "https://riix.fun/breathing",
+        "stateUrl": "https://riix.fun/breathing/thunder"
+      }
+    },
+    {
+      "name": "Viewing Guides · Future Guide",
+      "source": "synthetic",
+      "url": "https://riix.fun/guides/future-guide",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Guides",
+        "state": "Future Guide",
+        "detailsUrl": "https://riix.fun/guides",
+        "stateUrl": "https://riix.fun/guides/future-guide"
+      }
+    },
+    {
+      "name": "Viewing Guides · Midnytes Fishing Macro Setup",
+      "source": "synthetic",
+      "url": "https://riix.fun/guides/fishing-macro",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Guides",
+        "state": "Midnytes Fishing Macro Setup",
+        "detailsUrl": "https://riix.fun/guides",
+        "stateUrl": "https://riix.fun/guides/fishing-macro"
+      }
+    },
+    {
+      "name": "Viewing Blood Demon Arts · Shockwave",
+      "source": "synthetic",
+      "url": "https://riix.fun/demon-arts/shockwave",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Blood Demon Arts",
+        "state": "Shockwave",
+        "detailsUrl": "https://riix.fun/demon-arts",
+        "stateUrl": "https://riix.fun/demon-arts/shockwave"
+      }
+    },
+    {
+      "name": "Viewing Guides · Black Marketer",
+      "source": "synthetic",
+      "url": "https://riix.fun/guides/black-marketer",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Guides",
+        "state": "Black Marketer",
+        "detailsUrl": "https://riix.fun/guides",
+        "stateUrl": "https://riix.fun/guides/black-marketer"
+      }
+    },
+    {
+      "name": "Viewing Gear · Nightfall Katana",
+      "source": "synthetic",
+      "url": "https://riix.fun/gear/nightfall-katana",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Gear",
+        "state": "Nightfall Katana",
+        "detailsUrl": "https://riix.fun/gear",
+        "stateUrl": "https://riix.fun/gear/nightfall-katana"
+      }
+    },
+    {
+      "name": "Viewing Gear · Ouwigahara Tower Gear (V2)",
+      "source": "synthetic",
+      "url": "https://riix.fun/gear/ouwigahara-tower-gear",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Gear",
+        "state": "Ouwigahara Tower Gear (V2)",
+        "detailsUrl": "https://riix.fun/gear",
+        "stateUrl": "https://riix.fun/gear/ouwigahara-tower-gear"
+      }
+    },
+    {
+      "name": "Viewing Gear · Legendary Fishing Rod",
+      "source": "synthetic",
+      "url": "https://riix.fun/gear/legendary-fishing-rod",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Gear",
+        "state": "Legendary Fishing Rod",
+        "detailsUrl": "https://riix.fun/gear",
+        "stateUrl": "https://riix.fun/gear/legendary-fishing-rod"
+      }
+    },
+    {
+      "name": "Viewing Guides · How to Get the Mushroom Lit Lantern",
+      "source": "synthetic",
+      "url": "https://riix.fun/guides/mushroom-lit-lantern",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Guides",
+        "state": "How to Get the Mushroom Lit Lantern",
+        "detailsUrl": "https://riix.fun/guides",
+        "stateUrl": "https://riix.fun/guides/mushroom-lit-lantern"
+      }
+    },
+    {
+      "name": "Viewing Blood Demon Arts · Ice Manipulation",
+      "source": "synthetic",
+      "url": "https://riix.fun/demon-arts/ice-manipulation",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Blood Demon Arts",
+        "state": "Ice Manipulation",
+        "detailsUrl": "https://riix.fun/demon-arts",
+        "stateUrl": "https://riix.fun/demon-arts/ice-manipulation"
+      }
+    },
+    {
+      "name": "the guides list",
+      "source": "synthetic",
+      "url": "https://riix.fun/guides",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Guides"
+      }
+    },
+    {
+      "name": "the breathing styles list",
+      "source": "synthetic",
+      "url": "https://riix.fun/breathing",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Breathing Styles"
+      }
+    },
+    {
+      "name": "the blood demon arts list",
+      "source": "synthetic",
+      "url": "https://riix.fun/demon-arts",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Blood Demon Arts"
+      }
+    },
+    {
+      "name": "the gear list",
+      "source": "synthetic",
+      "url": "https://riix.fun/gear",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open Slayers 2 Best Wiki",
+            "url": "https://riix.fun"
+          }
+        ],
+        "details": "Viewing Gear"
+      }
+    }
+  ]
+}
