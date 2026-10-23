@@ -1,0 +1,369 @@
+{
+  "$schema": "../../../schemas/fixtures.json",
+  "notFor": ["https://cdn.lostgamerstatic.com/"],
+  "cases": [
+    {
+      "name": "the home page",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://lostgamer.io/",
+      "title": "Lostgamer - Guess Where You Are in Your Favourite Games",
+      "expect": {
+        "details": "Browsing Lostgamer"
+      }
+    },
+    {
+      "name": "a game's page",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://lostgamer.io/fortnite",
+      "title": "Fortnite Guessr: Guess the Location & Interactive Map - Lostgamer",
+      "expect": {
+        "details": "Looking at a game",
+        "state": "Fortnite"
+      }
+    },
+    {
+      "name": "a game's play page",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://lostgamer.io/fortnite/guessr",
+      "title": "Fortnite Guessr: Solo, With Friends & Duels - Lostgamer",
+      "expect": {
+        "details": "Choosing how to play",
+        "state": "Fortnite"
+      }
+    },
+    {
+      "name": "a game's interactive map",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://lostgamer.io/maps/fortnite",
+      "title": "Fortnite Interactive Map - Lostgamer",
+      "expect": {
+        "details": "Exploring an interactive map",
+        "state": "Fortnite"
+      }
+    },
+    {
+      "name": "the daily challenge for a game",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://lostgamer.io/guessr/daily/fortnite",
+      "title": "Fortnite Daily Guessr Challenge - Lostgamer",
+      "expect": {
+        "details": "Browsing the daily challenge",
+        "state": "Fortnite"
+      }
+    },
+    {
+      "name": "the multiplayer page",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://lostgamer.io/guessr/multiplayer",
+      "title": "Guessr Multiplayer: Parties & Duels - Lostgamer",
+      "expect": {
+        "details": "Browsing multiplayer"
+      }
+    },
+    {
+      "name": "a map's page, before the game",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://lostgamer.io/guessr/maps/fortnite",
+      "title": "Fortnite Guessr - Lostgamer",
+      "expect": {
+        "details": "Setting up a game",
+        "state": "Fortnite"
+      }
+    },
+    {
+      "name": "a solo game: rounds and summary alike keep this address and title",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://lostgamer.io/guessr/singleplayer/wFZyeykmNB9xrKCvkpSAZ",
+      "title": "Fortnite Guessr - Lostgamer",
+      "expect": {
+        "details": "Playing a solo game",
+        "state": "Fortnite"
+      }
+    },
+    {
+      "name": "a party (the id replaced; its shape and title were seen)",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://lostgamer.io/guessr/multiplayer/wFZyeykmNB9xrKCvkpSAZ",
+      "title": "Party - Lostgamer",
+      "expect": {
+        "details": "In a multiplayer party"
+      }
+    },
+    {
+      "name": "privacy mode names no game",
+      "source": "browser",
+      "observed": "2026-10-23",
+      "url": "https://lostgamer.io/guessr/singleplayer/wFZyeykmNB9xrKCvkpSAZ",
+      "title": "Fortnite Guessr - Lostgamer",
+      "expect": {
+        "details": "Playing a solo game"
+      },
+      "settings": {
+        "privacyMode": true
+      }
+    },
+    {
+      "name": "Browsing their maps",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/my-maps",
+      "expect": {
+        "details": "Browsing their maps"
+      }
+    },
+    {
+      "name": "Browsing Guessr",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/something-new",
+      "expect": {
+        "details": "Browsing Guessr"
+      }
+    },
+    {
+      "name": "In a duel",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/duels/wFZyeykmNB9xrKCvkpSAZ",
+      "expect": {
+        "details": "In a duel"
+      }
+    },
+    {
+      "name": "nothing to show",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/login",
+      "title": "Log In - Lostgamer",
+      "expect": null
+    },
+    {
+      "name": "Browsing Lostgamer",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/contact",
+      "title": "Contact - Lostgamer",
+      "expect": {
+        "details": "Browsing Lostgamer"
+      }
+    },
+    {
+      "name": "Looking at Premium",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/premium",
+      "title": "Premium - Lostgamer",
+      "expect": {
+        "details": "Looking at Premium"
+      }
+    },
+    {
+      "name": "Playing a solo game",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/singleplayer/wFZyeykmNB9xrKCvkpSAZ",
+      "expect": {
+        "details": "Playing a solo game"
+      }
+    },
+    {
+      "name": "Setting up a game",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/maps/x",
+      "title": "Guessr - Lostgamer",
+      "expect": {
+        "details": "Setting up a game"
+      }
+    },
+    {
+      "name": "Looking at a profile",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/profile/someone",
+      "title": "Someone - Lostgamer",
+      "expect": {
+        "details": "Looking at a profile"
+      }
+    },
+    {
+      "name": "Making a Guessr map",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/create",
+      "title": "Create a map - Lostgamer",
+      "expect": {
+        "details": "Making a Guessr map"
+      }
+    },
+    {
+      "name": "Browsing daily challenges",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/daily",
+      "title": "Daily Guessr Challenge - Lostgamer",
+      "expect": {
+        "details": "Browsing daily challenges"
+      }
+    },
+    {
+      "name": "Setting up a game · Fortnite",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/maps/fortnite",
+      "title": "Fortnite Guessr - Lostgamer",
+      "expect": {
+        "details": "Setting up a game",
+        "state": "Fortnite"
+      }
+    },
+    {
+      "name": "Browsing interactive maps",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/maps",
+      "title": "Interactive Maps for Every Game - Lostgamer",
+      "expect": {
+        "details": "Browsing interactive maps"
+      }
+    },
+    {
+      "name": "Exploring an interactive map · Fortnite",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/maps/fortnite",
+      "title": "Fortnite Interactive Map - Lostgamer",
+      "expect": {
+        "details": "Exploring an interactive map",
+        "state": "Fortnite"
+      }
+    },
+    {
+      "name": "Browsing duels",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/duels",
+      "title": "Guessr Duels: 1v1 Matchmaking - Lostgamer",
+      "expect": {
+        "details": "Browsing duels"
+      }
+    },
+    {
+      "name": "In a multiplayer party",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/multiplayer/wFZyeykmNB9xrKCvkpSAZ",
+      "title": "Party - Lostgamer",
+      "expect": {
+        "details": "In a multiplayer party"
+      }
+    },
+    {
+      "name": "Browsing Guessr maps",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/maps?games=fortnite",
+      "title": "Guessr Maps for Every Game - Lostgamer",
+      "expect": {
+        "details": "Browsing Guessr maps"
+      }
+    },
+    {
+      "name": "Browsing the daily challenge · Fortnite",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/daily/fortnite",
+      "title": "Fortnite Daily Guessr Challenge - Lostgamer",
+      "expect": {
+        "details": "Browsing the daily challenge",
+        "state": "Fortnite"
+      }
+    },
+    {
+      "name": "Browsing multiplayer",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/multiplayer",
+      "title": "Guessr Multiplayer: Parties & Duels - Lostgamer",
+      "expect": {
+        "details": "Browsing multiplayer"
+      }
+    },
+    {
+      "name": "Playing a solo game · Fortnite",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/singleplayer/wFZyeykmNB9xrKCvkpSAZ",
+      "title": "Fortnite Guessr - Lostgamer",
+      "expect": {
+        "details": "Playing a solo game",
+        "state": "Fortnite"
+      }
+    },
+    {
+      "name": "Choosing how to play · Fortnite",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/fortnite/guessr",
+      "title": "Fortnite Guessr: Solo, With Friends & Duels - Lostgamer",
+      "expect": {
+        "details": "Choosing how to play",
+        "state": "Fortnite"
+      }
+    },
+    {
+      "name": "Looking at a game · Fortnite",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/fortnite",
+      "title": "Fortnite Guessr: Guess the Location & Interactive Map - Lostgamer",
+      "expect": {
+        "details": "Looking at a game",
+        "state": "Fortnite"
+      }
+    },
+    {
+      "name": "Exploring an interactive map (privacyMode on)",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/maps/fortnite",
+      "title": "Fortnite Interactive Map - Lostgamer",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Exploring an interactive map"
+      }
+    },
+    {
+      "name": "Browsing the daily challenge (privacyMode on)",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/daily/fortnite",
+      "title": "Fortnite Daily Guessr Challenge - Lostgamer",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Browsing the daily challenge"
+      }
+    },
+    {
+      "name": "Choosing how to play (privacyMode on)",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/fortnite/guessr",
+      "title": "Fortnite Guessr: Solo, With Friends & Duels - Lostgamer",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Choosing how to play"
+      }
+    },
+    {
+      "name": "Looking at a game · Grand Theft Auto: San Andreas",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/grand-theft-auto-san-andreas",
+      "title": "Grand Theft Auto: San Andreas Guessr: Guess the Location & Interactive Map - Lostgamer",
+      "expect": {
+        "details": "Looking at a game",
+        "state": "Grand Theft Auto: San Andreas"
+      }
+    },
+    {
+      "name": "Playing a solo game · xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "source": "synthetic",
+      "url": "https://lostgamer.io/guessr/singleplayer/wFZyeykmNB9xrKCvkpSAZ",
+      "title": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx‮ Guessr - Lostgamer",
+      "expect": {
+        "details": "Playing a solo game",
+        "state": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
+    }
+  ]
+}

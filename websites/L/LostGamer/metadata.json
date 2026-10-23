@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schemas/metadata.json",
+  "apiVersion": 1,
+  "id": "lostgamer",
+  "name": "Lostgamer",
+  "description": "The game or map you're guessing locations in on Lostgamer, or what you're browsing.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Abadima",
+      "github": "Abadima"
+    }
+  ],
+  "icon": "https://lostgamer.io/favicon.ico",
+  "matches": ["https://lostgamer.io/*"],
+  "settings": [
+    {
+      "id": "privacyMode",
+      "title": "Privacy mode",
+      "description": "Hide the game and map you're playing from your profile.",
+      "type": "boolean",
+      "default": false
+    }
+  ]
+}
