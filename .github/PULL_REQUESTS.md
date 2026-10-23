@@ -5,13 +5,13 @@ Every Activity is added or changed through a pull request. This covers how to op
 ## Before you open one
 
 1. Fork the repository and create a branch from `main`, named for the site (`add-jena`, `fix-youtube-music-title`).
-2. Check that [PreMiD's Activities](https://github.com/PreMiD/Activities) doesn't already cover the site. Parousia runs those unchanged, so a copy here isn't needed.
+2. Check that [PreMiD's Activities](https://github.com/PreMiD/Activities) doesn't already cover the site. Parousia runs those unchanged, so a copy here usually isn't needed.
 3. Copy `websites/J/Jena` to `websites/<letter>/<Name>/` and edit it.
 4. Run `bun run check`. CI runs the same command, and a pull request can't merge until it passes.
 
 ## One site per pull request
 
-A pull request adds or changes one website's folder. Changes to `types/`, `schemas/`, or `tools/` go in their own pull request, since they affect every Activity.
+A pull request adds or changes one website's folder. Changes to `types/`, `schemas/`, or `tools/` go in their own pull request, since they affect every Activity. A change to `types/` also passes `bun run api-check`, which compares it with Parousia's own copy of the API.
 
 ## Title
 
@@ -34,13 +34,13 @@ The template asks for:
 
 - Raise `version` in `metadata.json` in the same pull request.
 - Add `authors` for yourself if you aren't listed.
-- Add or update tests for the behavior you changed.
+- If it has a `fixtures.json`, update the cases for the behavior you changed. It's optional: add one for behavior the shared checks can't see.
 
 ## What reviewers check
 
 - `bun run check` passes.
 - The folder is in the right place and named correctly.
-- `matches` is as narrow as the Activity needs, and lookalike hosts are tested.
+- `matches` is as narrow as the Activity needs; the shared checks catch lookalike hosts, `http`, and overlap with another Activity.
 - Nothing beyond the URL, title, and declared page data is read, and no query string or fragment leaks into the presence.
 - Titles are cleaned and length-capped before they become text.
 - Every returned field passes `checkActivity`.

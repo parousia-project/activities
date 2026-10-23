@@ -8,21 +8,22 @@ Parousia also runs [PreMiD's Activities](https://github.com/PreMiD/Activities) u
 
 Every website's Activity has its own folder, `websites/<letter>/<Name>/`, filed under its name's first letter (`0-9` for a digit, `#` for anything else), the same way PreMiD organizes theirs: Jena Hub is `websites/J/Jena/`.
 
-| Path                                        | What it is                                                        |
-| ------------------------------------------- | ----------------------------------------------------------------- |
-| `websites/<letter>/<Name>/metadata.json`    | Name, description, the pages it's for, settings                   |
-| `websites/<letter>/<Name>/activity.ts`      | `detect(page, settings)`: a page's URL and title in, presence out |
-| `websites/<letter>/<Name>/activity.test.ts` | Its tests                                                         |
-| `assets/`                                   | Images Activities show (GitHub serves them), such as play/pause   |
-| `types/parousia.d.ts`                       | The Activity API                                                  |
-| `schemas/metadata.json`                     | The schema for metadata.json                                      |
-| `tools/`                                    | Validation and test helpers                                       |
+| Path                                     | What it is                                                        |
+| ---------------------------------------- | ----------------------------------------------------------------- |
+| `websites/<letter>/<Name>/metadata.json` | Name, description, the pages it's for, settings                   |
+| `websites/<letter>/<Name>/activity.ts`   | `detect(page, settings)`: a page's URL and title in, presence out |
+| `websites/<letter>/<Name>/fixtures.json` | Addresses and titles someone saw, and what it says for each       |
+| `tests/`                                 | The checks every Activity gets                                    |
+| `assets/`                                | Images Activities show (GitHub serves them), such as play/pause   |
+| `types/parousia.d.ts`                    | The Activity API                                                  |
+| `schemas/metadata.json`                  | The schema for metadata.json                                      |
+| `tools/`                                 | Validation and test helpers                                       |
 
 ## Contributing
 
 1. Install [Bun](https://bun.sh), then run `bun install`.
 2. Copy `websites/J/Jena` to `websites/<letter>/<Name>` and make it yours.
-3. Run `bun run check`.
+3. Run `bun run check`. A `fixtures.json` is optional (`bun run fixture` helps) and worth adding for behavior the shared checks can't see.
 4. Open a pull request.
 
 [CONTRIBUTING.md](.github/CONTRIBUTING.md) covers the format, the API, testing, and the rules every Activity follows. [PULL_REQUESTS.md](.github/PULL_REQUESTS.md) covers opening and reviewing a pull request.

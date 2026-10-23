@@ -2,8 +2,9 @@
  * The Activity API, version 1 (`"apiVersion": 1` in metadata.json): what a
  * native Activity is handed and what it gives back. Parousia's browser
  * extension implements it (github.com/Abadima/RPC, `browser/src/core/api.ts`)
- * and checks every Activity here against its own copy when it builds, so the
- * two can't drift apart unnoticed.
+ * and checks every Activity here against its own copy when it builds.
+ * `bun run api-check` compares this file with that copy, and a workflow runs
+ * it, so the two can't drift apart unnoticed.
  */
 declare module "parousia" {
   /**
@@ -82,8 +83,10 @@ declare module "parousia" {
     /** An `https` image URL. */
     largeImage?: string;
     largeText?: string;
+    largeUrl?: string;
     smallImage?: string;
     smallText?: string;
+    smallUrl?: string;
   }
 
   export interface ActivityTimestamps {
@@ -112,14 +115,23 @@ declare module "parousia" {
    */
   export type StatusDisplayType = "name" | "state" | "details";
 
+  /** A group the Activity belongs to, as "size of max". */
+  export interface ActivityParty {
+    size: number;
+    max: number;
+  }
+
   export interface Activity {
     /** The Activity's id from metadata.json. */
     id: string;
     name: string;
     details?: string;
     state?: string;
-    /** The page, without its query string or fragment unless those name what's shown. */
-    url: string;
+    /**
+     * The page it's about, without its query string or fragment unless those
+     * name what's shown. It stays in the browser: nothing Discord is sent needs it.
+     */
+    url?: string;
     assets?: ActivityAssets;
     timestamps?: ActivityTimestamps;
     /** Links for the details and state lines; `http(s)` only. */
@@ -137,6 +149,8 @@ declare module "parousia" {
      * details, with the lines it points at.
      */
     statusDisplayType?: StatusDisplayType;
+    /** Shown only on a "playing" Activity. */
+    party?: ActivityParty;
   }
 
   /** What `activity.ts` exports as its default. */

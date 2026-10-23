@@ -1,6 +1,7 @@
 import { readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { FOLDER_NAME, activityId, checkMetadata, folderLetter } from "./metadata";
+import { checkFixtures } from "./fixtures";
 
 /**
  * Checks every Activity under websites/<letter>/<Name>/: that it's in the
@@ -44,6 +45,16 @@ for (const letter of await folders(root)) {
       }
     } else {
       problems.push("metadata.json is missing");
+    }
+
+    const fixturesFile = Bun.file(join(dir, "fixtures.json"));
+    if (await fixturesFile.exists()) {
+      try {
+        const metadata = await metadataFile.json();
+        problems.push(...checkFixtures(await fixturesFile.json(), metadata));
+      } catch {
+        problems.push("fixtures.json isn't valid JSON");
+      }
     }
 
     const modulePath = join(dir, "activity.ts");

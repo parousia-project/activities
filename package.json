@@ -11,10 +11,14 @@
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "validate": "bun run tools/validate.ts",
-    "test": "bun test"
+    "test": "bun test",
+    "test:report": "bun run tests/report.ts",
+    "fixture": "bun run tools/fixture.ts",
+    "dns-check": "bun run tools/dns-check.ts",
+    "api-check": "bun run tools/api-check.ts"
   },
   "devDependencies": {
-    "@types/bun": "^1.4.3",
+    "@types/bun": "^1.4.4",
     "oxfmt": "^0.74.0",
     "oxlint": "^1.89.0"
   },

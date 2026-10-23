@@ -1,0 +1,43 @@
+name: API check
+
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "types/**"
+      - "tools/api-check.ts"
+      - ".github/workflows/api-check.yml"
+  schedule:
+    - cron: "0 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  api:
+    name: Does types/parousia.d.ts match Parousia's API
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Checkout Parousia
+        uses: actions/checkout@v7
+        with:
+          repository: Abadima/RPC
+          path: parousia
+          sparse-checkout: browser/src
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "1.4.2"
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Compare
+        env:
+          PAROUSIA_RPC_DIR: parousia
+        run: bun run api-check

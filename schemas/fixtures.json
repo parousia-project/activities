@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://github.com/parousia-project/activities/blob/main/schemas/fixtures.json",
+  "title": "Parousia Activity fixtures",
+  "description": "Addresses and titles someone saw, with what the Activity should say for each, and addresses it must and must not run on. Optional: an Activity needs none, and every one that has a file is held to what it says.",
+  "type": "object",
+  "additionalProperties": false,
+  "anyOf": [
+    {
+      "required": ["cases"]
+    },
+    {
+      "required": ["for"]
+    },
+    {
+      "required": ["notFor"]
+    }
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "for": {
+      "description": "Addresses it must run on, as people open them. Its match patterns are checked against these, not only against themselves.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^https://"
+      }
+    },
+    "notFor": {
+      "description": "Addresses it is deliberately not for, such as a sibling host or a player's frame. None may match.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^https?://"
+      }
+    },
+    "cases": {
+      "description": "An address and title, and what the Activity says for them.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/case"
+      }
+    }
+  },
+  "definitions": {
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "source", "url", "expect"],
+      "properties": {
+        "name": {
+          "description": "What the case is, in words. Unique within the file.",
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "description": "Where the address and title came from. browser: seen on the real site, on the day in `observed`. source: read from the site's own code, never seen running. synthetic: made up to reach a branch.",
+          "enum": ["browser", "source", "synthetic"]
+        },
+        "observed": {
+          "description": "The day it was seen, for a browser case.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "url": {
+          "description": "An address the Activity runs on.",
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "title": {
+          "description": "The tab's title.",
+          "type": "string"
+        },
+        "data": {
+          "description": "Page data Parousia would have given it, as page() takes it.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "granted": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "enum": ["media", "thumbnails"]
+              }
+            },
+            "media": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "artist": {
+                  "type": "string"
+                },
+                "album": {
+                  "type": "string"
+                },
+                "playing": {
+                  "type": "boolean"
+                },
+                "kind": {
+                  "enum": ["video", "audio"]
+                },
+                "duration": {
+                  "type": "number"
+                },
+                "start": {
+                  "type": "number"
+                },
+                "end": {
+                  "type": "number"
+                }
+              }
+            },
+            "thumbnail": {
+              "type": "string"
+            },
+            "images": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["src"],
+                "properties": {
+                  "src": {
+                    "type": "string"
+                  },
+                  "alt": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "settings": {
+          "description": "Settings over the Activity's defaults, by id.",
+          "type": "object",
+          "additionalProperties": {
+            "type": ["boolean", "number", "string"]
+          }
+        },
+        "expect": {
+          "description": "null: nothing to show. Otherwise everything the Activity says, compared exactly, except its id, its name, its address (which never leaves the browser), its icon as the large image, and its name as that image's caption.",
+          "type": ["object", "null"]
+        }
+      },
+      "if": {
+        "properties": {
+          "source": {
+            "const": "browser"
+          }
+        }
+      },
+      "then": {
+        "required": ["observed"]
+      },
+      "else": {
+        "not": {
+          "required": ["observed"]
+        }
+      }
+    }
+  }
+}

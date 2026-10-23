@@ -27,3 +27,7 @@ jobs:
 
       - name: Check
         run: bun run check
+
+      - name: Summary by Activity
+        if: always()
+        run: bun run test:report >> "$GITHUB_STEP_SUMMARY"

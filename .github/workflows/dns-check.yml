@@ -1,0 +1,28 @@
+name: DNS check
+
+on:
+  schedule:
+    - cron: "0 2 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  dns:
+    name: Do every Activity's hosts resolve
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "1.4.2"
+
+      - name: Check, then open or close issues
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bun run dns-check --issues
