@@ -1,0 +1,30 @@
+{
+  "$schema": "../../../schemas/metadata.json",
+  "apiVersion": 1,
+  "id": "fluxer",
+  "name": "Fluxer",
+  "description": "The channel or conversation you're in on Fluxer, or what you're browsing.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Abadima",
+      "github": "Abadima"
+    }
+  ],
+  "icon": "https://fluxerstatic.com/web/apple-touch-icon.png",
+  "matches": [
+    "https://web.fluxer.app/*",
+    "https://web.canary.fluxer.app/*",
+    "https://fluxer.app/*",
+    "https://canary.fluxer.app/*"
+  ],
+  "settings": [
+    {
+      "id": "privacyMode",
+      "title": "Privacy mode",
+      "description": "Hide the channel, server, and person names from your profile.",
+      "type": "boolean",
+      "default": false
+    }
+  ]
+}
