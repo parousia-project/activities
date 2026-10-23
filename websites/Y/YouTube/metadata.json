@@ -4,14 +4,14 @@
   "id": "youtube",
   "name": "YouTube",
   "description": "The video you're watching on YouTube, or what you're browsing.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     {
       "name": "Abadima",
       "github": "Abadima"
     }
   ],
-  "icon": "https://www.youtube.com/img/favicon_32.png",
+  "icon": "https://www.youtube.com/img/favicon_144.png",
   "matches": ["https://www.youtube.com/*", "https://m.youtube.com/*"],
   "data": ["media", "thumbnails"],
   "settings": [
