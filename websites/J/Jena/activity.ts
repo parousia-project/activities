@@ -1,34 +1,31 @@
 import type { Activity, NativeActivity, Page } from "parousia";
+import metadata from "./metadata.json";
 
 /**
- * Jena Hub (jena.systems): arcade games, Discord bot commands, and
- * communities. It reads the page's URL and title, with thumbnails used for
- * profile avatars.
- *
  * Links are rebuilt from the path alone, so a query string or fragment (a
  * sign-in token, say) never leaves the browser.
  */
 
 const ORIGIN = "https://jena.systems";
 const NAME = "Jena Hub";
-const ICON = `${ORIGIN}/icons/icon-512.png`;
+
+const ASSETS = "https://raw.githubusercontent.com/parousia-project/activities/main/assets";
+const GAMEPAD = `${ASSETS}/status/gamepad.png`;
 const MAX_GAME_CHARS = 64;
 const MAX_USERNAME_CHARS = 32;
 
-/** What each top-level page is, for the details line. */
-const PAGES: Readonly<Record<string, string>> = {
-  "": "On the home page",
-  apps: "Browsing the Arcade",
-  commands: "Browsing bot commands",
-  communities: "Browsing communities",
-  profile: "Viewing a profile",
-  status: "Checking the status page",
-};
+const PAGES = new Map([
+  ["", "On the home page"],
+  ["apps", "Browsing the Arcade"],
+  ["commands", "Browsing bot commands"],
+  ["communities", "Browsing communities"],
+  ["profile", "Viewing a profile"],
+  ["status", "Checking the status page"],
+]);
 
 const TITLE_SUFFIX = /\s+[-–|]\s+Jena(?:\s+(?:V\d+|Hub))?\s*$/i;
 
-/** "Chess - Jena V3" is "Chess"; a title without Jena's suffix says nothing. */
-export function gameName(title: string): string | null {
+function gameName(title: string): string | null {
   if (!TITLE_SUFFIX.test(title)) return null;
 
   const name = title
@@ -41,8 +38,7 @@ export function gameName(title: string): string | null {
   return [...name].slice(0, MAX_GAME_CHARS).join("");
 }
 
-/** Extracts a profile username from a Jena page title such as "abadima - Jena V3". */
-export function profileName(title: string): string | null {
+function profileName(title: string): string | null {
   if (!TITLE_SUFFIX.test(title)) return null;
 
   const name = title
@@ -63,7 +59,7 @@ function detect({ url, title, thumbnail }: Page): Activity {
     name: NAME,
     url: `${ORIGIN}/${section}`,
     assets: {
-      largeImage: ICON,
+      largeImage: metadata.icon,
       largeText: NAME,
     },
     buttons: [{ label: "Open Jena Hub", url: `${ORIGIN}/` }],
@@ -76,6 +72,7 @@ function detect({ url, title, thumbnail }: Page): Activity {
     return {
       ...base,
       url: page,
+      assets: { ...base.assets, smallImage: GAMEPAD, smallText: "Arcade" },
       details: game ? `Playing ${game}` : "Playing a game",
       detailsUrl: page,
       state: "In the Arcade",
@@ -96,9 +93,9 @@ function detect({ url, title, thumbnail }: Page): Activity {
       state: username ? `@${username}` : undefined,
       stateUrl: page,
       assets: {
-        largeImage: thumbnail ?? ICON,
+        largeImage: thumbnail ?? metadata.icon,
         largeText: username ?? NAME,
-        smallImage: ICON,
+        smallImage: metadata.icon,
         smallText: NAME,
       },
       buttons: [{ label: "View Profile", url: page }],
@@ -107,7 +104,7 @@ function detect({ url, title, thumbnail }: Page): Activity {
 
   return {
     ...base,
-    details: PAGES[section] ?? "Browsing Jena Hub",
+    details: PAGES.get(section) ?? "Browsing Jena Hub",
   };
 }
 
