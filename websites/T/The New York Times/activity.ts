@@ -1,25 +1,21 @@
 import type { Activity, NativeActivity, Page, Settings } from "parousia";
+import metadata from "./metadata.json";
 
 /**
- * The New York Times (nytimes.com). It reads only the page's URL and title.
- * An article lives at `/<year>/<month>/<day>/<section>/<slug>.html` and its
- * title is "Headline - The New York Times"; the games live under `/games`.
- * What you read is yours to share, so the headline only appears with "Show
- * headlines" on, but a game is public and always named. Links are rebuilt
- * from the path, never the query or fragment.
- *
- * Written for Parousia from the site's own pages; it isn't derived from
- * PreMiD's The New York Times Activity.
+ * What you read is yours to share, so a headline shows only with "Show
+ * headlines" on. A game is public and always named.
  */
+
 const ORIGIN = "https://www.nytimes.com";
 const NAME = "The New York Times";
-const ICON = "https://static01.nyt.com/apple-touch-icon.png";
+
+const ASSETS = "https://raw.githubusercontent.com/parousia-project/activities/main/assets";
+const GAMEPAD = `${ASSETS}/status/gamepad.png`;
 const MAX_HEADLINE_CHARS = 100;
 const SLUG = /^[a-z][a-z0-9-]{0,40}$/;
 const TITLE_SUFFIX = /\s+[-–|]\s+The New York Times\s*$/i;
 
-/** "Storm hits the coast - The New York Times" is "Storm hits the coast". */
-export function headline(title: string): string | null {
+function headline(title: string): string | null {
   const cleaned = title
     .replace(TITLE_SUFFIX, "")
     .replace(/[\p{Cc}​-‏‪-‮⁦-⁩﻿]/gu, "")
@@ -28,8 +24,7 @@ export function headline(title: string): string | null {
   return [...cleaned].slice(0, MAX_HEADLINE_CHARS).join("");
 }
 
-/** "spelling-bee" is "Spelling Bee"; one that doesn't look like a slug is nothing. */
-export function titleCase(slug: string | undefined): string | null {
+function titleCase(slug: string | undefined): string | null {
   if (!slug || !SLUG.test(slug)) return null;
   return slug
     .split("-")
@@ -45,7 +40,7 @@ function detect({ url, title }: Page, settings: Settings): Activity {
     id: "the-new-york-times",
     name: NAME,
     url: `${ORIGIN}/`,
-    assets: { largeImage: ICON, largeText: NAME },
+    assets: { largeImage: metadata.icon, largeText: NAME },
     buttons: [{ label: "Open The New York Times", url: `${ORIGIN}/` }],
   };
 
@@ -55,6 +50,7 @@ function detect({ url, title }: Page, settings: Settings): Activity {
     return {
       ...base,
       url: page,
+      assets: { ...base.assets, smallImage: GAMEPAD, smallText: "Games" },
       details: game ? `Playing ${game}` : "Browsing the games",
       state: "New York Times Games",
       buttons: [{ label: game ? `Play ${game}` : "Play the games", url: page }],
