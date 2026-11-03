@@ -2,10 +2,10 @@ import type { Activity, NativeActivity, Page, Settings } from "parousia";
 import metadata from "./metadata.json";
 
 /**
- * Ram dashboard and Ram Activities (rambot.xyz). URL and title only.
- * Privacy mode is the default, so a page, game, or server name shows only
- * when that setting is on. Links are the public home or the activities
- * lobby, never a settings path or a query string.
+ * Ram dashboard and Ram Activities (rambot.xyz). Privacy mode is the default,
+ * so a page, game, or server name shows only when that setting is on. Links
+ * are the public home or the activities lobby, never a settings path or a
+ * query string.
  */
 
 const ORIGIN = "https://rambot.xyz";
