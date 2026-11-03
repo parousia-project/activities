@@ -4,8 +4,7 @@ import metadata from "./metadata.json";
 /**
  * The app leaves the tab's title empty until it has loaded something, so a
  * watch page shows that someone is watching and how far along, with a title
- * only if the Media Session has one. Nothing is read from HBO Max's markup or
- * API.
+ * only if the Media Session has one.
  */
 
 const ORIGIN = "https://play.hbomax.com";
