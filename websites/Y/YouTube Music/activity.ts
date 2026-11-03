@@ -2,9 +2,8 @@ import type { Activity, NativeActivity, Page, Settings } from "parousia";
 import metadata from "./metadata.json";
 
 /**
- * Built on the Media Session, not the player bar's markup, which breaks when
- * YouTube Music changes it. A song's id is only in a watch page's address, so
- * the title links to the song there and not once someone has browsed on.
+ * A song's id is only in a watch page's address, so the title links to the song
+ * there and not once someone has browsed on.
  */
 
 const ORIGIN = "https://music.youtube.com";
