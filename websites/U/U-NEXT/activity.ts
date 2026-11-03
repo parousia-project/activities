@@ -3,8 +3,7 @@ import metadata from "./metadata.json";
 
 /**
  * A watch page shows that someone is watching and how far along, with a title
- * only if the Media Session has one. Nothing is read from U-NEXT's markup or
- * GraphQL API. Browsing shows nothing in privacy mode.
+ * only if the Media Session has one. Browsing shows nothing in privacy mode.
  */
 
 const ORIGIN = "https://video.unext.jp";
