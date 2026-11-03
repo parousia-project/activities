@@ -1,34 +1,41 @@
-import type { Activity, NativeActivity, Page, PageImage, Settings } from "parousia";
+import type { Activity, NativeActivity, Page, PageImage, PageMedia, Settings } from "parousia";
 import metadata from "./metadata.json";
 
 /**
- * Title and episode come from the address, whose slug is the title in
- * lowercase; the tab's title only supplies the capitals. Covers and avatars
- * are picked from `page.images`, because their addresses hold a hash only the
- * page knows. The player runs in an iframe, so playback comes from
- * `page.media` and is left out where the player reports nothing, never
- * invented.
+ * A watch page's address holds the anime's slug and the episode; the tab's
+ * title only supplies the capitals. A Watch Together room's address holds just
+ * the room, so its anime and episode come from the tab's title and the
+ * anime's id from its cover. The player runs in an iframe, so playback comes
+ * from `page.media` and is left out where the player reports nothing.
  */
 
 const ORIGIN = "https://animex.one";
 const NAME = "AnimeX";
+const ROOM_NAME = "Watch Together Room";
 
 const ASSETS = "https://raw.githubusercontent.com/parousia-project/activities/main/assets";
-const PLAY = `${ASSETS}/status/play.png`;
-const PAUSE = `${ASSETS}/status/pause.png`;
-const USER_ICON = `${ASSETS}/status/user.png`;
-const USERS_ICON = `${ASSETS}/status/users.png`;
 const MAX_TEXT = 100;
 
+const PAUSED = { smallImage: `${ASSETS}/status/pause.png`, smallText: "Paused" };
+const PLAYING = { smallImage: `${ASSETS}/status/play.png`, smallText: "Playing" };
+const IN_ROOM = { smallImage: `${ASSETS}/status/users.png`, smallText: ROOM_NAME };
+const PROFILE = { smallImage: `${ASSETS}/status/user.png`, smallText: "Profile" };
+const BRAND = { smallImage: metadata.icon, smallText: NAME };
+const PLAIN = { largeImage: metadata.icon, largeText: NAME };
+
+const COVER =
+  /^https:\/\/s4\.anilist\.co\/file\/anilistcdn\/media\/anime\/cover\/(?<size>[A-Za-z]+)\/[a-z]*(?<id>\d{1,9})-[\w-]+\.(?:jpg|png)$/;
 const COVER_SIZES = ["large", "extraLarge", "medium"] as const;
 const AVATAR = "https://cdn.animex.one/assets/avatars/";
 
 const USER = /^[\w.-]{1,64}$/;
-
+const ROOM = /^[\w-]{3,32}$/;
 const WATCH = /^(?<slug>[a-z0-9]+(?:-[a-z0-9]+)*)-(?<id>\d{1,9})-episode-(?<episode>\d{1,5})$/;
 const ANIME = /^(?<slug>[a-z0-9]+(?:-[a-z0-9]+)*)-(?<id>\d{1,9})$/;
 const WATCH_TITLE =
   /^(?<title>.+?)\s+Episode\s+(?<episode>\d+)\s+English Sub\/Dub\s+[-–|]\s+AnimeX\s*$/i;
+const ROOM_TITLE =
+  /^Watch Together\s+[-–|]\s+(?<title>.+?)\s+[-–|]\s+Episode\s*(?<episode>\d{0,5})\s*$/i;
 const PROFILE_TITLE = /^(?<name>.+?)['’]s Profile\s+[-–|]\s+AnimeX\s*$/i;
 const ANIME_TITLE =
   /^Watch\s+(?<title>.+?)\s+Episodes in English Sub\/Dub Online for free\s+[-–|]\s+AnimeX\s*$/i;
@@ -39,19 +46,19 @@ const PAGES: Readonly<Record<string, string>> = {
   catalog: "Browsing the catalog",
   schedule: "Checking the release schedule",
   community: "Browsing the community",
-  w2g: "In a Watch Together room",
+  "community/forums": "Browsing the forums",
+  "community/w2g": "Browsing Watch Together rooms",
   settings: "Changing settings",
   profile: "Viewing a profile",
-  user: "Viewing a profile",
+  "profile/account": "Changing settings",
+  faq: "Reading the FAQ",
+  changelog: "Reading the changelog",
 };
 
-const PEOPLE = new Map([
-  ["w2g", { smallImage: USERS_ICON, smallText: "Watch Together" }],
-  ["profile", { smallImage: USER_ICON, smallText: "Profile" }],
-  ["user", { smallImage: USER_ICON, smallText: "Profile" }],
-]);
-
-const LINKED = new Set(["catalog", "schedule", "community"]);
+const BADGES: Readonly<Record<string, typeof IN_ROOM>> = {
+  "community/w2g": IN_ROOM,
+  profile: PROFILE,
+};
 
 function clean(value: string): string | undefined {
   const text = value
@@ -87,17 +94,19 @@ function animeTitle(title: string, slug: string, episode?: string): string {
   return text !== undefined && slugOf(text) === slug ? text : fromSlug(slug);
 }
 
-function coverOf(images: readonly PageImage[] | undefined, id: string): string | undefined {
-  const pattern = new RegExp(
-    `^https://s4\\.anilist\\.co/file/anilistcdn/media/anime/cover/(?<size>[A-Za-z]+)/[a-z]*${id}-[\\w-]+\\.(?:jpg|png)$`,
-  );
-  let best: { src: string; rank: number } | undefined;
-  for (const { src } of images ?? []) {
-    const size = pattern.exec(src)?.groups?.size;
-    const rank = COVER_SIZES.findIndex((wanted) => wanted === size);
-    if (rank >= 0 && (best === undefined || rank < best.rank)) best = { src, rank };
+function coverOf(
+  images: readonly PageImage[] | undefined,
+  fits: (id: string, alt: string | undefined) => boolean,
+): { src: string; id: string } | undefined {
+  let best: { src: string; id: string; rank: number } | undefined;
+  for (const { src, alt } of images ?? []) {
+    const found = COVER.exec(src)?.groups;
+    const rank = COVER_SIZES.findIndex((wanted) => wanted === found?.size);
+    if (found?.id && rank >= 0 && fits(found.id, alt) && (best === undefined || rank < best.rank)) {
+      best = { src, id: found.id, rank };
+    }
   }
-  return best?.src;
+  return best;
 }
 
 function avatarOf(images: readonly PageImage[] | undefined, user: string): string | undefined {
@@ -108,100 +117,164 @@ function avatarOf(images: readonly PageImage[] | undefined, user: string): strin
 
 const shown = (name: string): string | undefined => (name.length >= 2 ? name : undefined);
 
+function links(slug: string, id: string, number?: string): { anime: string; episode?: string } {
+  const key = `${slug}-${id}`;
+
+  return {
+    anime: `${ORIGIN}/anime/${key}`,
+    ...(number !== undefined && { episode: `${ORIGIN}/watch/${key}-episode-${number}` }),
+  };
+}
+
+function playback(media: PageMedia | undefined, timestamps: boolean) {
+  const start = timestamps && media?.playing === true ? media.start : undefined;
+  const end = media?.end;
+  const clock = start !== undefined && (end === undefined || end > start);
+
+  return {
+    timestamps: clock ? { start, ...(end !== undefined && { end }) } : undefined,
+    status:
+      media?.playing === false ? PAUSED : media?.playing === true && !clock ? PLAYING : undefined,
+  };
+}
+
+interface Watched {
+  name?: string;
+  number?: string;
+  anime?: string;
+  episode?: string;
+  cover?: string;
+  room?: string;
+}
+
+function watching(
+  base: Activity,
+  { name, number, anime, episode, cover, room }: Watched,
+  media: PageMedia | undefined,
+  settings: Settings,
+): Activity {
+  const { timestamps, status } = playback(media, settings.showTimestamps !== false);
+  const picture = settings.showCover !== false ? cover : undefined;
+  const state = [number === undefined ? undefined : `Episode ${number}`, room && ROOM_NAME]
+    .filter((part) => part)
+    .join(" · ");
+  const small = status ?? (room ? IN_ROOM : picture ? BRAND : undefined);
+
+  return {
+    ...base,
+    type: "watching",
+    url: room ?? episode ?? base.url,
+    details: name ?? "Watching anime",
+    ...(anime && { detailsUrl: anime }),
+    ...(state && { state }),
+    ...(episode && { stateUrl: episode }),
+    ...(name && { statusDisplayType: "details" as const }),
+    assets: { largeImage: picture ?? metadata.icon, largeText: name ?? NAME, ...small },
+    ...(timestamps && { timestamps }),
+    ...(room &&
+      settings.showJoinButton !== false && { buttons: [{ label: "Join Party", url: room }] }),
+  };
+}
+
 function detect({ url, title, media, images }: Page, settings: Settings): Activity {
   const path = url.pathname.split("/").filter(Boolean);
   const [section = "", segment, ...rest] = path;
   const hidden = settings.privacyMode === true;
-  const covers = !hidden && settings.showCover !== false;
-  const avatars = !hidden && settings.showAvatars !== false;
-  const buttons = !hidden && settings.showButtons !== false;
 
   const base: Activity = { id: "animex", name: NAME, url: `${ORIGIN}/` };
-
-  const picture = (large?: string, text?: string, shown = covers): Activity["assets"] => ({
-    largeImage: shown && large !== undefined ? large : metadata.icon,
-    largeText: text !== undefined && !hidden ? text : NAME,
-    ...(shown && large !== undefined && { smallImage: metadata.icon, smallText: NAME }),
-  });
+  const generic: Activity = { ...base, details: "Browsing AnimeX", assets: PLAIN };
+  const privateWatch: Activity = {
+    ...base,
+    type: "watching",
+    details: "Watching anime",
+    assets: PLAIN,
+  };
 
   const watch =
     section === "watch" && rest.length === 0 ? WATCH.exec(segment ?? "")?.groups : undefined;
   if (watch?.slug && watch.id && watch.episode) {
-    const { slug, id, episode } = watch;
-    const number = String(Number(episode));
-    const anime = `${ORIGIN}/anime/${slug}-${id}`;
-    const page = `${ORIGIN}/watch/${slug}-${id}-episode-${number}`;
-    const activity: Activity = {
-      ...base,
-      type: "watching",
-      details: "Watching anime",
-      assets: picture(),
-    };
-    if (hidden) return activity;
+    if (hidden) return privateWatch;
+    const { slug, id } = watch;
+    const number = String(Number(watch.episode));
 
-    const name = shown(animeTitle(title, slug, episode));
-    const paused = media?.playing === false;
+    return watching(
+      base,
+      {
+        name: shown(animeTitle(title, slug, watch.episode)),
+        number,
+        ...links(slug, id, number),
+        cover: coverOf(images, (found) => found === id)?.src,
+      },
+      media,
+      settings,
+    );
+  }
 
-    activity.url = page;
-    activity.details = name ?? "Watching anime";
-    activity.detailsUrl = page;
-    activity.state = `Episode ${number}`;
-
-    if (name) activity.statusDisplayType = "details";
-    activity.assets = picture(coverOf(images, id), name);
-    const clock =
-      settings.showTimestamps !== false &&
-      media?.playing === true &&
-      media.start !== undefined &&
-      (media.end === undefined || media.end > media.start);
-
-    if (paused) {
-      activity.assets = { ...activity.assets, smallImage: PAUSE, smallText: "Paused" };
-    } else if (media?.playing === true && !clock) {
-      activity.assets = { ...activity.assets, smallImage: PLAY, smallText: "Playing" };
-    }
-    if (buttons) {
-      activity.buttons = [
-        { label: "Watch Episode", url: page },
-        { label: "View Anime", url: anime },
-      ];
-    }
-    if (clock && media.start !== undefined) {
-      activity.timestamps = {
-        start: media.start,
-        ...(media.end !== undefined && { end: media.end }),
+  if (section === "w2g" && segment !== undefined && ROOM.test(segment) && rest.length === 0) {
+    if (hidden) return privateWatch;
+    const room = `${ORIGIN}/w2g/${segment}`;
+    const found = ROOM_TITLE.exec(title)?.groups;
+    const named = clean(found?.title ?? "");
+    const name = named === "Watch Together" ? undefined : named;
+    if (name === undefined) {
+      return {
+        ...base,
+        type: "watching",
+        url: room,
+        details: "Joining a Watch Together room",
+        assets: { ...PLAIN, ...IN_ROOM },
       };
     }
 
-    return activity;
+    const number = found?.episode ? String(Number(found.episode)) : undefined;
+    const slug = slugOf(name);
+    const cover = coverOf(images, (_, alt) => alt !== undefined && slugOf(alt) === slug);
+
+    return watching(
+      base,
+      {
+        name,
+        number,
+        room,
+        cover: cover?.src,
+        ...(cover && links(slug || "anime", cover.id, number)),
+      },
+      media,
+      settings,
+    );
   }
 
   const anime =
     section === "anime" && rest.length === 0 ? ANIME.exec(segment ?? "")?.groups : undefined;
   if (anime?.slug && anime.id) {
-    if (hidden) return { ...base, details: "Browsing AnimeX", assets: picture() };
+    if (hidden) return generic;
     const { slug, id } = anime;
-    const page = `${ORIGIN}/anime/${slug}-${id}`;
+    const page = links(slug, id).anime;
     const name = shown(animeTitle(title, slug));
+    const cover =
+      settings.showCover !== false ? coverOf(images, (found) => found === id) : undefined;
 
     return {
       ...base,
       url: page,
       details: name ? `Looking at ${name}` : "Looking at an anime",
       detailsUrl: page,
-      assets: picture(coverOf(images, id), name),
-      ...(buttons && { buttons: [{ label: "View Anime", url: page }] }),
+      assets: {
+        largeImage: cover?.src ?? metadata.icon,
+        largeText: name ?? NAME,
+        ...(cover && BRAND),
+      },
     };
   }
 
   if (section === "user" && segment !== undefined && USER.test(segment) && rest.length === 0) {
-    if (hidden) return { ...base, details: "Browsing AnimeX", assets: picture() };
+    if (hidden) return generic;
 
-    const shownAs = clean(PROFILE_TITLE.exec(title)?.groups?.name ?? "");
+    const display = clean(PROFILE_TITLE.exec(title)?.groups?.name ?? "");
     const username = /^\d+$/.test(segment) ? undefined : segment;
-    const name = shownAs ?? username;
+    const name = display ?? username;
     const page = `${ORIGIN}/user/${segment}`;
-    const assets = picture(avatarOf(images, segment), name, avatars);
+    const avatar = avatarOf(images, segment);
 
     return {
       ...base,
@@ -209,19 +282,23 @@ function detect({ url, title, media, images }: Page, settings: Settings): Activi
       details: name ? `Viewing ${name}'s profile` : "Viewing a profile",
       detailsUrl: page,
       ...(username && username !== name && { state: `@${username}` }),
-
-      assets: assets?.smallImage ? assets : { ...assets, ...PEOPLE.get("user") },
-      ...(buttons && { buttons: [{ label: "View Profile", url: page }] }),
+      assets: {
+        largeImage: avatar ?? metadata.icon,
+        largeText: name ?? NAME,
+        ...(avatar ? BRAND : PROFILE),
+      },
     };
   }
 
-  const known = Object.hasOwn(PAGES, section);
+  const pair = `${section}/${segment ?? ""}`;
+  const key = Object.hasOwn(PAGES, pair) ? pair : section;
+  const details = Object.hasOwn(PAGES, key) ? PAGES[key] : undefined;
+  if (hidden || details === undefined) return generic;
+
   return {
     ...base,
-    ...(known && !hidden && LINKED.has(section) && { url: `${ORIGIN}/${section}` }),
-    details: hidden || !known ? "Browsing AnimeX" : (PAGES[section] ?? "Browsing AnimeX"),
-    assets: { ...picture(), ...(known && !hidden && PEOPLE.get(section)) },
-    ...(buttons && { buttons: [{ label: "Open AnimeX", url: `${ORIGIN}/` }] }),
+    details,
+    assets: { ...PLAIN, ...(Object.hasOwn(BADGES, key) && BADGES[key]) },
   };
 }
 
