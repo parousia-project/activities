@@ -1,0 +1,263 @@
+{
+  "$schema": "../../../schemas/fixtures.json",
+  "for": [
+    "https://fluxer.com/",
+    "https://fluxer.com/channels/@me",
+    "https://canary.fluxer.com/",
+    "https://web.fluxer.app/channels/@me",
+    "https://web.canary.fluxer.app/channels/@me"
+  ],
+  "notFor": [
+    "https://fluxer.app/",
+    "https://canary.fluxer.app/",
+    "https://www.fluxer.com/",
+    "https://docs.fluxer.com/",
+    "https://pkgs.fluxer.com/",
+    "https://api.fluxer.app/"
+  ],
+  "cases": [
+    {
+      "name": "the website's home page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://fluxer.com/",
+      "title": "Fluxer: a free, open source Discord alternative you can self-host",
+      "expect": {
+        "details": "Browsing the Fluxer website"
+      }
+    },
+    {
+      "name": "the website's canary home page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://canary.fluxer.com/",
+      "title": "Fluxer: a free, open source Discord alternative you can self-host",
+      "expect": {
+        "details": "Browsing the Fluxer website"
+      }
+    },
+    {
+      "name": "the website's download page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://fluxer.com/download",
+      "title": "Download Fluxer",
+      "expect": {
+        "details": "Looking at Fluxer downloads"
+      }
+    },
+    {
+      "name": "a help page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://fluxer.com/help",
+      "title": "Help center | Fluxer",
+      "expect": {
+        "details": "Browsing the Fluxer website"
+      }
+    },
+    {
+      "name": "a blog post",
+      "source": "synthetic",
+      "url": "https://fluxer.com/blog/some-post",
+      "title": "Some post | Fluxer",
+      "expect": {
+        "details": "Browsing the Fluxer website"
+      }
+    },
+    {
+      "name": "the app starting, before it picks a page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://fluxer.com/app",
+      "title": "Fluxer",
+      "expect": {
+        "details": "Browsing Fluxer"
+      }
+    },
+    {
+      "name": "the app's direct messages, before it signs a guest in",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://fluxer.com/channels/@me",
+      "title": "Fluxer",
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/user.png",
+          "smallText": "Direct message"
+        },
+        "details": "Browsing direct messages"
+      }
+    },
+    {
+      "name": "the sign-in page a guest is sent to",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://fluxer.com/login?redirect_to=%2Fchannels%2F%40me",
+      "title": "Fluxer | Sign in",
+      "expect": null
+    },
+    {
+      "name": "the canary sign-in page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://canary.fluxer.com/login?redirect_to=%2Fchannels%2F%40me",
+      "title": "Fluxer | Sign in",
+      "expect": null
+    },
+    {
+      "name": "the register page, reached from sign-in without a reload",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://fluxer.com/register?auth_step=method",
+      "title": "Fluxer | Register",
+      "expect": null
+    },
+    {
+      "name": "the old app host while it loads",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://web.fluxer.app/",
+      "title": "Loading https://web.fluxer.app/channels/@me",
+      "expect": {
+        "details": "Browsing Fluxer"
+      }
+    },
+    {
+      "name": "the old app host's direct messages, before it moves the tab",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://web.fluxer.app/channels/@me",
+      "title": "Fluxer",
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/user.png",
+          "smallText": "Direct message"
+        },
+        "details": "Browsing direct messages"
+      }
+    },
+    {
+      "name": "the old canary app host's direct messages",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://web.canary.fluxer.app/channels/@me",
+      "title": "Fluxer",
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/user.png",
+          "smallText": "Direct message"
+        },
+        "details": "Browsing direct messages"
+      }
+    },
+    {
+      "name": "a text channel",
+      "source": "synthetic",
+      "url": "https://fluxer.com/channels/123456789012345678/987654321098765432",
+      "title": "Fluxer | #general | My Server",
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/comments.png",
+          "smallText": "Chatting"
+        },
+        "details": "Chatting in #general",
+        "state": "My Server"
+      }
+    },
+    {
+      "name": "a text channel on the old app host",
+      "source": "synthetic",
+      "url": "https://web.fluxer.app/channels/123456789012345678/987654321098765432",
+      "title": "Fluxer | #general | My Server",
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/comments.png",
+          "smallText": "Chatting"
+        },
+        "details": "Chatting in #general",
+        "state": "My Server"
+      }
+    },
+    {
+      "name": "a text channel in privacy mode",
+      "source": "synthetic",
+      "url": "https://fluxer.com/channels/123456789012345678/987654321098765432",
+      "title": "Fluxer | #general | My Server",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Browsing a server"
+      }
+    },
+    {
+      "name": "a voice channel",
+      "source": "synthetic",
+      "url": "https://canary.fluxer.com/channels/123456789012345678/987654321098765432",
+      "title": "Fluxer | Lounge | My Server",
+      "expect": {
+        "details": "Viewing voice channel Lounge",
+        "state": "My Server"
+      }
+    },
+    {
+      "name": "a direct message",
+      "source": "synthetic",
+      "url": "https://fluxer.com/channels/@me/987654321098765432",
+      "title": "Fluxer | @Sam",
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/user.png",
+          "smallText": "Direct message"
+        },
+        "details": "Chatting with Sam"
+      }
+    },
+    {
+      "name": "a direct message in privacy mode",
+      "source": "synthetic",
+      "url": "https://fluxer.com/channels/@me/987654321098765432",
+      "title": "Fluxer | @Sam",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/user.png",
+          "smallText": "Direct message"
+        },
+        "details": "Chatting in direct messages"
+      }
+    },
+    {
+      "name": "a profile",
+      "source": "synthetic",
+      "url": "https://fluxer.com/users/987654321098765432",
+      "title": "Fluxer",
+      "expect": {
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/user.png",
+          "smallText": "Profile"
+        },
+        "details": "Looking at a profile"
+      }
+    },
+    {
+      "name": "an invite",
+      "source": "synthetic",
+      "url": "https://fluxer.com/invite/abc123",
+      "title": "Fluxer",
+      "expect": null
+    },
+    {
+      "name": "a website page's name on the app host is not the website",
+      "source": "synthetic",
+      "url": "https://web.fluxer.app/download",
+      "title": "Fluxer",
+      "expect": {
+        "details": "Browsing Fluxer"
+      }
+    }
+  ]
+}

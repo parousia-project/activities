@@ -2,6 +2,11 @@ import type { Activity, NativeActivity, Page, Settings } from "parousia";
 import metadata from "./metadata.json";
 
 /**
+ * fluxer.com serves the website and the web app from one host, so which one a
+ * page is comes from its address. web.fluxer.app is the app's old host, which
+ * still loads and then moves the tab to fluxer.com; fluxer.app itself only
+ * redirects, so it isn't matched.
+ *
  * The web app puts what's open in the tab's title ("Fluxer | #general | My
  * Server", "Fluxer | @Sam"), so channels and direct messages are named from
  * it. Every other page is decided by its address, because those titles are
@@ -9,7 +14,26 @@ import metadata from "./metadata.json";
  * profile where you are.
  */
 
-const WEBSITES = new Set(["fluxer.app", "canary.fluxer.app"]);
+const APP_HOSTS = new Set(["web.fluxer.app", "web.canary.fluxer.app"]);
+const WEBSITE = new Set([
+  "download",
+  "plutonium",
+  "pass",
+  "donate",
+  "selfhost",
+  "terms",
+  "privacy",
+  "help",
+  "blog",
+  "patch-notes",
+  "security",
+  "press",
+  "licenses",
+  "guidelines",
+  "company-information",
+  "careers",
+  "ai-stance",
+]);
 const NAME = "Fluxer";
 
 const ASSETS = "https://raw.githubusercontent.com/parousia-project/activities/main/assets";
@@ -89,8 +113,6 @@ function channel(title: string): { details: string; state?: string; chat: boolea
 }
 
 function detect({ url, title }: Page, settings: Settings): Activity | null {
-  const website = WEBSITES.has(url.hostname);
-
   const base: Activity = {
     id: "fluxer",
     name: NAME,
@@ -104,6 +126,7 @@ function detect({ url, title }: Page, settings: Settings): Activity | null {
   });
   const path = url.pathname.split("/").filter(Boolean);
   const [section = "", owner, target] = path;
+  const website = !APP_HOSTS.has(url.hostname) && (section === "" || WEBSITE.has(section));
 
   if (website) {
     return {
