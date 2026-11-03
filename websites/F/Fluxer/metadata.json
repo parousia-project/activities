@@ -4,7 +4,7 @@
   "id": "fluxer",
   "name": "Fluxer",
   "description": "The channel or conversation you're in on Fluxer, or what you're browsing.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "authors": [
     {
       "name": "Abadima",
@@ -13,10 +13,10 @@
   ],
   "icon": "https://fluxerstatic.com/web/apple-touch-icon.png",
   "matches": [
+    "https://fluxer.com/*",
+    "https://canary.fluxer.com/*",
     "https://web.fluxer.app/*",
-    "https://web.canary.fluxer.app/*",
-    "https://fluxer.app/*",
-    "https://canary.fluxer.app/*"
+    "https://web.canary.fluxer.app/*"
   ],
   "settings": [
     {
