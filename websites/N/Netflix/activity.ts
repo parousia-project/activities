@@ -7,8 +7,7 @@ import metadata from "./metadata.json";
  * which this API doesn't read. So playback shows that someone is watching, how
  * far along and whether it is paused, with a title only if the page ever
  * publishes one, and the picture is always Netflix's own. A title's own page
- * is named from the tab ("Name | Netflix"). Nothing is read from Netflix's
- * markup or private API.
+ * is named from the tab ("Name | Netflix").
  */
 
 const ORIGIN = "https://www.netflix.com";
