@@ -3,8 +3,7 @@ import metadata from "./metadata.json";
 
 /**
  * Reads the address, the tab's title (iFixit sets it on the server for every
- * page), and the page's picture where `thumbnails` is granted. Never its
- * markup or API, so a redesign can't break it.
+ * page), and the page's picture where `thumbnails` is granted.
  */
 
 const NAME = "iFixit";
