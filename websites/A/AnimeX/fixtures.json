@@ -1,0 +1,567 @@
+{
+  "$schema": "../../../schemas/fixtures.json",
+  "cases": [
+    {
+      "name": "the home page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://animex.one/",
+      "title": "Watch Anime Online for Free with English Subbed & Dubbed - AnimeX",
+      "expect": {
+        "details": "Browsing AnimeX"
+      }
+    },
+    {
+      "name": "the catalog",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://animex.one/catalog?search=naruto",
+      "title": "Catalog - Browse Anime & Manga - AnimeX",
+      "expect": {
+        "details": "Browsing the catalog"
+      }
+    },
+    {
+      "name": "the release schedule",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://animex.one/schedule",
+      "title": "Release Schedule - AnimeX",
+      "expect": {
+        "details": "Checking the release schedule"
+      }
+    },
+    {
+      "name": "the forums",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://animex.one/community/forums",
+      "title": "Community Forums - Animex",
+      "expect": {
+        "details": "Browsing the forums"
+      }
+    },
+    {
+      "name": "the Watch Together lobby",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://animex.one/community/w2g",
+      "title": "Watch Together - Browse Public Rooms",
+      "expect": {
+        "details": "Browsing Watch Together rooms",
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/users.png",
+          "smallText": "Watch Together Room"
+        }
+      }
+    },
+    {
+      "name": "settings",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://animex.one/settings",
+      "title": "Settings - AnimeX",
+      "expect": {
+        "details": "Changing settings"
+      }
+    },
+    {
+      "name": "an anime's page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://animex.one/anime/one-piece-21",
+      "title": "Watch ONE PIECE Episodes in English Sub/Dub Online for free - AnimeX",
+      "expect": {
+        "details": "Looking at ONE PIECE",
+        "detailsUrl": "https://animex.one/anime/one-piece-21",
+        "assets": {
+          "largeText": "ONE PIECE"
+        }
+      }
+    },
+    {
+      "name": "an anime's page with its cover",
+      "source": "synthetic",
+      "url": "https://animex.one/anime/one-piece-21",
+      "title": "Watch ONE PIECE Episodes in English Sub/Dub Online for free - AnimeX",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx21-ZuqmM1o6YHhK.jpg",
+            "alt": "ONE PIECE"
+          },
+          {
+            "src": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ZuqmM1o6YHhK.jpg",
+            "alt": "ONE PIECE"
+          },
+          {
+            "src": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx6045-JujXjoWtslUM.jpg",
+            "alt": "Kimi ni Todoke"
+          }
+        ]
+      },
+      "expect": {
+        "details": "Looking at ONE PIECE",
+        "detailsUrl": "https://animex.one/anime/one-piece-21",
+        "assets": {
+          "largeImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ZuqmM1o6YHhK.jpg",
+          "largeText": "ONE PIECE",
+          "smallImage": "https://animex.one/favicon.png",
+          "smallText": "AnimeX"
+        }
+      }
+    },
+    {
+      "name": "an episode, player not reporting",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://animex.one/watch/one-piece-21-episode-2",
+      "title": "ONE PIECE Episode 2 English Sub/Dub - AnimeX",
+      "expect": {
+        "type": "watching",
+        "details": "ONE PIECE",
+        "detailsUrl": "https://animex.one/anime/one-piece-21",
+        "state": "Episode 2",
+        "stateUrl": "https://animex.one/watch/one-piece-21-episode-2",
+        "statusDisplayType": "details",
+        "assets": {
+          "largeText": "ONE PIECE"
+        }
+      }
+    },
+    {
+      "name": "an episode of a title with a dash",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://animex.one/watch/chainsaw-man-the-movie-reze-arc-171627-episode-1",
+      "title": "Chainsaw Man – The Movie: Reze Arc Episode 1 English Sub/Dub - AnimeX",
+      "expect": {
+        "type": "watching",
+        "details": "Chainsaw Man – The Movie: Reze Arc",
+        "detailsUrl": "https://animex.one/anime/chainsaw-man-the-movie-reze-arc-171627",
+        "state": "Episode 1",
+        "stateUrl": "https://animex.one/watch/chainsaw-man-the-movie-reze-arc-171627-episode-1",
+        "statusDisplayType": "details",
+        "assets": {
+          "largeText": "Chainsaw Man – The Movie: Reze Arc"
+        }
+      }
+    },
+    {
+      "name": "an episode playing, with its clock and cover",
+      "source": "synthetic",
+      "url": "https://animex.one/watch/one-piece-21-episode-2",
+      "title": "ONE PIECE Episode 2 English Sub/Dub - AnimeX",
+      "data": {
+        "granted": ["media", "thumbnails"],
+        "media": {
+          "playing": true,
+          "duration": 1450,
+          "start": 1700000000000,
+          "end": 1700001450000
+        },
+        "images": [
+          {
+            "src": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ZuqmM1o6YHhK.jpg",
+            "alt": "ONE PIECE"
+          }
+        ]
+      },
+      "expect": {
+        "type": "watching",
+        "details": "ONE PIECE",
+        "detailsUrl": "https://animex.one/anime/one-piece-21",
+        "state": "Episode 2",
+        "stateUrl": "https://animex.one/watch/one-piece-21-episode-2",
+        "statusDisplayType": "details",
+        "assets": {
+          "largeImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-ZuqmM1o6YHhK.jpg",
+          "largeText": "ONE PIECE",
+          "smallImage": "https://animex.one/favicon.png",
+          "smallText": "AnimeX"
+        },
+        "timestamps": {
+          "start": 1700000000000,
+          "end": 1700001450000
+        }
+      }
+    },
+    {
+      "name": "an episode paused",
+      "source": "synthetic",
+      "url": "https://animex.one/watch/one-piece-21-episode-2",
+      "title": "ONE PIECE Episode 2 English Sub/Dub - AnimeX",
+      "data": {
+        "granted": ["media"],
+        "media": {
+          "playing": false,
+          "duration": 1450
+        }
+      },
+      "expect": {
+        "type": "watching",
+        "details": "ONE PIECE",
+        "detailsUrl": "https://animex.one/anime/one-piece-21",
+        "state": "Episode 2",
+        "stateUrl": "https://animex.one/watch/one-piece-21-episode-2",
+        "statusDisplayType": "details",
+        "assets": {
+          "largeText": "ONE PIECE",
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/pause.png",
+          "smallText": "Paused"
+        }
+      }
+    },
+    {
+      "name": "an episode in privacy mode",
+      "source": "synthetic",
+      "url": "https://animex.one/watch/one-piece-21-episode-2",
+      "title": "ONE PIECE Episode 2 English Sub/Dub - AnimeX",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "type": "watching",
+        "details": "Watching anime"
+      }
+    },
+    {
+      "name": "a profile",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://animex.one/user/Abadima",
+      "title": "Abadima.exe's Profile - AnimeX",
+      "expect": {
+        "details": "Viewing Abadima.exe's profile",
+        "detailsUrl": "https://animex.one/user/Abadima",
+        "state": "@Abadima",
+        "assets": {
+          "largeText": "Abadima.exe",
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/user.png",
+          "smallText": "Profile"
+        }
+      }
+    },
+    {
+      "name": "a profile with its picture",
+      "source": "synthetic",
+      "url": "https://animex.one/user/Abadima",
+      "title": "Abadima.exe's Profile - AnimeX",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://cdn.animex.one/assets/avatars/oshi_no_ko/2.png",
+            "alt": "Abadima"
+          }
+        ]
+      },
+      "expect": {
+        "details": "Viewing Abadima.exe's profile",
+        "detailsUrl": "https://animex.one/user/Abadima",
+        "state": "@Abadima",
+        "assets": {
+          "largeImage": "https://cdn.animex.one/assets/avatars/oshi_no_ko/2.png",
+          "largeText": "Abadima.exe",
+          "smallImage": "https://animex.one/favicon.png",
+          "smallText": "AnimeX"
+        }
+      }
+    },
+    {
+      "name": "a profile in privacy mode",
+      "source": "synthetic",
+      "url": "https://animex.one/user/Abadima",
+      "title": "Abadima.exe's Profile - AnimeX",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://cdn.animex.one/assets/avatars/oshi_no_ko/2.png",
+            "alt": "Abadima"
+          }
+        ]
+      },
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Browsing AnimeX"
+      }
+    },
+    {
+      "name": "a room before the tab names it",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://animex.one/w2g/AbCdEf",
+      "title": "Watch Together - Watch Together - Episode",
+      "expect": {
+        "type": "watching",
+        "details": "Joining a Watch Together room",
+        "assets": {
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/users.png",
+          "smallText": "Watch Together Room"
+        }
+      }
+    },
+    {
+      "name": "a room, with its anime and episode",
+      "source": "source",
+      "url": "https://animex.one/w2g/AbCdEf",
+      "title": "Watch Together - Kimi ni Todoke: From Me to You - Episode 7",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6045-JujXjoWtslUM.jpg",
+            "alt": "Kimi ni Todoke: From Me to You"
+          },
+          {
+            "src": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx171627-ZN9D7P46yHnw.png",
+            "alt": "Chainsaw Man – The Movie: Reze Arc"
+          }
+        ]
+      },
+      "expect": {
+        "type": "watching",
+        "details": "Kimi ni Todoke: From Me to You",
+        "detailsUrl": "https://animex.one/anime/kimi-ni-todoke-from-me-to-you-6045",
+        "state": "Episode 7 · Watch Together Room",
+        "stateUrl": "https://animex.one/watch/kimi-ni-todoke-from-me-to-you-6045-episode-7",
+        "statusDisplayType": "details",
+        "assets": {
+          "largeImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6045-JujXjoWtslUM.jpg",
+          "largeText": "Kimi ni Todoke: From Me to You",
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/users.png",
+          "smallText": "Watch Together Room"
+        },
+        "buttons": [
+          {
+            "label": "Join Party",
+            "url": "https://animex.one/w2g/AbCdEf"
+          }
+        ]
+      }
+    },
+    {
+      "name": "a room playing, with its clock and cover",
+      "source": "synthetic",
+      "url": "https://animex.one/w2g/AbCdEf",
+      "title": "Watch Together - Kimi ni Todoke: From Me to You - Episode 7",
+      "data": {
+        "granted": ["media", "thumbnails"],
+        "media": {
+          "playing": true,
+          "duration": 1450,
+          "start": 1700000000000,
+          "end": 1700001450000
+        },
+        "images": [
+          {
+            "src": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6045-JujXjoWtslUM.jpg",
+            "alt": "Kimi ni Todoke: From Me to You"
+          },
+          {
+            "src": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx171627-ZN9D7P46yHnw.png",
+            "alt": "Chainsaw Man – The Movie: Reze Arc"
+          }
+        ]
+      },
+      "expect": {
+        "type": "watching",
+        "details": "Kimi ni Todoke: From Me to You",
+        "detailsUrl": "https://animex.one/anime/kimi-ni-todoke-from-me-to-you-6045",
+        "state": "Episode 7 · Watch Together Room",
+        "stateUrl": "https://animex.one/watch/kimi-ni-todoke-from-me-to-you-6045-episode-7",
+        "statusDisplayType": "details",
+        "assets": {
+          "largeImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6045-JujXjoWtslUM.jpg",
+          "largeText": "Kimi ni Todoke: From Me to You",
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/users.png",
+          "smallText": "Watch Together Room"
+        },
+        "timestamps": {
+          "start": 1700000000000,
+          "end": 1700001450000
+        },
+        "buttons": [
+          {
+            "label": "Join Party",
+            "url": "https://animex.one/w2g/AbCdEf"
+          }
+        ]
+      }
+    },
+    {
+      "name": "a room paused",
+      "source": "synthetic",
+      "url": "https://animex.one/w2g/AbCdEf",
+      "title": "Watch Together - Kimi ni Todoke: From Me to You - Episode 7",
+      "data": {
+        "granted": ["media", "thumbnails"],
+        "media": {
+          "playing": false
+        },
+        "images": [
+          {
+            "src": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6045-JujXjoWtslUM.jpg",
+            "alt": "Kimi ni Todoke: From Me to You"
+          }
+        ]
+      },
+      "expect": {
+        "type": "watching",
+        "details": "Kimi ni Todoke: From Me to You",
+        "detailsUrl": "https://animex.one/anime/kimi-ni-todoke-from-me-to-you-6045",
+        "state": "Episode 7 · Watch Together Room",
+        "stateUrl": "https://animex.one/watch/kimi-ni-todoke-from-me-to-you-6045-episode-7",
+        "statusDisplayType": "details",
+        "assets": {
+          "largeImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx6045-JujXjoWtslUM.jpg",
+          "largeText": "Kimi ni Todoke: From Me to You",
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/pause.png",
+          "smallText": "Paused"
+        },
+        "buttons": [
+          {
+            "label": "Join Party",
+            "url": "https://animex.one/w2g/AbCdEf"
+          }
+        ]
+      }
+    },
+    {
+      "name": "a room whose cover isn't on the page",
+      "source": "synthetic",
+      "url": "https://animex.one/w2g/AbCdEf",
+      "title": "Watch Together - Kimi ni Todoke: From Me to You - Episode 7",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx171627-ZN9D7P46yHnw.png",
+            "alt": "Chainsaw Man – The Movie: Reze Arc"
+          }
+        ]
+      },
+      "expect": {
+        "type": "watching",
+        "details": "Kimi ni Todoke: From Me to You",
+        "state": "Episode 7 · Watch Together Room",
+        "statusDisplayType": "details",
+        "assets": {
+          "largeText": "Kimi ni Todoke: From Me to You",
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/users.png",
+          "smallText": "Watch Together Room"
+        },
+        "buttons": [
+          {
+            "label": "Join Party",
+            "url": "https://animex.one/w2g/AbCdEf"
+          }
+        ]
+      }
+    },
+    {
+      "name": "a room with the Join Party button off",
+      "source": "synthetic",
+      "url": "https://animex.one/w2g/AbCdEf",
+      "title": "Watch Together - Kimi ni Todoke: From Me to You - Episode 7",
+      "settings": {
+        "showJoinButton": false
+      },
+      "expect": {
+        "type": "watching",
+        "details": "Kimi ni Todoke: From Me to You",
+        "state": "Episode 7 · Watch Together Room",
+        "statusDisplayType": "details",
+        "assets": {
+          "largeText": "Kimi ni Todoke: From Me to You",
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/users.png",
+          "smallText": "Watch Together Room"
+        }
+      }
+    },
+    {
+      "name": "a room in privacy mode",
+      "source": "synthetic",
+      "url": "https://animex.one/w2g/AbCdEf",
+      "title": "Watch Together - Kimi ni Todoke: From Me to You - Episode 7",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "type": "watching",
+        "details": "Watching anime"
+      }
+    },
+    {
+      "name": "a room address that isn't one",
+      "source": "synthetic",
+      "url": "https://animex.one/w2g/a/b",
+      "title": "Watch Together - Kimi ni Todoke: From Me to You - Episode 7",
+      "expect": {
+        "details": "Browsing AnimeX"
+      }
+    },
+    {
+      "name": "a room whose tab names the anime but no episode",
+      "source": "synthetic",
+      "url": "https://animex.one/w2g/AbCdEf",
+      "title": "Watch Together - ONE PIECE - Episode",
+      "expect": {
+        "type": "watching",
+        "details": "ONE PIECE",
+        "state": "Watch Together Room",
+        "statusDisplayType": "details",
+        "assets": {
+          "largeText": "ONE PIECE",
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/users.png",
+          "smallText": "Watch Together Room"
+        },
+        "buttons": [
+          {
+            "label": "Join Party",
+            "url": "https://animex.one/w2g/AbCdEf"
+          }
+        ]
+      }
+    },
+    {
+      "name": "a room for a title with no Latin letters",
+      "source": "synthetic",
+      "url": "https://animex.one/w2g/AbCdEf",
+      "title": "Watch Together - 葬送のフリーレン - Episode 3",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154587-n1fmjRv4JQUd.jpg",
+            "alt": "葬送のフリーレン"
+          }
+        ]
+      },
+      "expect": {
+        "type": "watching",
+        "details": "葬送のフリーレン",
+        "detailsUrl": "https://animex.one/anime/anime-154587",
+        "state": "Episode 3 · Watch Together Room",
+        "stateUrl": "https://animex.one/watch/anime-154587-episode-3",
+        "statusDisplayType": "details",
+        "assets": {
+          "largeImage": "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx154587-n1fmjRv4JQUd.jpg",
+          "largeText": "葬送のフリーレン",
+          "smallImage": "https://raw.githubusercontent.com/parousia-project/activities/main/assets/status/users.png",
+          "smallText": "Watch Together Room"
+        },
+        "buttons": [
+          {
+            "label": "Join Party",
+            "url": "https://animex.one/w2g/AbCdEf"
+          }
+        ]
+      }
+    }
+  ]
+}

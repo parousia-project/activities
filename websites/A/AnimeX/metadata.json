@@ -3,8 +3,8 @@
   "apiVersion": 1,
   "id": "animex",
   "name": "AnimeX",
-  "description": "The anime and episode you're watching on AnimeX, or what you're browsing.",
-  "version": "1.1.0",
+  "description": "The anime and episode you're watching on AnimeX, alone or in a Watch Together room, or what you're browsing.",
+  "version": "1.2.0",
   "authors": [
     {
       "name": "Abadima",
@@ -43,19 +43,9 @@
       }
     },
     {
-      "id": "showAvatars",
-      "title": "Show profile pictures",
-      "description": "Use a profile's picture as the image on your profile when you view someone's page.",
-      "type": "boolean",
-      "default": true,
-      "when": {
-        "privacyMode": false
-      }
-    },
-    {
-      "id": "showButtons",
-      "title": "Show buttons",
-      "description": "Show Watch Episode and View Anime buttons on your profile.",
+      "id": "showJoinButton",
+      "title": "Show Join Party button",
+      "description": "Let anyone who sees your profile join your Watch Together room.",
       "type": "boolean",
       "default": true,
       "when": {
