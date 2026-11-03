@@ -1,0 +1,481 @@
+{
+  "$schema": "../../../schemas/fixtures.json",
+  "cases": [
+    {
+      "name": "the home page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en",
+      "title": "Flathub - Apps for Linux | Flathub",
+      "expect": {
+        "details": "Browsing Flathub"
+      }
+    },
+    {
+      "name": "an app's page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/org.mozilla.firefox",
+      "title": "Install Firefox on Linux | Flathub",
+      "expect": {
+        "assets": {
+          "largeText": "Firefox"
+        },
+        "detailsUrl": "https://flathub.org/apps/org.mozilla.firefox",
+        "details": "Looking at Firefox",
+        "state": "org.mozilla.firefox",
+        "statusDisplayType": "details"
+      }
+    },
+    {
+      "name": "an app whose icon is in the media folder itself",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/org.mozilla.firefox",
+      "title": "Install Firefox on Linux | Flathub",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://dl.flathub.org/assets/_next/static/media/flathub-logo-toolbar.3m4-w996wvgjs.svg",
+            "alt": "Flathub Logo"
+          },
+          {
+            "src": "https://dl.flathub.org/assets/_next/static/media/flathub-logo-mini.0ap3z42z5qu9l.svg",
+            "alt": "Flathub Logo"
+          },
+          {
+            "src": "https://imgproxy.flathub.org/insecure/dpr:1/f:avif/q:100/rs:fit:128:128/aHR0cHM6Ly9kbC5mbGF0aHViLm9yZy9tZWRpYS9pY29ucy8xMjh4MTI4L29yZy5tb3ppbGxhLmZpcmVmb3gucG5n",
+            "alt": "Firefox Logo"
+          },
+          {
+            "src": "https://imgproxy.flathub.org/insecure/dpr:1/f:avif/rs:fit:1024:576/aHR0cHM6Ly9kbC5mbGF0aHViLm9yZy9tZWRpYS9vcmcubW96aWxsYS5maXJlZm94LXN0YWJsZS8xNTA0eDg0Ni9vcmcubW96aWxsYS5maXJlZm94LTYwZTg1NWMxZjQxODA2MDdlNDBjOTc2MmEwZmI5ZmE2LnBuZw",
+            "alt": "Screenshot"
+          }
+        ]
+      },
+      "expect": {
+        "assets": {
+          "largeImage": "https://dl.flathub.org/media/icons/128x128/org.mozilla.firefox.png",
+          "largeText": "Firefox",
+          "smallImage": "https://flathub.org/apple-touch-icon.png",
+          "smallText": "Flathub"
+        },
+        "detailsUrl": "https://flathub.org/apps/org.mozilla.firefox",
+        "details": "Looking at Firefox",
+        "state": "org.mozilla.firefox",
+        "statusDisplayType": "details"
+      }
+    },
+    {
+      "name": "an app's page with its icon",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/org.gnome.Podcasts",
+      "title": "Install Podcasts on Linux | Flathub",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://dl.flathub.org/assets/_next/static/media/flathub-logo-toolbar.3m4-w996wvgjs.svg",
+            "alt": "Flathub Logo"
+          },
+          {
+            "src": "https://imgproxy.flathub.org/insecure/dpr:1/f:avif/q:100/rs:fit:128:128/aHR0cHM6Ly9kbC5mbGF0aHViLm9yZy9tZWRpYS9vcmcvZ25vbWUvUG9kY2FzdHMvNjE0YjVlMjYyOTg1MTIwOTZjNGRkNWE0YmE2OTIzYzAvaWNvbnMvMTI4eDEyOC9vcmcuZ25vbWUuUG9kY2FzdHMucG5n",
+            "alt": "Podcasts Logo"
+          },
+          {
+            "src": "https://imgproxy.flathub.org/insecure/dpr:1/f:avif/rs:fit:768:549/aHR0cHM6Ly9kbC5mbGF0aHViLm9yZy9tZWRpYS9vcmcvZ25vbWUvUG9kY2FzdHMvNjE0YjVlMjYyOTg1MTIwOTZjNGRkNWE0YmE2OTIzYzAvc2NyZWVuc2hvdHMvaW1hZ2UtMV9vcmlnLnBuZw",
+            "alt": "The home view displaying the newest episodes"
+          }
+        ]
+      },
+      "expect": {
+        "assets": {
+          "largeImage": "https://dl.flathub.org/media/org/gnome/Podcasts/614b5e26298512096c4dd5a4ba6923c0/icons/128x128/org.gnome.Podcasts.png",
+          "largeText": "Podcasts",
+          "smallImage": "https://flathub.org/apple-touch-icon.png",
+          "smallText": "Flathub"
+        },
+        "detailsUrl": "https://flathub.org/apps/org.gnome.Podcasts",
+        "details": "Looking at Podcasts",
+        "state": "org.gnome.Podcasts",
+        "statusDisplayType": "details"
+      }
+    },
+    {
+      "name": "an app's page with its icon in privacy mode",
+      "source": "synthetic",
+      "url": "https://flathub.org/en/apps/org.gnome.Podcasts",
+      "title": "Install Podcasts on Linux | Flathub",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://dl.flathub.org/assets/_next/static/media/flathub-logo-toolbar.3m4-w996wvgjs.svg",
+            "alt": "Flathub Logo"
+          },
+          {
+            "src": "https://imgproxy.flathub.org/insecure/dpr:1/f:avif/q:100/rs:fit:128:128/aHR0cHM6Ly9kbC5mbGF0aHViLm9yZy9tZWRpYS9vcmcvZ25vbWUvUG9kY2FzdHMvNjE0YjVlMjYyOTg1MTIwOTZjNGRkNWE0YmE2OTIzYzAvaWNvbnMvMTI4eDEyOC9vcmcuZ25vbWUuUG9kY2FzdHMucG5n",
+            "alt": "Podcasts Logo"
+          },
+          {
+            "src": "https://imgproxy.flathub.org/insecure/dpr:1/f:avif/rs:fit:768:549/aHR0cHM6Ly9kbC5mbGF0aHViLm9yZy9tZWRpYS9vcmcvZ25vbWUvUG9kY2FzdHMvNjE0YjVlMjYyOTg1MTIwOTZjNGRkNWE0YmE2OTIzYzAvc2NyZWVuc2hvdHMvaW1hZ2UtMV9vcmlnLnBuZw",
+            "alt": "The home view displaying the newest episodes"
+          }
+        ]
+      },
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Looking at an app"
+      }
+    },
+    {
+      "name": "an app's page with the icon off",
+      "source": "synthetic",
+      "url": "https://flathub.org/en/apps/org.gnome.Podcasts",
+      "title": "Install Podcasts on Linux | Flathub",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://dl.flathub.org/assets/_next/static/media/flathub-logo-toolbar.3m4-w996wvgjs.svg",
+            "alt": "Flathub Logo"
+          },
+          {
+            "src": "https://imgproxy.flathub.org/insecure/dpr:1/f:avif/q:100/rs:fit:128:128/aHR0cHM6Ly9kbC5mbGF0aHViLm9yZy9tZWRpYS9vcmcvZ25vbWUvUG9kY2FzdHMvNjE0YjVlMjYyOTg1MTIwOTZjNGRkNWE0YmE2OTIzYzAvaWNvbnMvMTI4eDEyOC9vcmcuZ25vbWUuUG9kY2FzdHMucG5n",
+            "alt": "Podcasts Logo"
+          },
+          {
+            "src": "https://imgproxy.flathub.org/insecure/dpr:1/f:avif/rs:fit:768:549/aHR0cHM6Ly9kbC5mbGF0aHViLm9yZy9tZWRpYS9vcmcvZ25vbWUvUG9kY2FzdHMvNjE0YjVlMjYyOTg1MTIwOTZjNGRkNWE0YmE2OTIzYzAvc2NyZWVuc2hvdHMvaW1hZ2UtMV9vcmlnLnBuZw",
+            "alt": "The home view displaying the newest episodes"
+          }
+        ]
+      },
+      "settings": {
+        "showThumbnail": false
+      },
+      "expect": {
+        "assets": {
+          "largeText": "Podcasts"
+        },
+        "detailsUrl": "https://flathub.org/apps/org.gnome.Podcasts",
+        "details": "Looking at Podcasts",
+        "state": "org.gnome.Podcasts",
+        "statusDisplayType": "details"
+      }
+    },
+    {
+      "name": "an app's page whose icon is another app's",
+      "source": "synthetic",
+      "url": "https://flathub.org/en/apps/org.gnome.Characters",
+      "title": "Install Characters on Linux | Flathub",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://dl.flathub.org/assets/_next/static/media/flathub-logo-toolbar.3m4-w996wvgjs.svg",
+            "alt": "Flathub Logo"
+          },
+          {
+            "src": "https://imgproxy.flathub.org/insecure/dpr:1/f:avif/q:100/rs:fit:128:128/aHR0cHM6Ly9kbC5mbGF0aHViLm9yZy9tZWRpYS9vcmcvZ25vbWUvUG9kY2FzdHMvNjE0YjVlMjYyOTg1MTIwOTZjNGRkNWE0YmE2OTIzYzAvaWNvbnMvMTI4eDEyOC9vcmcuZ25vbWUuUG9kY2FzdHMucG5n",
+            "alt": "Podcasts Logo"
+          },
+          {
+            "src": "https://imgproxy.flathub.org/insecure/dpr:1/f:avif/rs:fit:768:549/aHR0cHM6Ly9kbC5mbGF0aHViLm9yZy9tZWRpYS9vcmcvZ25vbWUvUG9kY2FzdHMvNjE0YjVlMjYyOTg1MTIwOTZjNGRkNWE0YmE2OTIzYzAvc2NyZWVuc2hvdHMvaW1hZ2UtMV9vcmlnLnBuZw",
+            "alt": "The home view displaying the newest episodes"
+          }
+        ]
+      },
+      "expect": {
+        "assets": {
+          "largeText": "Characters"
+        },
+        "detailsUrl": "https://flathub.org/apps/org.gnome.Characters",
+        "details": "Looking at Characters",
+        "state": "org.gnome.Characters",
+        "statusDisplayType": "details"
+      }
+    },
+    {
+      "name": "an app's page in German",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/de/apps/org.mozilla.firefox",
+      "title": "Firefox unter Linux installieren | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/apps/org.mozilla.firefox",
+        "details": "Looking at an app",
+        "state": "org.mozilla.firefox"
+      }
+    },
+    {
+      "name": "an app that doesn't exist",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/org.nonexistent.Appxyz",
+      "title": "404 - Page not found | Flathub",
+      "expect": {
+        "details": "Browsing Flathub"
+      }
+    },
+    {
+      "name": "an app's install page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/org.mozilla.firefox/install",
+      "title": "Loading https://flathub.org/apps/org.mozilla.firefox/flatpakhttps",
+      "expect": {
+        "detailsUrl": "https://flathub.org/apps/org.mozilla.firefox",
+        "details": "Installing an app",
+        "state": "org.mozilla.firefox"
+      }
+    },
+    {
+      "name": "a page under apps that isn't an app",
+      "source": "synthetic",
+      "url": "https://flathub.org/en/apps/manage/org.mozilla.firefox",
+      "title": "Flathub",
+      "expect": {
+        "details": "Browsing Flathub"
+      }
+    },
+    {
+      "name": "a category",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/category/Game/1",
+      "title": "Games | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/apps/category/Game",
+        "details": "Browsing Games"
+      }
+    },
+    {
+      "name": "a category named differently from its address",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/category/Office/1",
+      "title": "Productivity | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/apps/category/Office",
+        "details": "Browsing Productivity"
+      }
+    },
+    {
+      "name": "a subcategory",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/category/Game/subcategories/ActionGame/1",
+      "title": "Action | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/apps/category/Game",
+        "details": "Browsing Games",
+        "state": "Action"
+      }
+    },
+    {
+      "name": "a category in privacy mode",
+      "source": "synthetic",
+      "url": "https://flathub.org/en/apps/category/Game/subcategories/ActionGame/1",
+      "title": "Action | Flathub",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Browsing a category"
+      }
+    },
+    {
+      "name": "a category that isn't one",
+      "source": "synthetic",
+      "url": "https://flathub.org/en/apps/category/Nonsense/1",
+      "title": "Nonsense | Flathub",
+      "expect": {
+        "details": "Browsing Flathub"
+      }
+    },
+    {
+      "name": "a collection",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/collection/popular/1",
+      "title": "Popular Apps | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/apps/collection/popular",
+        "details": "Browsing popular apps"
+      }
+    },
+    {
+      "name": "newly added apps",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/collection/recently-added/1",
+      "title": "New Apps | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/apps/collection/recently-added",
+        "details": "Browsing new apps"
+      }
+    },
+    {
+      "name": "a developer's apps",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/collection/developer/Mozilla/1",
+      "title": "Apps by Mozilla | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/apps/collection/developer/Mozilla",
+        "details": "Browsing a developer's apps",
+        "state": "Mozilla"
+      }
+    },
+    {
+      "name": "a developer's apps in privacy mode",
+      "source": "synthetic",
+      "url": "https://flathub.org/en/apps/collection/developer/Mozilla/1",
+      "title": "Apps by Mozilla | Flathub",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Browsing a developer's apps"
+      }
+    },
+    {
+      "name": "a developer with a space in the name",
+      "source": "synthetic",
+      "url": "https://flathub.org/en/apps/collection/developer/GNOME%20Foundation/1",
+      "title": "Apps by GNOME Foundation | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/apps/collection/developer/GNOME%20Foundation",
+        "details": "Browsing a developer's apps",
+        "state": "GNOME Foundation"
+      }
+    },
+    {
+      "name": "a tag",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/collection/tag/kids/1",
+      "title": "Apps by tag “kids” | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/apps/collection/tag/kids",
+        "details": "Browsing apps by tag",
+        "state": "kids"
+      }
+    },
+    {
+      "name": "a search",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/apps/search?q=firefox",
+      "title": "Search for “firefox” | Flathub",
+      "expect": {
+        "details": "Searching Flathub"
+      }
+    },
+    {
+      "name": "the setup page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/setup",
+      "title": "Set Up Flathub | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/setup",
+        "details": "Setting up Flathub"
+      }
+    },
+    {
+      "name": "a distribution's setup page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/setup/Fedora",
+      "title": "Fedora Flathub Setup | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/setup/Fedora",
+        "details": "Setting up Flathub",
+        "state": "Fedora"
+      }
+    },
+    {
+      "name": "the about page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/about",
+      "title": "About Flathub: The Linux App Store | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/about",
+        "details": "Reading about Flathub"
+      }
+    },
+    {
+      "name": "the statistics",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/statistics",
+      "title": "Statistics | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/statistics",
+        "details": "Looking at Flathub's statistics"
+      }
+    },
+    {
+      "name": "the builds",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/builds",
+      "title": "Builds | Flathub",
+      "expect": {
+        "detailsUrl": "https://flathub.org/builds",
+        "details": "Checking build status"
+      }
+    },
+    {
+      "name": "the log in page",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/login",
+      "title": "Log In | Flathub",
+      "expect": {
+        "details": "Browsing Flathub"
+      }
+    },
+    {
+      "name": "the year in review",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/year-in-review/2025",
+      "title": "2025 Year in Review | Flathub",
+      "expect": {
+        "details": "Browsing Flathub"
+      }
+    },
+    {
+      "name": "a page that doesn't exist",
+      "source": "browser",
+      "observed": "2026-11-03",
+      "url": "https://flathub.org/en/developers",
+      "title": "404 - Page Not Found",
+      "expect": {
+        "details": "Browsing Flathub"
+      }
+    },
+    {
+      "name": "an address with no locale",
+      "source": "synthetic",
+      "url": "https://flathub.org/apps/org.mozilla.firefox",
+      "title": "Install Firefox on Linux | Flathub",
+      "expect": {
+        "assets": {
+          "largeText": "Firefox"
+        },
+        "detailsUrl": "https://flathub.org/apps/org.mozilla.firefox",
+        "details": "Looking at Firefox",
+        "state": "org.mozilla.firefox",
+        "statusDisplayType": "details"
+      }
+    }
+  ]
+}
