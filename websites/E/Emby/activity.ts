@@ -2,10 +2,9 @@ import type { Activity, NativeActivity, Page, Settings } from "parousia";
 import metadata from "./metadata.json";
 
 /**
- * Reads the Media Session the player publishes, never Emby's markup. No cover
- * art: its address is your own server's, which Discord can't reach and which
- * doesn't belong on your profile. Servers at their own address aren't covered,
- * as an Activity can only name particular sites.
+ * No cover art: its address is your own server's, which Discord can't reach
+ * and which doesn't belong on your profile. Servers at their own address
+ * aren't covered, as an Activity can only name particular sites.
  */
 
 const NAME = "Emby";
