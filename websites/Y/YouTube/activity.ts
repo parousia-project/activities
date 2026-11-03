@@ -3,8 +3,7 @@ import metadata from "./metadata.json";
 
 /**
  * What's playing comes from the Media Session, falling back to the address and
- * the tab's title. Nothing is read from YouTube's markup, so a redesign can't
- * break it.
+ * the tab's title.
  */
 
 const ORIGIN = "https://www.youtube.com";
