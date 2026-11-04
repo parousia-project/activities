@@ -1,0 +1,227 @@
+{
+  "$schema": "../../../schemas/fixtures.json",
+  "for": ["https://gam.onl/psx/", "https://gam.onl/psx/men-in-black-the-game.html"],
+  "notFor": ["https://gam.onl/"],
+  "cases": [
+    {
+      "name": "the catalogue's home page",
+      "source": "browser",
+      "observed": "2026-11-04",
+      "url": "https://gam.onl/psx/",
+      "title": "Play Online 🕹️ PS1 Games",
+      "expect": null
+    },
+    {
+      "name": "a game started from the catalogue, with its ROM name as the title (ROM blocked, so it never ran)",
+      "source": "browser",
+      "observed": "2026-11-04",
+      "url": "https://gam.onl/psx/#game",
+      "title": "Men in Black - The Game (Europe)",
+      "expect": {
+        "details": "Men in Black - The Game",
+        "detailsUrl": "https://gam.onl/psx/",
+        "state": "PlayStation 1 in the browser",
+        "assets": {
+          "largeImage": "https://gam.onl/user/psx/logos/Men%20in%20Black%20-%20The%20Game%20(Europe).png",
+          "largeText": "Men in Black - The Game",
+          "smallImage": "https://gam.onl/logos2/play-ps1-games-online.png",
+          "smallText": "GAM.ONL"
+        }
+      }
+    },
+    {
+      "name": "the same game started from its own page, which the link opens",
+      "source": "browser",
+      "observed": "2026-11-04",
+      "url": "https://gam.onl/psx/men-in-black-the-game.html#game",
+      "title": "Men in Black - The Game (Europe)",
+      "expect": {
+        "details": "Men in Black - The Game",
+        "detailsUrl": "https://gam.onl/psx/men-in-black-the-game.html",
+        "state": "PlayStation 1 in the browser",
+        "assets": {
+          "largeImage": "https://gam.onl/user/psx/logos/Men%20in%20Black%20-%20The%20Game%20(Europe).png",
+          "largeText": "Men in Black - The Game",
+          "smallImage": "https://gam.onl/logos2/play-ps1-games-online.png",
+          "smallText": "GAM.ONL"
+        }
+      }
+    },
+    {
+      "name": "#game typed in with no game loaded keeps the catalogue's title",
+      "source": "browser",
+      "observed": "2026-11-04",
+      "url": "https://gam.onl/psx/#game",
+      "title": "Play Online 🕹️ PS1 Games",
+      "expect": null
+    },
+    {
+      "name": "a game's own page before it starts (its hash is reset to its own name)",
+      "source": "browser",
+      "observed": "2026-11-04",
+      "url": "https://gam.onl/psx/men-in-black-the-game.html#men-in-black-the-game",
+      "title": "Play Online 🕹️ Men in Black (PS1)",
+      "expect": null
+    },
+    {
+      "name": "a folder in the catalogue, whose hash is its name rather than #game",
+      "source": "synthetic",
+      "url": "https://gam.onl/psx/#Animetic",
+      "title": "Animetic",
+      "expect": null
+    },
+    {
+      "name": "a title with several tag groups, keeping only the name",
+      "source": "source",
+      "url": "https://gam.onl/psx/#game",
+      "title": "Ace Combat 3 - Electrosphere (Japan, Asia) (Rev 1) [T-En by Team NEMO v2.0]",
+      "expect": {
+        "details": "Ace Combat 3 - Electrosphere",
+        "detailsUrl": "https://gam.onl/psx/",
+        "state": "PlayStation 1 in the browser",
+        "assets": {
+          "largeImage": "https://gam.onl/user/psx/logos/Ace%20Combat%203%20-%20Electrosphere%20(Japan%2C%20Asia)%20(Rev%201)%20%5BT-En%20by%20Team%20NEMO%20v2.0%5D.png",
+          "largeText": "Ace Combat 3 - Electrosphere",
+          "smallImage": "https://gam.onl/logos2/play-ps1-games-online.png",
+          "smallText": "GAM.ONL"
+        }
+      }
+    },
+    {
+      "name": "nested brackets are removed whole",
+      "source": "source",
+      "url": "https://gam.onl/psx/#game",
+      "title": "Lunar - Silver Star Story Complete (USA) [Un-Worked Design by Supper v0 (09-04-2017)]",
+      "expect": {
+        "details": "Lunar - Silver Star Story Complete",
+        "detailsUrl": "https://gam.onl/psx/",
+        "state": "PlayStation 1 in the browser",
+        "assets": {
+          "largeImage": "https://gam.onl/user/psx/logos/Lunar%20-%20Silver%20Star%20Story%20Complete%20(USA)%20%5BUn-Worked%20Design%20by%20Supper%20v0%20(09-04-2017)%5D.png",
+          "largeText": "Lunar - Silver Star Story Complete",
+          "smallImage": "https://gam.onl/logos2/play-ps1-games-online.png",
+          "smallText": "GAM.ONL"
+        }
+      }
+    },
+    {
+      "name": "a beta keeps its tag, since it says which build this is",
+      "source": "source",
+      "url": "https://gam.onl/psx/#game",
+      "title": "Global Domination (USA) (Beta 2)",
+      "expect": {
+        "details": "Global Domination (Beta 2)",
+        "detailsUrl": "https://gam.onl/psx/",
+        "state": "PlayStation 1 in the browser",
+        "assets": {
+          "largeImage": "https://gam.onl/user/psx/logos/Global%20Domination%20(USA)%20(Beta%202).png",
+          "largeText": "Global Domination (Beta 2)",
+          "smallImage": "https://gam.onl/logos2/play-ps1-games-online.png",
+          "smallText": "GAM.ONL"
+        }
+      }
+    },
+    {
+      "name": "a subtitle and its disc number are kept, only the region is dropped",
+      "source": "source",
+      "url": "https://gam.onl/psx/#game",
+      "title": "Capcom Generations (Europe) (Disc 2) (Chronicles of Arthur)",
+      "expect": {
+        "details": "Capcom Generations (Disc 2) (Chronicles of Arthur)",
+        "detailsUrl": "https://gam.onl/psx/",
+        "state": "PlayStation 1 in the browser",
+        "assets": {
+          "largeImage": "https://gam.onl/user/psx/logos/Capcom%20Generations%20(Europe)%20(Disc%202)%20(Chronicles%20of%20Arthur).png",
+          "largeText": "Capcom Generations (Disc 2) (Chronicles of Arthur)",
+          "smallImage": "https://gam.onl/logos2/play-ps1-games-online.png",
+          "smallText": "GAM.ONL"
+        }
+      }
+    },
+    {
+      "name": "a fan mod's name is kept inside the title",
+      "source": "source",
+      "url": "https://gam.onl/psx/#game",
+      "title": "Resident Evil 1.5 (MZD Mod) Update 29-01-2022 (Fixed Version)",
+      "expect": {
+        "details": "Resident Evil 1.5 (MZD Mod) Update 29-01-2022 (Fixed Version)",
+        "detailsUrl": "https://gam.onl/psx/",
+        "state": "PlayStation 1 in the browser",
+        "assets": {
+          "largeImage": "https://gam.onl/user/psx/logos/Resident%20Evil%201.5%20(MZD%20Mod)%20Update%2029-01-2022%20(Fixed%20Version).png",
+          "largeText": "Resident Evil 1.5 (MZD Mod) Update 29-01-2022 (Fixed Version)",
+          "smallImage": "https://gam.onl/logos2/play-ps1-games-online.png",
+          "smallText": "GAM.ONL"
+        }
+      }
+    },
+    {
+      "name": "a one-letter name keeps its tag, since Discord drops a one-letter line",
+      "source": "source",
+      "url": "https://gam.onl/psx/#game",
+      "title": "Z (Europe)",
+      "expect": {
+        "details": "Z (Europe)",
+        "detailsUrl": "https://gam.onl/psx/",
+        "state": "PlayStation 1 in the browser",
+        "assets": {
+          "largeImage": "https://gam.onl/user/psx/logos/Z%20(Europe).png",
+          "largeText": "Z (Europe)",
+          "smallImage": "https://gam.onl/logos2/play-ps1-games-online.png",
+          "smallText": "GAM.ONL"
+        }
+      }
+    },
+    {
+      "name": "an ampersand is encoded in the logo's address",
+      "source": "source",
+      "url": "https://gam.onl/psx/#game",
+      "title": "Arcade Gears - ImageFight & XMultiply (Japan)",
+      "expect": {
+        "details": "Arcade Gears - ImageFight & XMultiply",
+        "detailsUrl": "https://gam.onl/psx/",
+        "state": "PlayStation 1 in the browser",
+        "assets": {
+          "largeImage": "https://gam.onl/user/psx/logos/Arcade%20Gears%20-%20ImageFight%20%26%20XMultiply%20(Japan).png",
+          "largeText": "Arcade Gears - ImageFight & XMultiply",
+          "smallImage": "https://gam.onl/logos2/play-ps1-games-online.png",
+          "smallText": "GAM.ONL"
+        }
+      }
+    },
+    {
+      "name": "a direction mark is dropped from the name and from the logo's address",
+      "source": "synthetic",
+      "url": "https://gam.onl/psx/#game",
+      "title": "Crash‎ Bandicoot (USA)",
+      "expect": {
+        "details": "Crash Bandicoot",
+        "detailsUrl": "https://gam.onl/psx/",
+        "state": "PlayStation 1 in the browser",
+        "assets": {
+          "largeImage": "https://gam.onl/user/psx/logos/Crash%20Bandicoot%20(USA).png",
+          "largeText": "Crash Bandicoot",
+          "smallImage": "https://gam.onl/logos2/play-ps1-games-online.png",
+          "smallText": "GAM.ONL"
+        }
+      }
+    },
+    {
+      "name": "a name longer than a Discord line is cut to 100 characters",
+      "source": "synthetic",
+      "url": "https://gam.onl/psx/#game",
+      "title": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB (USA)",
+      "expect": {
+        "details": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+        "detailsUrl": "https://gam.onl/psx/",
+        "state": "PlayStation 1 in the browser",
+        "assets": {
+          "largeImage": "https://gam.onl/user/psx/logos/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA%20BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB%20(USA).png",
+          "largeText": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+          "smallImage": "https://gam.onl/logos2/play-ps1-games-online.png",
+          "smallText": "GAM.ONL"
+        }
+      }
+    }
+  ]
+}
