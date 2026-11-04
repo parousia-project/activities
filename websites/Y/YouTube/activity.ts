@@ -17,7 +17,7 @@ const VIDEO_ID = /^[\w-]{11}$/;
 
 function clean(value: string | undefined): string | undefined {
   const text = value
-    ?.replace(/[\p{Cc}​-‏‪-‮�]/gu, "")
+    ?.replace(/[\p{Cc}\u200b-\u200f\u202a-\u202e\ufffd]/gu, "")
     .replace(/\s+/g, " ")
     .trim();
 
@@ -96,6 +96,15 @@ function detect({ url, title, media, thumbnail }: Page, settings: Settings): Act
     type: "watching",
   };
 
+  if (watch) {
+    activity.detailsUrl = watch;
+  }
+
+  if (channel !== undefined) {
+    activity.state = channel;
+    activity.stateUrl = `${ORIGIN}/results?search_query=${encodeURIComponent(channel)}`;
+  }
+
   const clock =
     settings.showTimestamps === true && media?.playing === true && media.start !== undefined;
   const largeImage = image(thumbnail, settings);
@@ -107,11 +116,13 @@ function detect({ url, title, media, thumbnail }: Page, settings: Settings): Act
       : undefined;
 
   if (largeImage !== undefined || status) {
-    activity.assets = { largeImage: largeImage ?? metadata.icon, ...status };
-  }
-
-  if (channel !== undefined) {
-    activity.state = channel;
+    activity.assets = {
+      largeImage: largeImage ?? metadata.icon,
+      ...(thumbnail !== undefined &&
+        settings.showThumbnail !== false &&
+        watch && { largeUrl: watch }),
+      ...status,
+    };
   }
 
   if (clock && media.start !== undefined) {
@@ -119,15 +130,6 @@ function detect({ url, title, media, thumbnail }: Page, settings: Settings): Act
       start: media.start,
       ...(media.end !== undefined && { end: media.end }),
     };
-  }
-
-  if (watch) {
-    activity.buttons = [
-      {
-        label: "Watch on YouTube",
-        url: watch,
-      },
-    ];
   }
 
   return activity;

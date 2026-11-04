@@ -85,6 +85,7 @@ function detect({ url, title, media, thumbnail }: Page, settings: Settings): Act
 
   if (!privacyMode && artist !== undefined) {
     activity.state = artist;
+    activity.stateUrl = `${ORIGIN}/search?q=${encodeURIComponent(artist)}`;
   }
 
   const clock =
@@ -92,8 +93,6 @@ function detect({ url, title, media, thumbnail }: Page, settings: Settings): Act
     settings.showTimestamps === true &&
     media?.playing === true &&
     media.start !== undefined;
-
-  const album = clean(media?.album);
 
   const cover =
     !privacyMode && settings.showCover === true && thumbnail !== undefined && media?.title
@@ -111,7 +110,7 @@ function detect({ url, title, media, thumbnail }: Page, settings: Settings): Act
   if (cover !== undefined || status) {
     activity.assets = {
       largeImage: cover ?? metadata.icon,
-      ...(cover !== undefined && album && { largeText: album }),
+      ...(cover !== undefined && watch && { largeText: song, largeUrl: watch }),
       ...status,
     };
   }
