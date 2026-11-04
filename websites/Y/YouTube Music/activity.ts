@@ -110,7 +110,7 @@ function detect({ url, title, media, thumbnail }: Page, settings: Settings): Act
   if (cover !== undefined || status) {
     activity.assets = {
       largeImage: cover ?? metadata.icon,
-      ...(cover !== undefined && watch && { largeText: song, largeUrl: watch }),
+      ...(cover !== undefined && watch && { largeUrl: watch }),
       ...status,
     };
   }
