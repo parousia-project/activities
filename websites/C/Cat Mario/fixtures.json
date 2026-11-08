@@ -1,0 +1,83 @@
+{
+  "$schema": "../../../schemas/fixtures.json",
+  "for": ["https://catmario.eu/", "https://www.catmario.eu/"],
+  "notFor": ["http://catmario.eu/"],
+  "cases": [
+    {
+      "name": "the game",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://catmario.eu/",
+      "title": "Cat Mario",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Play Cat Mario",
+            "url": "https://catmario.eu/"
+          }
+        ],
+        "details": "HTML5 port in the browser"
+      }
+    },
+    {
+      "name": "the game over www",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://www.catmario.eu/",
+      "title": "Cat Mario",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Play Cat Mario",
+            "url": "https://catmario.eu/"
+          }
+        ],
+        "details": "HTML5 port in the browser"
+      }
+    },
+    {
+      "name": "the game shared with a query",
+      "source": "synthetic",
+      "url": "https://catmario.eu/?from=share",
+      "title": "Cat Mario",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Play Cat Mario",
+            "url": "https://catmario.eu/"
+          }
+        ],
+        "details": "HTML5 port in the browser"
+      }
+    },
+    {
+      "name": "a tab whose title is padded with whitespace",
+      "source": "synthetic",
+      "url": "https://catmario.eu/",
+      "title": "  Cat Mario  ",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Play Cat Mario",
+            "url": "https://catmario.eu/"
+          }
+        ],
+        "details": "HTML5 port in the browser"
+      }
+    },
+    {
+      "name": "a page the server doesn't have",
+      "source": "source",
+      "url": "https://catmario.eu/this-path-does-not-exist",
+      "title": "404 Not Found",
+      "expect": null
+    },
+    {
+      "name": "a tab whose title says nothing",
+      "source": "synthetic",
+      "url": "https://catmario.eu/",
+      "title": "",
+      "expect": null
+    }
+  ]
+}
