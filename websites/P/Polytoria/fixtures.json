@@ -1,0 +1,541 @@
+{
+  "$schema": "../../../schemas/fixtures.json",
+  "for": ["https://polytoria.com/", "https://polytoria.com/places/122502"],
+  "notFor": [
+    "https://www.polytoria.com/",
+    "https://cdn.polytoria.com/",
+    "https://api.polytoria.com/",
+    "https://blog.polytoria.com/"
+  ],
+  "cases": [
+    {
+      "name": "the home page",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/",
+      "title": "Polytoria - Build, Play, Connect",
+      "expect": {
+        "details": "Browsing Polytoria"
+      }
+    },
+    {
+      "name": "the worlds page",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/places",
+      "title": "Worlds - Polytoria",
+      "expect": {
+        "details": "Browsing worlds"
+      }
+    },
+    {
+      "name": "a world's page",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/places/122502",
+      "title": "Catalog Avatar Studio - Polytoria",
+      "expect": {
+        "assets": {
+          "largeText": "Catalog Avatar Studio"
+        },
+        "buttons": [
+          {
+            "label": "View world",
+            "url": "https://polytoria.com/places/122502"
+          }
+        ],
+        "details": "Looking at a world",
+        "detailsUrl": "https://polytoria.com/places/122502",
+        "state": "Catalog Avatar Studio"
+      }
+    },
+    {
+      "name": "a world's page with its picture",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/places/122502",
+      "title": "Catalog Avatar Studio - Polytoria",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://cdn.polytoria.com/static/logo-new-dark-DaD4Kml0.png",
+            "alt": "Polytoria"
+          },
+          {
+            "src": "https://cdn.polytoria.com/thumbnails/avatars/0cd28bb96975b00983e2abfd935608e0ff52359da463fbba4d43f88238e180ea-icon.png",
+            "alt": "Avatar"
+          },
+          {
+            "src": "https://cdn.polytoria.com/places/icons/6F8-z6I778Jl46J_zMSmlXEDA3llGBpP.png",
+            "alt": "The world's icon"
+          },
+          {
+            "src": "https://cdn.polytoria.com/places/icons/P75pA1gxXOLLqYbwZ-Dpaqdr9Qy9eFBw.png",
+            "alt": "A recommended world"
+          }
+        ]
+      },
+      "expect": {
+        "assets": {
+          "largeImage": "https://cdn.polytoria.com/places/icons/6F8-z6I778Jl46J_zMSmlXEDA3llGBpP.png",
+          "largeText": "Catalog Avatar Studio",
+          "smallImage": "https://cdn.polytoria.com/favicon.ico",
+          "smallText": "Polytoria"
+        },
+        "buttons": [
+          {
+            "label": "View world",
+            "url": "https://polytoria.com/places/122502"
+          }
+        ],
+        "details": "Looking at a world",
+        "detailsUrl": "https://polytoria.com/places/122502",
+        "state": "Catalog Avatar Studio"
+      }
+    },
+    {
+      "name": "a store item's page",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/store/260803",
+      "title": "Possession - Polytoria",
+      "expect": {
+        "assets": {
+          "largeText": "Possession"
+        },
+        "buttons": [
+          {
+            "label": "View item",
+            "url": "https://polytoria.com/store/260803"
+          }
+        ],
+        "details": "Looking at an item",
+        "detailsUrl": "https://polytoria.com/store/260803",
+        "state": "Possession"
+      }
+    },
+    {
+      "name": "a store item's page with its picture",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/store/260803",
+      "title": "Possession - Polytoria",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://cdn.polytoria.com/thumbnails/avatars/0cd28bb96975b00983e2abfd935608e0ff52359da463fbba4d43f88238e180ea-icon.png",
+            "alt": "Avatar"
+          },
+          {
+            "src": "https://cdn.polytoria.com/thumbnails/assets/b8nDGuVQQD5dxd4UQ2p-JxDUuM-7Fwyt.png",
+            "alt": "The item's thumbnail"
+          },
+          {
+            "src": "https://cdn.polytoria.com/thumbnails/assets/FuYJ-8mH0y8bEQsvCKf_3Gm1A8Pk9zJF.png",
+            "alt": "Another item"
+          }
+        ]
+      },
+      "expect": {
+        "assets": {
+          "largeImage": "https://cdn.polytoria.com/thumbnails/assets/b8nDGuVQQD5dxd4UQ2p-JxDUuM-7Fwyt.png",
+          "largeText": "Possession",
+          "smallImage": "https://cdn.polytoria.com/favicon.ico",
+          "smallText": "Polytoria"
+        },
+        "buttons": [
+          {
+            "label": "View item",
+            "url": "https://polytoria.com/store/260803"
+          }
+        ],
+        "details": "Looking at an item",
+        "detailsUrl": "https://polytoria.com/store/260803",
+        "state": "Possession"
+      }
+    },
+    {
+      "name": "the store",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/store",
+      "title": "Polytoria Store",
+      "expect": {
+        "details": "Browsing the store"
+      }
+    },
+    {
+      "name": "a profile by username",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/u/silverguy",
+      "title": "silverguy's Profile - Polytoria",
+      "expect": {
+        "assets": {
+          "largeText": "silverguy"
+        },
+        "buttons": [
+          {
+            "label": "View profile",
+            "url": "https://polytoria.com/u/silverguy"
+          }
+        ],
+        "details": "Looking at a profile",
+        "detailsUrl": "https://polytoria.com/u/silverguy",
+        "state": "silverguy"
+      }
+    },
+    {
+      "name": "a profile by id",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/users/42699",
+      "title": "SnekWasTaken's Profile - Polytoria",
+      "expect": {
+        "assets": {
+          "largeText": "SnekWasTaken"
+        },
+        "buttons": [
+          {
+            "label": "View profile",
+            "url": "https://polytoria.com/users/42699"
+          }
+        ],
+        "details": "Looking at a profile",
+        "detailsUrl": "https://polytoria.com/users/42699",
+        "state": "SnekWasTaken"
+      }
+    },
+    {
+      "name": "the people page",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/users",
+      "title": "People - Polytoria",
+      "expect": {
+        "details": "Browsing people"
+      }
+    },
+    {
+      "name": "the guilds page",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/guilds",
+      "title": "Guilds - Polytoria",
+      "expect": {
+        "details": "Browsing guilds"
+      }
+    },
+    {
+      "name": "a guild's page with its picture",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/guilds/110",
+      "title": "Trade - Polytoria",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://cdn.polytoria.com/thumbnails/avatars/0cd28bb96975b00983e2abfd935608e0ff52359da463fbba4d43f88238e180ea-icon.png",
+            "alt": "Avatar"
+          },
+          {
+            "src": "https://cdn.polytoria.com/guilds/icons/zosu3Vgf_MzLmCkJvmgDiUgeSy74AGBy.png",
+            "alt": "The guild's icon"
+          }
+        ]
+      },
+      "expect": {
+        "assets": {
+          "largeImage": "https://cdn.polytoria.com/guilds/icons/zosu3Vgf_MzLmCkJvmgDiUgeSy74AGBy.png",
+          "largeText": "Trade",
+          "smallImage": "https://cdn.polytoria.com/favicon.ico",
+          "smallText": "Polytoria"
+        },
+        "buttons": [
+          {
+            "label": "View guild",
+            "url": "https://polytoria.com/guilds/110"
+          }
+        ],
+        "details": "Looking at a guild",
+        "detailsUrl": "https://polytoria.com/guilds/110",
+        "state": "Trade"
+      }
+    },
+    {
+      "name": "the forum",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/forum",
+      "title": "Polytoria Forum",
+      "expect": {
+        "details": "Browsing the forum"
+      }
+    },
+    {
+      "name": "a forum thread",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/forum/post/829955",
+      "title": "anything should know before making a guild? - Polytoria",
+      "expect": {
+        "assets": {
+          "largeText": "anything should know before making a guild?"
+        },
+        "buttons": [
+          {
+            "label": "View thread",
+            "url": "https://polytoria.com/forum/post/829955"
+          }
+        ],
+        "details": "Reading a thread",
+        "detailsUrl": "https://polytoria.com/forum/post/829955",
+        "state": "anything should know before making a guild?"
+      }
+    },
+    {
+      "name": "a forum thread on another page",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/forum/post/317954?page=1",
+      "title": "Forum moderation has been awful lately - Polytoria",
+      "expect": {
+        "assets": {
+          "largeText": "Forum moderation has been awful lately"
+        },
+        "buttons": [
+          {
+            "label": "View thread",
+            "url": "https://polytoria.com/forum/post/317954"
+          }
+        ],
+        "details": "Reading a thread",
+        "detailsUrl": "https://polytoria.com/forum/post/317954",
+        "state": "Forum moderation has been awful lately"
+      }
+    },
+    {
+      "name": "a thread whose title holds a dash",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/forum/post/1588471?page=1",
+      "title": "Google's Postfarming Guide - Forum - Polytoria",
+      "expect": {
+        "assets": {
+          "largeText": "Google's Postfarming Guide - Forum"
+        },
+        "buttons": [
+          {
+            "label": "View thread",
+            "url": "https://polytoria.com/forum/post/1588471"
+          }
+        ],
+        "details": "Reading a thread",
+        "detailsUrl": "https://polytoria.com/forum/post/1588471",
+        "state": "Google's Postfarming Guide - Forum"
+      }
+    },
+    {
+      "name": "the rules page",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/rules",
+      "title": "Community Rules - Polytoria",
+      "expect": {
+        "details": "Reading the rules"
+      }
+    },
+    {
+      "name": "a world's page in privacy mode",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://polytoria.com/places/122502",
+      "title": "Catalog Avatar Studio - Polytoria",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Looking at a world"
+      }
+    },
+    {
+      "name": "a guild's page",
+      "source": "synthetic",
+      "url": "https://polytoria.com/guilds/110",
+      "title": "Trade - Polytoria",
+      "expect": {
+        "assets": {
+          "largeText": "Trade"
+        },
+        "buttons": [
+          {
+            "label": "View guild",
+            "url": "https://polytoria.com/guilds/110"
+          }
+        ],
+        "details": "Looking at a guild",
+        "detailsUrl": "https://polytoria.com/guilds/110",
+        "state": "Trade"
+      }
+    },
+    {
+      "name": "a world whose tab has no suffix",
+      "source": "synthetic",
+      "url": "https://polytoria.com/places/122502",
+      "title": "Catalog Avatar Studio",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View world",
+            "url": "https://polytoria.com/places/122502"
+          }
+        ],
+        "details": "Looking at a world",
+        "detailsUrl": "https://polytoria.com/places/122502"
+      }
+    },
+    {
+      "name": "a profile's inventory",
+      "source": "synthetic",
+      "url": "https://polytoria.com/users/1/inventory",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View profile",
+            "url": "https://polytoria.com/users/1/inventory"
+          }
+        ],
+        "details": "Looking at a profile",
+        "detailsUrl": "https://polytoria.com/users/1/inventory"
+      }
+    },
+    {
+      "name": "find-people views are the people pages",
+      "source": "synthetic",
+      "url": "https://polytoria.com/users/friends",
+      "expect": {
+        "details": "Browsing people"
+      }
+    },
+    {
+      "name": "a forum category",
+      "source": "synthetic",
+      "url": "https://polytoria.com/forum/category/1",
+      "expect": {
+        "details": "Browsing a forum category"
+      }
+    },
+    {
+      "name": "an address that isn't one of the site's pages",
+      "source": "synthetic",
+      "url": "https://polytoria.com/join",
+      "title": "something else",
+      "expect": {
+        "details": "Browsing Polytoria"
+      }
+    },
+    {
+      "name": "a thread in privacy mode",
+      "source": "synthetic",
+      "url": "https://polytoria.com/forum/post/829955",
+      "title": "anything should know before making a guild? - Polytoria",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Reading a thread"
+      }
+    },
+    {
+      "name": "a profile in privacy mode",
+      "source": "synthetic",
+      "url": "https://polytoria.com/u/silverguy",
+      "title": "silverguy's Profile - Polytoria",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Looking at a profile"
+      }
+    },
+    {
+      "name": "a world's picture off",
+      "source": "synthetic",
+      "url": "https://polytoria.com/places/122502",
+      "title": "Catalog Avatar Studio - Polytoria",
+      "data": {
+        "granted": ["thumbnails"],
+        "images": [
+          {
+            "src": "https://cdn.polytoria.com/static/logo-new-dark-DaD4Kml0.png",
+            "alt": "Polytoria"
+          },
+          {
+            "src": "https://cdn.polytoria.com/places/icons/6F8-z6I778Jl46J_zMSmlXEDA3llGBpP.png",
+            "alt": "The world's icon"
+          }
+        ]
+      },
+      "settings": {
+        "showThumbnail": false
+      },
+      "expect": {
+        "assets": {
+          "largeText": "Catalog Avatar Studio"
+        },
+        "buttons": [
+          {
+            "label": "View world",
+            "url": "https://polytoria.com/places/122502"
+          }
+        ],
+        "details": "Looking at a world",
+        "detailsUrl": "https://polytoria.com/places/122502",
+        "state": "Catalog Avatar Studio"
+      }
+    },
+    {
+      "name": "a thread whose title is very long",
+      "source": "synthetic",
+      "url": "https://polytoria.com/forum/post/1",
+      "title": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx - Polytoria",
+      "expect": {
+        "assets": {
+          "largeText": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        },
+        "buttons": [
+          {
+            "label": "View thread",
+            "url": "https://polytoria.com/forum/post/1"
+          }
+        ],
+        "details": "Reading a thread",
+        "detailsUrl": "https://polytoria.com/forum/post/1",
+        "state": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
+    },
+    {
+      "name": "a title with control and direction-override characters",
+      "source": "synthetic",
+      "url": "https://polytoria.com/places/122502",
+      "title": "\u202E ecin \u0000 sober - Polytoria",
+      "expect": {
+        "assets": {
+          "largeText": "ecin sober"
+        },
+        "buttons": [
+          {
+            "label": "View world",
+            "url": "https://polytoria.com/places/122502"
+          }
+        ],
+        "details": "Looking at a world",
+        "detailsUrl": "https://polytoria.com/places/122502",
+        "state": "ecin sober"
+      }
+    }
+  ]
+}
