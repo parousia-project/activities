@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schemas/metadata.json",
+  "apiVersion": 1,
+  "id": "stackblitz",
+  "name": "StackBlitz",
+  "description": "The project, repository, user or collection you're looking at on StackBlitz, or what you're browsing.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Abadima",
+      "github": "Abadima"
+    }
+  ],
+  "icon": "https://c.staticblitz.com/assets/icons/icon-512x512-4fd226b904b09411fdeb83161b2b9f309394fea1b66817920a9ec1e71ca78ca0.png",
+  "matches": ["https://stackblitz.com/*", "https://www.stackblitz.com/*"],
+  "settings": [
+    {
+      "id": "privacyMode",
+      "title": "Privacy mode",
+      "description": "Say only what kind of page you're on, not which project, repository, user or collection.",
+      "type": "boolean",
+      "default": false
+    }
+  ]
+}

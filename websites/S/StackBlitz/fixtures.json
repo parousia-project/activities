@@ -1,0 +1,382 @@
+{
+  "$schema": "../../../schemas/fixtures.json",
+  "for": [
+    "https://stackblitz.com/",
+    "https://stackblitz.com/edit/angular",
+    "https://www.stackblitz.com/"
+  ],
+  "notFor": [
+    "https://developer.stackblitz.com/",
+    "https://blog.stackblitz.com/",
+    "https://stackblitz.io/"
+  ],
+  "cases": [
+    {
+      "name": "the home page",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://stackblitz.com/",
+      "title": "StackBlitz | Instant Dev Environments | Click. Code. Done.",
+      "expect": {
+        "details": "Browsing StackBlitz"
+      }
+    },
+    {
+      "name": "the pricing page",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://stackblitz.com/pricing",
+      "title": "StackBlitz | Pricing | Instant Dev Environments | Click. Code. Done.",
+      "expect": {
+        "assets": {
+          "largeText": "Pricing"
+        },
+        "details": "Browsing StackBlitz",
+        "state": "Pricing"
+      }
+    },
+    {
+      "name": "the case studies",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://stackblitz.com/case-studies",
+      "title": "StackBlitz | Case Studies | Instant Dev Environments | Click. Code. Done.",
+      "expect": {
+        "assets": {
+          "largeText": "Case Studies"
+        },
+        "details": "Browsing StackBlitz",
+        "state": "Case Studies"
+      }
+    },
+    {
+      "name": "a project's page",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://stackblitz.com/edit/angular",
+      "title": "Angular - StackBlitz",
+      "expect": {
+        "assets": {
+          "largeText": "Angular"
+        },
+        "buttons": [
+          {
+            "label": "Open project",
+            "url": "https://stackblitz.com/edit/angular"
+          }
+        ],
+        "details": "In the project editor",
+        "detailsUrl": "https://stackblitz.com/edit/angular",
+        "state": "Angular"
+      }
+    },
+    {
+      "name": "a project's page whose address carries queries",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://stackblitz.com/edit/angular?file=src/main.ts&hideExplorer=1",
+      "title": "Angular - StackBlitz",
+      "expect": {
+        "assets": {
+          "largeText": "Angular"
+        },
+        "buttons": [
+          {
+            "label": "Open project",
+            "url": "https://stackblitz.com/edit/angular"
+          }
+        ],
+        "details": "In the project editor",
+        "detailsUrl": "https://stackblitz.com/edit/angular",
+        "state": "Angular"
+      }
+    },
+    {
+      "name": "a project without a name",
+      "source": "source",
+      "url": "https://stackblitz.com/edit/web-platform-xnejzpb",
+      "title": "Untitled - StackBlitz",
+      "expect": {
+        "assets": {
+          "largeText": "Untitled"
+        },
+        "buttons": [
+          {
+            "label": "Open project",
+            "url": "https://stackblitz.com/edit/web-platform-xnejzpb"
+          }
+        ],
+        "details": "In the project editor",
+        "detailsUrl": "https://stackblitz.com/edit/web-platform-xnejzpb",
+        "state": "Untitled"
+      }
+    },
+    {
+      "name": "a project whose tab has no suffix",
+      "source": "synthetic",
+      "url": "https://stackblitz.com/edit/angular",
+      "title": "Angular",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open project",
+            "url": "https://stackblitz.com/edit/angular"
+          }
+        ],
+        "details": "In the project editor",
+        "detailsUrl": "https://stackblitz.com/edit/angular"
+      }
+    },
+    {
+      "name": "a repository opened from GitHub",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://stackblitz.com/github/antfu/vitesse",
+      "title": "Antfu - Vitesse - StackBlitz",
+      "expect": {
+        "assets": {
+          "largeText": "antfu/vitesse"
+        },
+        "buttons": [
+          {
+            "label": "Open on StackBlitz",
+            "url": "https://stackblitz.com/github/antfu/vitesse"
+          }
+        ],
+        "details": "In the editor, from GitHub",
+        "detailsUrl": "https://stackblitz.com/github/antfu/vitesse",
+        "state": "antfu/vitesse"
+      }
+    },
+    {
+      "name": "a repository, freshly forked",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://stackblitz.com/fork/github/antfu/vitesse",
+      "title": "Antfu - Vitesse (duplicated) - StackBlitz",
+      "expect": {
+        "assets": {
+          "largeText": "antfu/vitesse"
+        },
+        "buttons": [
+          {
+            "label": "Open on StackBlitz",
+            "url": "https://stackblitz.com/fork/github/antfu/vitesse"
+          }
+        ],
+        "details": "In the editor, from GitHub",
+        "detailsUrl": "https://stackblitz.com/fork/github/antfu/vitesse",
+        "state": "antfu/vitesse"
+      }
+    },
+    {
+      "name": "a repository whose owner or repo doesn't fit",
+      "source": "synthetic",
+      "url": "https://stackblitz.com/github/antfu/vit%C3%A9",
+      "title": "Antfu - Vité - StackBlitz",
+      "expect": {
+        "buttons": [
+          {
+            "label": "Open on StackBlitz",
+            "url": "https://stackblitz.com/github/antfu/vit%C3%A9"
+          }
+        ],
+        "details": "In the editor, from GitHub",
+        "detailsUrl": "https://stackblitz.com/github/antfu/vit%C3%A9"
+      }
+    },
+    {
+      "name": "a profile",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://stackblitz.com/@antfu",
+      "title": "antfu",
+      "expect": {
+        "assets": {
+          "largeText": "antfu"
+        },
+        "buttons": [
+          {
+            "label": "View profile",
+            "url": "https://stackblitz.com/@antfu"
+          }
+        ],
+        "details": "Looking at a profile",
+        "detailsUrl": "https://stackblitz.com/@antfu",
+        "state": "antfu"
+      }
+    },
+    {
+      "name": "a profile in privacy mode",
+      "source": "synthetic",
+      "url": "https://stackblitz.com/@antfu",
+      "title": "antfu",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Looking at a profile"
+      }
+    },
+    {
+      "name": "a user's collections",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://stackblitz.com/@rolaru/collections",
+      "title": "Collections by rolaru",
+      "expect": {
+        "assets": {
+          "largeText": "rolaru"
+        },
+        "buttons": [
+          {
+            "label": "View collections",
+            "url": "https://stackblitz.com/@rolaru/collections"
+          }
+        ],
+        "details": "Browsing collections",
+        "detailsUrl": "https://stackblitz.com/@rolaru/collections",
+        "state": "rolaru"
+      }
+    },
+    {
+      "name": "a user's collections whose tab lacks the byline",
+      "source": "synthetic",
+      "url": "https://stackblitz.com/@rolaru/collections",
+      "title": "",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View collections",
+            "url": "https://stackblitz.com/@rolaru/collections"
+          }
+        ],
+        "details": "Browsing collections",
+        "detailsUrl": "https://stackblitz.com/@rolaru/collections"
+      }
+    },
+    {
+      "name": "a collection's page",
+      "source": "synthetic",
+      "url": "https://stackblitz.com/@rolaru/collections/javascript",
+      "title": "JavaScript - StackBlitz",
+      "expect": {
+        "buttons": [
+          {
+            "label": "View collection",
+            "url": "https://stackblitz.com/@rolaru/collections/javascript"
+          }
+        ],
+        "details": "Looking at a collection",
+        "detailsUrl": "https://stackblitz.com/@rolaru/collections/javascript"
+      }
+    },
+    {
+      "name": "a collection's page in privacy mode",
+      "source": "synthetic",
+      "url": "https://stackblitz.com/@rolaru/collections/javascript",
+      "title": "JavaScript - StackBlitz",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Looking at a collection"
+      }
+    },
+    {
+      "name": "a project in privacy mode",
+      "source": "synthetic",
+      "url": "https://stackblitz.com/edit/angular",
+      "title": "Angular - StackBlitz",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "In the project editor"
+      }
+    },
+    {
+      "name": "a repository in privacy mode",
+      "source": "synthetic",
+      "url": "https://stackblitz.com/github/antfu/vitesse",
+      "title": "Antfu - Vitesse - StackBlitz",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "In the editor, from GitHub"
+      }
+    },
+    {
+      "name": "the pricing page in privacy mode",
+      "source": "synthetic",
+      "url": "https://stackblitz.com/pricing",
+      "title": "StackBlitz | Pricing | Instant Dev Environments | Click. Code. Done.",
+      "settings": {
+        "privacyMode": true
+      },
+      "expect": {
+        "details": "Browsing StackBlitz"
+      }
+    },
+    {
+      "name": "the dashboard",
+      "source": "browser",
+      "observed": "2026-11-07",
+      "url": "https://stackblitz.com/edit",
+      "title": "StackBlitz",
+      "expect": {
+        "details": "Browsing StackBlitz"
+      }
+    },
+    {
+      "name": "an address that isn't one of the site's pages",
+      "source": "synthetic",
+      "url": "https://stackblitz.com/this-does-not-exist-at-all",
+      "title": "StackBlitz",
+      "expect": {
+        "details": "Browsing StackBlitz"
+      }
+    },
+    {
+      "name": "a title with control and direction-override characters",
+      "source": "synthetic",
+      "url": "https://stackblitz.com/edit/web-platform-abc123",
+      "title": "\u202E ataD \u0000 samsap - StackBlitz",
+      "expect": {
+        "assets": {
+          "largeText": "ataD samsap"
+        },
+        "buttons": [
+          {
+            "label": "Open project",
+            "url": "https://stackblitz.com/edit/web-platform-abc123"
+          }
+        ],
+        "details": "In the project editor",
+        "detailsUrl": "https://stackblitz.com/edit/web-platform-abc123",
+        "state": "ataD samsap"
+      }
+    },
+    {
+      "name": "a project whose name is very long",
+      "source": "synthetic",
+      "url": "https://stackblitz.com/edit/web-platform-abc123",
+      "title": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx - StackBlitz",
+      "expect": {
+        "assets": {
+          "largeText": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        },
+        "buttons": [
+          {
+            "label": "Open project",
+            "url": "https://stackblitz.com/edit/web-platform-abc123"
+          }
+        ],
+        "details": "In the project editor",
+        "detailsUrl": "https://stackblitz.com/edit/web-platform-abc123",
+        "state": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }
+    }
+  ]
+}
